@@ -63,74 +63,55 @@ namespace SIM_PLE_2._0
         private void btn_tabBO_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage3SIM;
-        } 
+        }
 
         #region //Botones Examinar en pestaña de Reportes
+
+        //metado para habilitar botones de calcular.
+        private void HabilitarCalcular()
+        {
+            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
+            {
+                btn_SIM_calcular.Enabled = true;
+            }
+            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
+            {
+                btn_calcularSellout.Enabled = true;
+            }
+        }
         private void btn_Examinar1_Click(object sender, EventArgs e)
         {
-            //encuentra la ruta de un archivo. si se le da ok el if = true
+            //encuentra la ruta de un archivo.
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 // Codigo para abrir y leer el archivo
                 txtbox_REP_psragencia.Text = openFileDialog1.FileName;
             }
-            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "" )
-            {
-                btn_SIM_calcular.Enabled = true;
-            }
-            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_calcularSellout.Enabled = true;
-            }
+            HabilitarCalcular();
         }  
         private void btn_Examinar2_Click(object sender, EventArgs e)
         {
-            //encuentra la ruta de un archivo. si se le da ok el if = true
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                // Codigo para abrir y leer el archivo
                 txtbox_REP_pRecarga.Text = openFileDialog1.FileName;
             }
-            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_SIM_calcular.Enabled = true;
-            }
-            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_calcularSellout.Enabled = true;
-            }
+            HabilitarCalcular();
         }
         private void btn_Examinar3_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                // Codigo para abrir y leer el archivo
                 txtbox_REP_productosVendidos.Text = openFileDialog1.FileName;
             }
-            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_SIM_calcular.Enabled = true;
-            }
-            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_calcularSellout.Enabled = true;
-            }
+            HabilitarCalcular();
         }
         private void examinar_sellout_dealer_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                // Codigo para abrir y leer el archivo
                 txtBox_REPsellout_dealer.Text = openFileDialog1.FileName;
             }
-            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_SIM_calcular.Enabled = true;
-            }
-            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_calcularSellout.Enabled = true;
-            }
+            HabilitarCalcular();
         }
         #endregion
 
@@ -266,7 +247,7 @@ namespace SIM_PLE_2._0
             txtBox_Efectividad.Text = Convert.ToString(efectividad) + "%";
             txtBox_inversion.Text = "$" + invercion;
         } //calcular objetivo SIM
-      
+
         private void btn_calcularSellout_Click(object sender, EventArgs e)
         {
             listBox_Sellout.Items.Clear();
@@ -274,12 +255,12 @@ namespace SIM_PLE_2._0
             string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
             string[] reporte_dealer = File.ReadAllLines(txtBox_REPsellout_dealer.Text); //Contemplar exeptions
             string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);//Contemplar exeptions
-            
+
 
             var psrSellout = new Dictionary<string, PSR>();
             int objCumplido = 0;
             int psrTotales = 0;
-            int dadosBaja = 0;
+            int dadosBaja = 0; 
 
             //Reporte PSR de la agencia
             for (int i = 2; i < reporte_PSRagencia.Length; i++)
