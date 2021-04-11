@@ -122,18 +122,20 @@ namespace SIM_PLE_2._0
             int objVenta = Convert.ToInt32(txtbox_montoObjSIM.Text);
 
             //se leen las lineas de los reportes.
-            string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
-            string[] reporte_pRecarga = File.ReadAllLines(txtbox_REP_pRecarga.Text); //Contemplar exeptions
-            string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);//Contemplar exeptions
+            string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text);
+            string[] reporte_pRecarga = File.ReadAllLines(txtbox_REP_pRecarga.Text);
+            string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);
             var psrSIM = new Dictionary<string, PSR>(); //DICCIONARIO PARA PSR.
             int objCumplido = 0;
             int psrTotales = 0;
             int dadosBaja = 0;
+            int psrAgenciaLen = reporte_PSRagencia.Length;
+            int pRecargasLen = reporte_pRecarga.Length;
+            int prodVendidosLen = reporte_prodVendidos.Length;
 
-
-            for (int i = 2; i < reporte_PSRagencia.Length; i++)
+            for (int i = 2; i < psrAgenciaLen; i++)
             {
-                // se genera un array con el contenido de dichas lineas.
+                // Array con el contenido de dichas lineas.
                 string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
                 //Si pertenece al caminante seleccionado entonces se asignan los datos al objeto PSR.
                 if (itemsAgencia[agencia_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
@@ -152,13 +154,14 @@ namespace SIM_PLE_2._0
                         Lote = "",
                         EsCumplidor = false
                     };
-                    psrSIM[client.CodPSR] = client; // Se guarda el objeto cliente en el diccionario, la clave esta entre[]. 
+                    psrSIM[client.CodPSR] = client; // Se guarda el objeto cliente en el diccionario.
                 }
             }
 
             psrTotales = psrSIM.Count;
+            
 
-            for (int y = 2; y < reporte_pRecarga.Length; y++)
+            for (int y = 2; y < pRecargasLen; y++)
             {
                 //Array con el contenido del segundo reporte
                 string[] itemspRecarga = reporte_pRecarga[y].Trim().Split(';');
@@ -214,7 +217,7 @@ namespace SIM_PLE_2._0
                     }
                 }
             }
-            for (int z = 2; z < reporte_prodVendidos.Length; z++)
+            for (int z = 2; z < prodVendidosLen; z++)
             {
                 string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
                 //string auxPSRcode2 = itemspVendidos[pVendidos_codpsrIndex];
@@ -255,7 +258,9 @@ namespace SIM_PLE_2._0
             string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
             string[] reporte_dealer = File.ReadAllLines(txtBox_REPsellout_dealer.Text); //Contemplar exeptions
             string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);//Contemplar exeptions
-
+            int psrAgenciaLen = reporte_PSRagencia.Length;
+            int ventaAnaliticoLen = reporte_dealer.Length;
+            int prodVendidosLen = reporte_prodVendidos.Length;
 
             var psrSellout = new Dictionary<string, PSR>();
             int objCumplido = 0;
@@ -263,7 +268,7 @@ namespace SIM_PLE_2._0
             int dadosBaja = 0; 
 
             //Reporte PSR de la agencia
-            for (int i = 2; i < reporte_PSRagencia.Length; i++)
+            for (int i = 2; i < psrAgenciaLen; i++)
             {
                 string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
                 if (itemsAgencia[agencia_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
@@ -282,7 +287,7 @@ namespace SIM_PLE_2._0
             }
             psrTotales = psrSellout.Count;
             //Reporte Productos Vendidos
-            for (int z = 2; z < reporte_prodVendidos.Length; z++)
+            for (int z = 2; z < prodVendidosLen; z++)
             {
                 string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
                 string auxpsrcode = itemspVendidos[pVendidos_codpsrIndex];
@@ -294,7 +299,7 @@ namespace SIM_PLE_2._0
             }
           
             //Reporte Ventas Analitico
-            for (int y = 5; y < reporte_dealer.Length; y++)
+            for (int y = 5; y < ventaAnaliticoLen; y++)
             {
                 string[] ventasFinales = reporte_dealer[y].Split(';');
                 string auxPsrcode = "0"+ventasFinales[dealer_codpsrIndex];
