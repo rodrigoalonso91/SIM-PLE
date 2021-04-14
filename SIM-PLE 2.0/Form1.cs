@@ -145,7 +145,7 @@ namespace SIM_PLE_2._0
                         CodPSR = itemsAgencia[agencia_codpsrIndex],
                         Caminante = itemsAgencia[agencia_caminanteIndex],
                         Pos = itemsAgencia[agencia_posIndex],
-                        Nombre = itemsAgencia[agencia_nameIndex],
+                        Nombre = itemsAgencia[agencia_nameIndex].Replace('"', ' ').Trim(),
                         Calle = itemsAgencia[agencia_direccionIndex],
                         Altura = itemsAgencia[agencia_alturaIndex],
                         NimCliente = "",
@@ -385,12 +385,12 @@ namespace SIM_PLE_2._0
 
                 string clipBoard = File.ReadAllText(rutaGuardado);
                 Clipboard.SetText(clipBoard);
-                MessageBox.Show("Los recultados se copiaron en el portapapeles :)");
+                MessageBox.Show("Los recultados se copiaron en el portapapeles :)", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 File.Delete(rutaGuardado);
             }
             else
             {
-                MessageBox.Show("Primero debes calcular todos los objetivos");
+                MessageBox.Show("Primero debes calcular todos los objetivos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void iconButton1_Click(object sender, EventArgs e) //Codigo para exportacion de Reporte formato (.txt)
@@ -444,12 +444,12 @@ namespace SIM_PLE_2._0
                             j++;
                         }
                     }
-                    MessageBox.Show("Se ha guardado su resultado.");
+                    MessageBox.Show("Se ha guardado su resultado.","Aviso",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Primero debes calcular todos los objetivos");
+                MessageBox.Show("Primero debes calcular todos los objetivos","Aviso",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -510,5 +510,22 @@ namespace SIM_PLE_2._0
             }
         }
 
+        private void txtbox_montoObjSIM_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBox_Sellout_objVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+               (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

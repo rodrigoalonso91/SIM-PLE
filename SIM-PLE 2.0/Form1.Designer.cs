@@ -469,6 +469,7 @@ namespace SIM_PLE_2._0
             this.txtBox_Sellout_objVenta.Name = "txtBox_Sellout_objVenta";
             this.txtBox_Sellout_objVenta.Size = new System.Drawing.Size(49, 20);
             this.txtBox_Sellout_objVenta.TabIndex = 30;
+            this.txtBox_Sellout_objVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBox_Sellout_objVenta_KeyPress);
             // 
             // SO_psrTotales
             // 
@@ -647,6 +648,7 @@ namespace SIM_PLE_2._0
             this.txtbox_montoObjSIM.Name = "txtbox_montoObjSIM";
             this.txtbox_montoObjSIM.Size = new System.Drawing.Size(49, 20);
             this.txtbox_montoObjSIM.TabIndex = 24;
+            this.txtbox_montoObjSIM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_montoObjSIM_KeyPress);
             // 
             // label3
             // 
