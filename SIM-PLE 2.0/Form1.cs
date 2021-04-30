@@ -115,7 +115,7 @@ namespace SIM_PLE_2._0
         }
         #endregion
 
-        private void btn_SIM_calcular_Click_1(object sender, EventArgs e)
+        private void btn_SIM_calcular_Click_1(object sender, EventArgs e) //Calcula objetivo SIM
         {
 
             listBox_SIM.Items.Clear();
@@ -237,7 +237,7 @@ namespace SIM_PLE_2._0
                 }
                 else
                 {
-                    listBox_SIM.Items.Add(psr.Nombre + " / " + "Primera Recarga: $" + Convert.ToString(psr.PrimeraRecarga) + " / " + "Numero: " + psr.NimCliente + " / " + "Lote: " + psr.Lote);
+                    listBox_SIM.Items.Add(psr.Nombre + " | " + "Primera Recarga: $" + Convert.ToString(psr.PrimeraRecarga) + " | " + "Numero: " + psr.NimCliente + " | " + "Lote: " + psr.Lote);
                     int paraCumplirObj = objVenta - psr.PrimeraRecarga;
                     invercion += paraCumplirObj;
                 }
@@ -249,9 +249,11 @@ namespace SIM_PLE_2._0
             txtBox_deBaja.Text = Convert.ToString(dadosBaja);
             txtBox_Efectividad.Text = Convert.ToString(efectividad) + "%";
             txtBox_inversion.Text = "$" + invercion;
-        } //calcular objetivo SIM
 
-        private void btn_calcularSellout_Click(object sender, EventArgs e)
+            listBox_SIM.Sorted = true;
+        } 
+
+        private void btn_calcularSellout_Click(object sender, EventArgs e) //Calcula objetivo SO.
         {
             listBox_Sellout.Items.Clear();
             int objVenta = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
@@ -320,8 +322,8 @@ namespace SIM_PLE_2._0
                 if (psr.EsCumplidor)
                     objCumplido++;
                 else
-                    listBox_Sellout.Items.Add(psr.Nombre + " / " + "Venta mensual: "
-                    +Convert.ToString(psr.VentaMensual) + " / " + "Total Transferido: " + Convert.ToString(psr.Transferencias));
+                    listBox_Sellout.Items.Add(psr.Nombre + " | " + "Venta mensual: "
+                    +Convert.ToString(psr.VentaMensual) + " | " + "Total Transferido: " + Convert.ToString(psr.Transferencias));
             }
             SO_psrTotales.Text = Convert.ToString(psrTotales);
             txtB_soConObjetivo.Text = Convert.ToString(objCumplido);
@@ -329,7 +331,9 @@ namespace SIM_PLE_2._0
             txtB_soVolumen.Text = "$"+Convert.ToString(volumenVendedor);
             int efectividad = (objCumplido * 100) / psrTotales;
             SO_efectividad.Text = Convert.ToString(efectividad) + "%";
-        } //calcular objetivo SO
+
+            listBox_Sellout.Sorted = true;
+        }
 
 
 
@@ -385,12 +389,12 @@ namespace SIM_PLE_2._0
 
                 string clipBoard = File.ReadAllText(rutaGuardado);
                 Clipboard.SetText(clipBoard);
-                MessageBox.Show("Los recultados se copiaron en el portapapeles :)", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Los recultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 File.Delete(rutaGuardado);
             }
             else
             {
-                MessageBox.Show("Primero debes calcular todos los objetivos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Primero debes calcular todos los objetivos", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void iconButton1_Click(object sender, EventArgs e) //Codigo para exportacion de Reporte formato (.txt)
@@ -444,12 +448,12 @@ namespace SIM_PLE_2._0
                             j++;
                         }
                     }
-                    MessageBox.Show("Se ha guardado su resultado.","Aviso",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se ha guardado su resultado.","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Primero debes calcular todos los objetivos","Aviso",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Primero debes calcular todos los objetivos","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -509,7 +513,7 @@ namespace SIM_PLE_2._0
                 modContadores_SO(txtB_soConObjetivo.Text, txtBox_soFaltan.Text);
             }
         }
-
+        //Textbox "objetivos" solo aceptan numeros.
         private void txtbox_montoObjSIM_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&

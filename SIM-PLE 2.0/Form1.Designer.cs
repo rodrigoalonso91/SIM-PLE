@@ -129,6 +129,7 @@ namespace SIM_PLE_2._0
             this.btn_clipBoard.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btn_clipBoard.Location = new System.Drawing.Point(95, 419);
             this.btn_clipBoard.Name = "btn_clipBoard";
+            this.btn_clipBoard.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.btn_clipBoard.Size = new System.Drawing.Size(46, 40);
             this.btn_clipBoard.TabIndex = 23;
             this.btn_clipBoard.UseVisualStyleBackColor = true;
@@ -161,6 +162,7 @@ namespace SIM_PLE_2._0
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSave.Location = new System.Drawing.Point(43, 419);
             this.btnSave.Name = "btnSave";
+            this.btnSave.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.btnSave.Size = new System.Drawing.Size(46, 40);
             this.btnSave.TabIndex = 5;
             this.btnSave.UseVisualStyleBackColor = true;
