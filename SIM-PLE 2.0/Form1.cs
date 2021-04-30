@@ -237,7 +237,7 @@ namespace SIM_PLE_2._0
                 }
                 else
                 {
-                    listBox_SIM.Items.Add(psr.Nombre + " | " + "Primera Recarga: $" + Convert.ToString(psr.PrimeraRecarga) + " | " + "Numero: " + psr.NimCliente + " | " + "Lote: " + psr.Lote);
+                    listBox_SIM.Items.Add(psr.Nombre + "  |  " + "Primera Recarga: $" + Convert.ToString(psr.PrimeraRecarga) + "  |  " + "Numero: " + psr.NimCliente + "  |  " + "Lote: " + psr.Lote);
                     int paraCumplirObj = objVenta - psr.PrimeraRecarga;
                     invercion += paraCumplirObj;
                 }
@@ -322,8 +322,8 @@ namespace SIM_PLE_2._0
                 if (psr.EsCumplidor)
                     objCumplido++;
                 else
-                    listBox_Sellout.Items.Add(psr.Nombre + " | " + "Venta mensual: "
-                    +Convert.ToString(psr.VentaMensual) + " | " + "Total Transferido: " + Convert.ToString(psr.Transferencias));
+                    listBox_Sellout.Items.Add(psr.Nombre + "  |  " + "Venta mensual: "
+                    +Convert.ToString(psr.VentaMensual) + "  |  " + "Total Transferido: " + Convert.ToString(psr.Transferencias));
             }
             SO_psrTotales.Text = Convert.ToString(psrTotales);
             txtB_soConObjetivo.Text = Convert.ToString(objCumplido);
