@@ -344,53 +344,38 @@ namespace SIM_PLE_2._0
                 Clipboard.Clear();
                 string[] noCumplidores_SIM = listBox_SIM.Items.OfType<string>().ToArray();
                 string[] noCumplidores_SO = listBox_Sellout.Items.OfType<string>().ToArray();
-                string rutaGuardado = "Clipboard.txt";
+                string strNoCumplidores_Sim = "";
+                string strNoCumplidores_SO = "";
                 string cumObjetivo_SIM = txtBox_SimConObj.Text;
                 string simFaltantes = txtBox_faltaCumplir.Text;
                 string cumObjetivo_SO = txtB_soConObjetivo.Text;
                 string soFaltantes = txtBox_soFaltan.Text;
 
+                string saltoDeLinea = Environment.NewLine;
                 string tituloReporte = "SIM-PLE Reporte: " + comboBox_SIMcaminantes.SelectedItem;
-                string lineaVacia = "";
                 string linea1 = "Obj. SIM: " + cumObjetivo_SIM + " PSR";
                 string linea2 = "Faltan " + simFaltantes + " psr: ";
                 string linea3 = "tu volumen es: " + txtB_soVolumen.Text;
                 string linea4 = "Obj. SO: " + cumObjetivo_SO;
                 string linea5 = "Faltan " + soFaltantes + " psr: ";
                 int j = 1;
-
-                using (StreamWriter file = new StreamWriter(rutaGuardado))
+                foreach (string items in noCumplidores_SO)
                 {
-                    file.WriteLine(tituloReporte);
-                    file.WriteLine(lineaVacia);
-                    file.WriteLine(linea1);
-                    file.WriteLine(lineaVacia);
-                    file.WriteLine(linea2);
-                    file.WriteLine(lineaVacia);
-                    foreach (string items in noCumplidores_SIM)
-                    {
-                        file.WriteLine(Convert.ToString(j) + ") " + items);
-                        j++;
-                    }
-                    file.WriteLine(lineaVacia);
-                    file.WriteLine(linea3);
-                    file.WriteLine(lineaVacia);
-                    file.WriteLine(linea4);
-                    file.WriteLine(lineaVacia);
-                    file.WriteLine(linea5);
-                    file.WriteLine(lineaVacia);
-                    j = 1;
-                    foreach (string items in noCumplidores_SO)
-                    {
-                        file.WriteLine(Convert.ToString(j) + ") " + items);
-                        j++;
-                    }
+                    strNoCumplidores_Sim += saltoDeLinea + "    " + Convert.ToString(j) + ") " + items;
+                    j++;
+                }
+                int j = 1;
+                foreach (string items in noCumplidores_SIM)
+                {
+                    strNoCumplidores_SO += saltoDeLinea + "    " + Convert.ToString(j) + ") " + items;
+                    j++;
                 }
 
-                string clipBoard = File.ReadAllText(rutaGuardado);
-                Clipboard.SetText(clipBoard);
-                MessageBox.Show("Los recultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                File.Delete(rutaGuardado);
+                string reporte = tituloReporte + saltoDeLinea + String.Empty + saltoDeLinea + linea1 + saltoDeLinea + String.Empty + saltoDeLinea  + linea2 + strNoCumplidores_Sim + saltoDeLinea + String.Empty + saltoDeLinea + linea3
+                    + saltoDeLinea + String.Empty + saltoDeLinea + linea4 + saltoDeLinea + String.Empty + saltoDeLinea + linea5 + strNoCumplidores_SO;
+
+                Clipboard.SetText(reporte);
+                MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
