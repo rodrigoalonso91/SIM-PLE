@@ -359,13 +359,13 @@ namespace SIM_PLE_2._0
                 string linea4 = "Obj. SO: " + cumObjetivo_SO;
                 string linea5 = "Faltan " + soFaltantes + " psr: ";
                 int j = 1;
-                foreach (string items in noCumplidores_SO)
+                foreach (string items in noCumplidores_SIM)
                 {
                     strNoCumplidores_Sim += saltoDeLinea + "    " + Convert.ToString(j) + ") " + items;
                     j++;
                 }
-                int j = 1;
-                foreach (string items in noCumplidores_SIM)
+                j = 1;
+                foreach (string items in noCumplidores_SO)
                 {
                     strNoCumplidores_SO += saltoDeLinea + "    " + Convert.ToString(j) + ") " + items;
                     j++;
@@ -447,7 +447,7 @@ namespace SIM_PLE_2._0
         public void modContadores_Sim(string cumplidos, string faltantes)
         {
             string itemSelected = (string)listBox_SIM.SelectedItem;
-            string[] arrayItemSelected = itemSelected.Split('$', '/');
+            string[] arrayItemSelected = itemSelected.Split('$', '|');
             arrayItemSelected[2].Replace(" ", String.Empty);
 
             int objVenta = Convert.ToInt32(txtbox_montoObjSIM.Text);

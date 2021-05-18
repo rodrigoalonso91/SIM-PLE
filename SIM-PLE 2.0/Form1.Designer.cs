@@ -139,7 +139,6 @@ namespace SIM_PLE_2._0
             // 
             this.comboBox_SIMcaminantes.FormattingEnabled = true;
             this.comboBox_SIMcaminantes.Items.AddRange(new object[] {
-            "Pre, Agustin",
             "Alonso, Rodrigo",
             "Valiente, Brian",
             "Pollio, Dante",
@@ -291,7 +290,7 @@ namespace SIM_PLE_2._0
             // 
             this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.ForeColor = System.Drawing.Color.Gainsboro;
             this.button9.Location = new System.Drawing.Point(143, 293);
             this.button9.Name = "button9";
