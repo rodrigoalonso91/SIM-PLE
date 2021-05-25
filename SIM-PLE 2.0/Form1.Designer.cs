@@ -55,6 +55,7 @@ namespace SIM_PLE_2._0
             this.lbl_psrAgencia = new System.Windows.Forms.Button();
             this.tabPage2Sellout = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.SO_efectividad = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.txtBox_Sellout_objVenta = new System.Windows.Forms.TextBox();
@@ -97,7 +98,6 @@ namespace SIM_PLE_2._0
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.paneltapaPestaña = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -134,7 +134,7 @@ namespace SIM_PLE_2._0
             this.btn_tabPremios40.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.btn_tabPremios40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tabPremios40.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_tabPremios40.Location = new System.Drawing.Point(0, 319);
+            this.btn_tabPremios40.Location = new System.Drawing.Point(0, 316);
             this.btn_tabPremios40.Name = "btn_tabPremios40";
             this.btn_tabPremios40.Size = new System.Drawing.Size(185, 43);
             this.btn_tabPremios40.TabIndex = 13;
@@ -209,7 +209,7 @@ namespace SIM_PLE_2._0
             this.btn_tabBO.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.btn_tabBO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tabBO.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_tabBO.Location = new System.Drawing.Point(0, 224);
+            this.btn_tabBO.Location = new System.Drawing.Point(0, 230);
             this.btn_tabBO.Name = "btn_tabBO";
             this.btn_tabBO.Size = new System.Drawing.Size(185, 43);
             this.btn_tabBO.TabIndex = 2;
@@ -224,7 +224,7 @@ namespace SIM_PLE_2._0
             this.btn_tabSellout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.btn_tabSellout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tabSellout.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_tabSellout.Location = new System.Drawing.Point(0, 269);
+            this.btn_tabSellout.Location = new System.Drawing.Point(0, 273);
             this.btn_tabSellout.Name = "btn_tabSellout";
             this.btn_tabSellout.Size = new System.Drawing.Size(185, 43);
             this.btn_tabSellout.TabIndex = 1;
@@ -239,7 +239,7 @@ namespace SIM_PLE_2._0
             this.btn_tabSIM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.btn_tabSIM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_tabSIM.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_tabSIM.Location = new System.Drawing.Point(0, 183);
+            this.btn_tabSIM.Location = new System.Drawing.Point(0, 187);
             this.btn_tabSIM.Name = "btn_tabSIM";
             this.btn_tabSIM.Size = new System.Drawing.Size(185, 43);
             this.btn_tabSIM.TabIndex = 0;
@@ -447,6 +447,19 @@ namespace SIM_PLE_2._0
             this.panel1.Size = new System.Drawing.Size(773, 487);
             this.panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label2.Location = new System.Drawing.Point(31, 22);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(3);
+            this.label2.Size = new System.Drawing.Size(191, 19);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "INGRESE OBJETIVO DE VENTA";
+            // 
             // SO_efectividad
             // 
             this.SO_efectividad.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -475,8 +488,9 @@ namespace SIM_PLE_2._0
             // 
             this.txtBox_Sellout_objVenta.Location = new System.Drawing.Point(228, 22);
             this.txtBox_Sellout_objVenta.Name = "txtBox_Sellout_objVenta";
-            this.txtBox_Sellout_objVenta.Size = new System.Drawing.Size(49, 20);
+            this.txtBox_Sellout_objVenta.Size = new System.Drawing.Size(48, 20);
             this.txtBox_Sellout_objVenta.TabIndex = 30;
+            this.txtBox_Sellout_objVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_Sellout_objVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBox_Sellout_objVenta_KeyPress);
             // 
             // SO_psrTotales
@@ -545,7 +559,7 @@ namespace SIM_PLE_2._0
             this.btn_calcularSellout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_calcularSellout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_calcularSellout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_calcularSellout.Location = new System.Drawing.Point(285, 437);
+            this.btn_calcularSellout.Location = new System.Drawing.Point(281, 425);
             this.btn_calcularSellout.Name = "btn_calcularSellout";
             this.btn_calcularSellout.Size = new System.Drawing.Size(213, 28);
             this.btn_calcularSellout.TabIndex = 0;
@@ -641,7 +655,7 @@ namespace SIM_PLE_2._0
             this.btn_SIM_calcular.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_SIM_calcular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SIM_calcular.ForeColor = System.Drawing.Color.Snow;
-            this.btn_SIM_calcular.Location = new System.Drawing.Point(282, 425);
+            this.btn_SIM_calcular.Location = new System.Drawing.Point(281, 425);
             this.btn_SIM_calcular.Name = "btn_SIM_calcular";
             this.btn_SIM_calcular.Size = new System.Drawing.Size(227, 40);
             this.btn_SIM_calcular.TabIndex = 21;
@@ -664,7 +678,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtbox_montoObjSIM.Location = new System.Drawing.Point(228, 22);
             this.txtbox_montoObjSIM.Name = "txtbox_montoObjSIM";
-            this.txtbox_montoObjSIM.Size = new System.Drawing.Size(49, 20);
+            this.txtbox_montoObjSIM.Size = new System.Drawing.Size(48, 20);
             this.txtbox_montoObjSIM.TabIndex = 24;
             this.txtbox_montoObjSIM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtbox_montoObjSIM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_montoObjSIM_KeyPress);
@@ -840,6 +854,7 @@ namespace SIM_PLE_2._0
             this.txtbox_maxPorCaminante.Size = new System.Drawing.Size(123, 20);
             this.txtbox_maxPorCaminante.TabIndex = 22;
             this.txtbox_maxPorCaminante.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_maxPorCaminante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCaminante_KeyPress);
             // 
             // txtbox_maxPorCliente
             // 
@@ -848,6 +863,7 @@ namespace SIM_PLE_2._0
             this.txtbox_maxPorCliente.Size = new System.Drawing.Size(123, 20);
             this.txtbox_maxPorCliente.TabIndex = 21;
             this.txtbox_maxPorCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_maxPorCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCliente_KeyPress);
             // 
             // button2
             // 
@@ -911,19 +927,6 @@ namespace SIM_PLE_2._0
             this.paneltapaPestaña.Name = "paneltapaPestaña";
             this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
             this.paneltapaPestaña.TabIndex = 12;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(31, 22);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(3);
-            this.label2.Size = new System.Drawing.Size(191, 19);
-            this.label2.TabIndex = 40;
-            this.label2.Text = "INGRESE OBJETIVO DE VENTA";
             // 
             // Form1
             // 
