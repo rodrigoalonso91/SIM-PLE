@@ -18,12 +18,39 @@ namespace SIM_PLE_2._0
             InitializeComponent();
             eligeCaminante();
         }
+
+        #region //========== METODOS ==========\\
         private void eligeCaminante() //asigna el mensaje "Elige caminante" a todos los ComboBOX
         {
             comboBox_SIMcaminantes.Text = "Elija caminante";
         }
+        private void HabilitarCalcular()
+        {
+            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
+            {
+                btn_SIM_calcular.Enabled = true;
+                btn_SIM_calcular.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+            }
+            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
+            {
+                btn_calcularSellout.Enabled = true;
+                btn_SIM_calcular.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+            }
+            if (txtbox_REP_pRecarga.Text.Contains("rimera"))
+            {
+                btn_calcularPremios.Enabled = true;
+                btn_SIM_calcular.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+            }
+        } //Metodo para habilitar botones de calcular.
+        public int Obtener40Porciento(string input) //obtine el 40% del input
+        {
+            double cuenta = double.Parse(input) * 0.4;
+            int resultado = Convert.ToInt32(Math.Round(cuenta));
+            return resultado;
+        }
+        #endregion
 
-        #region //Indices de los campos en reportes
+        #region //========== INDEX ==========\\
         //Indexs PSR agencia.
         const int agencia_codpsrIndex = 1;
         const int agencia_nameIndex = 2;
@@ -32,11 +59,11 @@ namespace SIM_PLE_2._0
         const int agencia_caminanteIndex = 11;
         const int agencia_posIndex = 16;
         //Indexs Primera Recarga.
-        const int pRecarga_codpsrIndex = 0;
+        const int INDEX_RECARGAS_CODPSR = 0;
         const int pRecarga_nombreIndex = 1;
-        const int pRecarga_caminanteIndex = 7;
+        const int INDEX_RECARGAS_CAMINANTE = 7;
         const int pRecarga_Id_Index = 9;
-        const int pRecarga_montoIndex = 14;
+        const int INDEX_RECARGAS_MONTO = 14;
         const int pRecarga_nimIndex = 10;
         //index Productos vendidos.
         const int pVendidos_codpsrIndex = 1;
@@ -51,7 +78,7 @@ namespace SIM_PLE_2._0
         const int dealer_posIndex = 3;
         #endregion
 
-        //Botones menu lateral que manejan el cambio de pestañas.
+        #region //========== BTNS MENU LATERAL ==========\\
         private void btn_tabSIM_Click_1(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage1Reportes;
@@ -64,21 +91,14 @@ namespace SIM_PLE_2._0
         {
             tabControl1.SelectedTab = tabPage3SIM;
         }
-
-        #region //Botones Examinar en pestaña de Reportes
-
-        //metado para habilitar botones de calcular.
-        private void HabilitarCalcular()
+        private void btn_tabPremios40_Click(object sender, EventArgs e)
         {
-            if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_SIM_calcular.Enabled = true;
-            }
-            if (txtbox_REP_psragencia.Text != "" && txtBox_REPsellout_dealer.Text != "" && txtbox_REP_productosVendidos.Text != "")
-            {
-                btn_calcularSellout.Enabled = true;
-            }
+            tabControl1.SelectedTab = tp_premios40;
         }
+        #endregion
+
+        #region //========== BOTONES EXAMINAR EN PESTAÑA REPORTES ==========\\
+
         private void btn_Examinar1_Click(object sender, EventArgs e)
         {
             //encuentra la ruta de un archivo.
@@ -117,222 +137,235 @@ namespace SIM_PLE_2._0
 
         private void btn_SIM_calcular_Click_1(object sender, EventArgs e) //Calcula objetivo SIM
         {
-
-            listBox_SIM.Items.Clear();
-            int objVenta = Convert.ToInt32(txtbox_montoObjSIM.Text);
-
-            //se leen las lineas de los reportes.
-            string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text);
-            string[] reporte_pRecarga = File.ReadAllLines(txtbox_REP_pRecarga.Text);
-            string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);
-            var psrSIM = new Dictionary<string, PSR>(); //DICCIONARIO PARA PSR.
-            int objCumplido = 0;
-            int psrTotales = 0;
-            int dadosBaja = 0;
-            int psrAgenciaLen = reporte_PSRagencia.Length;
-            int pRecargasLen = reporte_pRecarga.Length;
-            int prodVendidosLen = reporte_prodVendidos.Length;
-
-            for (int i = 2; i < psrAgenciaLen; i++)
+            if (comboBox_SIMcaminantes.Text == "Elija caminante")
             {
-                // Array con el contenido de dichas lineas.
-                string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
-                //Si pertenece al caminante seleccionado entonces se asignan los datos al objeto PSR.
-                if (itemsAgencia[agencia_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
-                {
-                    PSR client = new PSR
-                    {
-                        CodPSR = itemsAgencia[agencia_codpsrIndex],
-                        Caminante = itemsAgencia[agencia_caminanteIndex],
-                        Pos = itemsAgencia[agencia_posIndex],
-                        Nombre = itemsAgencia[agencia_nameIndex].Replace('"', ' ').Trim(),
-                        Calle = itemsAgencia[agencia_direccionIndex],
-                        Altura = itemsAgencia[agencia_alturaIndex],
-                        NimCliente = "",
-                        PrimeraRecarga = 0,
-                        IdSIM = "",
-                        Lote = "",
-                        EsCumplidor = false
-                    };
-                    psrSIM[client.CodPSR] = client; // Se guarda el objeto cliente en el diccionario.
-                }
+                MessageBox.Show("Primero debe elegir un caminante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            psrTotales = psrSIM.Count;
-            
-
-            for (int y = 2; y < pRecargasLen; y++)
+            else
             {
-                //Array con el contenido del segundo reporte
-                string[] itemspRecarga = reporte_pRecarga[y].Trim().Split(';');
+                listBox_SIM.Items.Clear();
+                int objVenta = Convert.ToInt32(txtbox_montoObjSIM.Text);
 
-                if (itemspRecarga[pRecarga_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
+                //se leen las lineas de los reportes.
+                string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text);
+                string[] reporte_pRecarga = File.ReadAllLines(txtbox_REP_pRecarga.Text);
+                string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);
+                var psrSIM = new Dictionary<string, PSR>(); //DICCIONARIO PARA PSR.
+                int objCumplido = 0;
+                int psrTotales = 0;
+                int dadosBaja = 0;
+                int psrAgenciaLen = reporte_PSRagencia.Length;
+                int pRecargasLen = reporte_pRecarga.Length;
+                int prodVendidosLen = reporte_prodVendidos.Length;
+
+                for (int i = 2; i < psrAgenciaLen; i++)
                 {
-                    string auxPSRcode = itemspRecarga[pRecarga_codpsrIndex];
-                    int auxPrecarga = Convert.ToInt32(itemspRecarga[pRecarga_montoIndex]);
-                    string auxNim = itemspRecarga[pRecarga_nimIndex];
-                    string auxIdSim = itemspRecarga[pRecarga_Id_Index];
-
-
-                    if (!psrSIM.ContainsKey(auxPSRcode))
+                    // Array con el contenido de dichas lineas.
+                    string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
+                    //Si pertenece al caminante seleccionado entonces se asignan los datos al objeto PSR.
+                    if (itemsAgencia[agencia_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
                     {
                         PSR client = new PSR
                         {
-                            CodPSR = itemspRecarga[pRecarga_codpsrIndex],
-                            Caminante = itemspRecarga[pRecarga_caminanteIndex],
-                            Pos = "dado de baja",
-                            Nombre = itemspRecarga[pRecarga_nombreIndex],
-                            NimCliente = itemspRecarga[pRecarga_nimIndex],
-                            PrimeraRecarga = Convert.ToInt32(itemspRecarga[pRecarga_montoIndex]),
-                            IdSIM = itemspRecarga[pRecarga_Id_Index],
+                            CodPSR = itemsAgencia[agencia_codpsrIndex],
+                            Caminante = itemsAgencia[agencia_caminanteIndex],
+                            Pos = itemsAgencia[agencia_posIndex],
+                            Nombre = itemsAgencia[agencia_nameIndex].Replace('"', ' ').Trim(),
+                            Calle = itemsAgencia[agencia_direccionIndex],
+                            Altura = itemsAgencia[agencia_alturaIndex],
+                            NimCliente = "",
+                            PrimeraRecarga = 0,
+                            IdSIM = "",
                             Lote = "",
-                            EsCumplidor = false,
+                            EsCumplidor = false
                         };
+                        psrSIM[client.CodPSR] = client; // Se guarda el objeto cliente en el diccionario.
+                    }
+                }
 
-                        if (client.PrimeraRecarga >= objCumplido)
+                psrTotales = psrSIM.Count;
+
+
+                for (int y = 2; y < pRecargasLen; y++)
+                {
+                    //Array con el contenido del segundo reporte
+                    string[] itemspRecarga = reporte_pRecarga[y].Trim().Split(';');
+
+                    if (itemspRecarga[INDEX_RECARGAS_CAMINANTE] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
+                    {
+                        string auxPSRcode = itemspRecarga[INDEX_RECARGAS_CODPSR];
+                        int auxPrecarga = Convert.ToInt32(itemspRecarga[INDEX_RECARGAS_MONTO]);
+                        string auxNim = itemspRecarga[pRecarga_nimIndex];
+                        string auxIdSim = itemspRecarga[pRecarga_Id_Index];
+
+
+                        if (!psrSIM.ContainsKey(auxPSRcode))
                         {
-                            client.EsCumplidor = true;
+                            PSR client = new PSR
+                            {
+                                CodPSR = itemspRecarga[INDEX_RECARGAS_CODPSR],
+                                Caminante = itemspRecarga[INDEX_RECARGAS_CAMINANTE],
+                                Pos = "dado de baja",
+                                Nombre = itemspRecarga[pRecarga_nombreIndex],
+                                NimCliente = itemspRecarga[pRecarga_nimIndex],
+                                PrimeraRecarga = Convert.ToInt32(itemspRecarga[INDEX_RECARGAS_MONTO]),
+                                IdSIM = itemspRecarga[pRecarga_Id_Index],
+                                Lote = "",
+                                EsCumplidor = false,
+                            };
+
+                            /*  if (client.PrimeraRecarga >= objCumplido)
+                              {
+                                  client.EsCumplidor = true;           //Anulacion de el contador de "dados de baja"
+                              }
+                              psrSIM[client.CodPSR] = client;
+                              dadosBaja++;*/
                         }
-                        psrSIM[client.CodPSR] = client;
-                        dadosBaja++;
+                        else
+                        {
+                            if (psrSIM[auxPSRcode].PrimeraRecarga == 0)
+                            {
+                                psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
+                                psrSIM[auxPSRcode].NimCliente = auxNim;
+                                psrSIM[auxPSRcode].IdSIM = auxIdSim;
+                            }
+                            else if (auxPrecarga > psrSIM[auxPSRcode].PrimeraRecarga)
+                            {
+                                psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
+                                psrSIM[auxPSRcode].NimCliente = auxNim;
+                                psrSIM[auxPSRcode].IdSIM = auxIdSim;
+                            }
+                            if (psrSIM[auxPSRcode].PrimeraRecarga >= objVenta)
+                            {
+                                psrSIM[auxPSRcode].EsCumplidor = true;
+                            }
+                        }
+                    }
+                }
+                for (int z = 2; z < prodVendidosLen; z++)
+                {
+                    string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
+                    //string auxPSRcode2 = itemspVendidos[pVendidos_codpsrIndex];
+
+                    if (psrSIM.ContainsKey(itemspVendidos[pVendidos_codpsrIndex]) && psrSIM[itemspVendidos[pVendidos_codpsrIndex]].PrimeraRecarga == 0 && itemspVendidos[pVendidos_checkerIndex] != "Carga Virtual")
+                    {
+                        psrSIM[itemspVendidos[pVendidos_codpsrIndex]].Lote = itemspVendidos[pVendidos_loteIndex];
+                    }
+                }
+                int invercion = 0;
+
+                foreach (var psr in psrSIM.Values)
+                {
+                    if (psr.EsCumplidor)
+                    {
+                        objCumplido++;
                     }
                     else
                     {
-                        if (psrSIM[auxPSRcode].PrimeraRecarga == 0)
-                        {
-                            psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
-                            psrSIM[auxPSRcode].NimCliente = auxNim;
-                            psrSIM[auxPSRcode].IdSIM = auxIdSim;
-                        }
-                        else if (auxPrecarga > psrSIM[auxPSRcode].PrimeraRecarga)
-                        {
-                            psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
-                            psrSIM[auxPSRcode].NimCliente = auxNim;
-                            psrSIM[auxPSRcode].IdSIM = auxIdSim;
-                        }
-                        if (psrSIM[auxPSRcode].PrimeraRecarga >= objVenta)
-                        {
-                            psrSIM[auxPSRcode].EsCumplidor = true;
-                        }
+                        listBox_SIM.Items.Add(psr.Nombre + "  |  " + "Primera Recarga: $" + Convert.ToString(psr.PrimeraRecarga) + "  |  " + "Numero: " + psr.NimCliente + "  |  " + "Lote: " + psr.Lote);
+                        int paraCumplirObj = objVenta - psr.PrimeraRecarga;
+                        invercion += paraCumplirObj;
                     }
                 }
-            }
-            for (int z = 2; z < prodVendidosLen; z++)
-            {
-                string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
-                //string auxPSRcode2 = itemspVendidos[pVendidos_codpsrIndex];
+                int efectividad = (objCumplido * 100) / psrTotales;
+                txtBox_SimConObj.Text = Convert.ToString(objCumplido);
+                txtBox_PSRTotales.Text = Convert.ToString(psrTotales);
+                txtBox_faltaCumplir.Text = Convert.ToString(listBox_SIM.Items.Count);
+                txtBox_inver.Text = Convert.ToString(dadosBaja);
+                txtBox_Efectividad.Text = Convert.ToString(efectividad) + "%";
+                txtBox_inver.Text = "$" + invercion;
 
-                if (psrSIM.ContainsKey(itemspVendidos[pVendidos_codpsrIndex]) && psrSIM[itemspVendidos[pVendidos_codpsrIndex]].PrimeraRecarga == 0 && itemspVendidos[pVendidos_checkerIndex] != "Carga Virtual")
-                {
-                    psrSIM[itemspVendidos[pVendidos_codpsrIndex]].Lote = itemspVendidos[pVendidos_loteIndex];
-                }
+                listBox_SIM.Sorted = true;
             }
-            int invercion = 0;
-
-            foreach (var psr in psrSIM.Values)
-            {
-                if (psr.EsCumplidor)
-                {
-                    objCumplido++;
-                }
-                else
-                {
-                    listBox_SIM.Items.Add(psr.Nombre + "  |  " + "Primera Recarga: $" + Convert.ToString(psr.PrimeraRecarga) + "  |  " + "Numero: " + psr.NimCliente + "  |  " + "Lote: " + psr.Lote);
-                    int paraCumplirObj = objVenta - psr.PrimeraRecarga;
-                    invercion += paraCumplirObj;
-                }
-            }
-            int efectividad = (objCumplido * 100) / psrTotales;
-            txtBox_SimConObj.Text = Convert.ToString(objCumplido);
-            txtBox_PSRTotales.Text = Convert.ToString(psrTotales);
-            txtBox_faltaCumplir.Text = Convert.ToString(listBox_SIM.Items.Count);
-            txtBox_deBaja.Text = Convert.ToString(dadosBaja);
-            txtBox_Efectividad.Text = Convert.ToString(efectividad) + "%";
-            txtBox_inversion.Text = "$" + invercion;
-
-            listBox_SIM.Sorted = true;
         } 
 
         private void btn_calcularSellout_Click(object sender, EventArgs e) //Calcula objetivo SO.
         {
-            listBox_Sellout.Items.Clear();
-            int objVenta = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
-            string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
-            string[] reporte_dealer = File.ReadAllLines(txtBox_REPsellout_dealer.Text); //Contemplar exeptions
-            string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);//Contemplar exeptions
-            int psrAgenciaLen = reporte_PSRagencia.Length;
-            int ventaAnaliticoLen = reporte_dealer.Length;
-            int prodVendidosLen = reporte_prodVendidos.Length;
-
-            var psrSellout = new Dictionary<string, PSR>();
-            int objCumplido = 0;
-            int psrTotales = 0;
-            int dadosBaja = 0; 
-
-            //Reporte PSR de la agencia
-            for (int i = 2; i < psrAgenciaLen; i++)
+            if (comboBox_SIMcaminantes.Text == "Elija caminante")
             {
-                string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
-                if (itemsAgencia[agencia_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
-                {
-                    PSR clientSellout = new PSR();
-                    clientSellout.CodPSR = itemsAgencia[agencia_codpsrIndex];
-                    clientSellout.Nombre = itemsAgencia[agencia_nameIndex];
-                    clientSellout.Caminante = itemsAgencia[agencia_caminanteIndex];
-                    clientSellout.Transferencias = 0;
-                    clientSellout.StockCarga = 0;
-                    clientSellout.StockSim = 0;
-                    clientSellout.VentaMensual = 0;
-                    clientSellout.EsCumplidor = false;
-                    psrSellout[clientSellout.CodPSR] = clientSellout;
-                }
+                MessageBox.Show("Primero debe elegir un caminante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            psrTotales = psrSellout.Count;
-            //Reporte Productos Vendidos
-            for (int z = 2; z < prodVendidosLen; z++)
+            else
             {
-                string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
-                string auxpsrcode = itemspVendidos[pVendidos_codpsrIndex];
+                listBox_Sellout.Items.Clear();
+                int objVenta = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
+                string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
+                string[] reporte_dealer = File.ReadAllLines(txtBox_REPsellout_dealer.Text); //Contemplar exeptions
+                string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);//Contemplar exeptions
+                int psrAgenciaLen = reporte_PSRagencia.Length;
+                int ventaAnaliticoLen = reporte_dealer.Length;
+                int prodVendidosLen = reporte_prodVendidos.Length;
 
-                if (itemspVendidos[pVendidos_checkerIndex] == "Carga Virtual" && itemspVendidos[pVendidos_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
-                {
-                    psrSellout[auxpsrcode].Transferencias += Convert.ToInt32(itemspVendidos[pVendidos_transferenciaIndex]);
-                }
-            }
-          
-            //Reporte Ventas Analitico
-            for (int y = 5; y < ventaAnaliticoLen; y++)
-            {
-                string[] ventasFinales = reporte_dealer[y].Split(';');
-                string auxPsrcode = "0"+ventasFinales[dealer_codpsrIndex];
-                if (psrSellout.ContainsKey(auxPsrcode))
-                {
-                    psrSellout[auxPsrcode].VentaMensual = Convert.ToDouble(ventasFinales[dealer_ventasFinalesIndex]);
-                }
-            }
-            double volumenVendedor = 0;
-            foreach (var psr in psrSellout.Values)
-            {
-                volumenVendedor += psr.VentaMensual;
+                var psrSellout = new Dictionary<string, PSR>();
+                int objCumplido = 0;
+                int psrTotales = 0;
+                int dadosBaja = 0;
 
-                if (psr.VentaMensual >= objVenta)
+                //Reporte PSR de la agencia
+                for (int i = 2; i < psrAgenciaLen; i++)
                 {
-                    psr.EsCumplidor = true;
+                    string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
+                    if (itemsAgencia[agencia_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
+                    {
+                        PSR clientSellout = new PSR();
+                        clientSellout.CodPSR = itemsAgencia[agencia_codpsrIndex];
+                        clientSellout.Nombre = itemsAgencia[agencia_nameIndex];
+                        clientSellout.Caminante = itemsAgencia[agencia_caminanteIndex];
+                        clientSellout.Transferencias = 0;
+                        clientSellout.StockCarga = 0;
+                        clientSellout.StockSim = 0;
+                        clientSellout.VentaMensual = 0;
+                        clientSellout.EsCumplidor = false;
+                        psrSellout[clientSellout.CodPSR] = clientSellout;
+                    }
                 }
-                if (psr.EsCumplidor)
-                    objCumplido++;
-                else
-                    listBox_Sellout.Items.Add(psr.Nombre + "  |  " + "Venta mensual: "
-                    +Convert.ToString(psr.VentaMensual) + "  |  " + "Total Transferido: " + Convert.ToString(psr.Transferencias));
-            }
-            SO_psrTotales.Text = Convert.ToString(psrTotales);
-            txtB_soConObjetivo.Text = Convert.ToString(objCumplido);
-            txtBox_soFaltan.Text = Convert.ToString(listBox_Sellout.Items.Count);
-            txtB_soVolumen.Text = "$"+Convert.ToString(volumenVendedor);
-            int efectividad = (objCumplido * 100) / psrTotales;
-            SO_efectividad.Text = Convert.ToString(efectividad) + "%";
+                psrTotales = psrSellout.Count;
+                //Reporte Productos Vendidos
+                for (int z = 2; z < prodVendidosLen; z++)
+                {
+                    string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
+                    string auxpsrcode = itemspVendidos[pVendidos_codpsrIndex];
 
-            listBox_Sellout.Sorted = true;
+                    if (itemspVendidos[pVendidos_checkerIndex] == "Carga Virtual" && itemspVendidos[pVendidos_caminanteIndex] == Convert.ToString(comboBox_SIMcaminantes.SelectedItem))
+                    {
+                        psrSellout[auxpsrcode].Transferencias += Convert.ToInt32(itemspVendidos[pVendidos_transferenciaIndex]);
+                    }
+                }
+
+                //Reporte Ventas Analitico
+                for (int y = 5; y < ventaAnaliticoLen; y++)
+                {
+                    string[] ventasFinales = reporte_dealer[y].Split(';');
+                    string auxPsrcode = "0" + ventasFinales[dealer_codpsrIndex];
+                    if (psrSellout.ContainsKey(auxPsrcode))
+                    {
+                        psrSellout[auxPsrcode].VentaMensual = Convert.ToDouble(ventasFinales[dealer_ventasFinalesIndex]);
+                    }
+                }
+                double volumenVendedor = 0;
+                foreach (var psr in psrSellout.Values)
+                {
+                    volumenVendedor += psr.VentaMensual;
+
+                    if (psr.VentaMensual >= objVenta)
+                    {
+                        psr.EsCumplidor = true;
+                    }
+                    if (psr.EsCumplidor)
+                        objCumplido++;
+                    else
+                        listBox_Sellout.Items.Add(psr.Nombre + "  |  " + "Venta mensual: "
+                        + Convert.ToString(psr.VentaMensual) + "  |  " + "Total Transferido: " + Convert.ToString(psr.Transferencias));
+                }
+                SO_psrTotales.Text = Convert.ToString(psrTotales);
+                txtB_soConObjetivo.Text = Convert.ToString(objCumplido);
+                txtBox_soFaltan.Text = Convert.ToString(listBox_Sellout.Items.Count);
+                txtB_soVolumen.Text = "$" + Convert.ToString(volumenVendedor);
+                int efectividad = (objCumplido * 100) / psrTotales;
+                SO_efectividad.Text = Convert.ToString(efectividad) + "%";
+
+                listBox_Sellout.Sorted = true;
+            }
         }
 
 
@@ -453,9 +486,9 @@ namespace SIM_PLE_2._0
             int objVenta = Convert.ToInt32(txtbox_montoObjSIM.Text);
             int ventaActual = int.Parse(arrayItemSelected[2]);
             int aRestar = objVenta - ventaActual;
-            int invercionActual = int.Parse(txtBox_inversion.Text.Replace("$",String.Empty));
+            int invercionActual = int.Parse(txtBox_inver.Text.Replace("$",String.Empty));
             string inversionFutura = Convert.ToString(invercionActual - aRestar);
-            txtBox_inversion.Text = "$" + inversionFutura;
+            txtBox_inver.Text = "$" + inversionFutura;
 
             listBox_SIM.Items.Remove(listBox_SIM.SelectedItem);
             int objCumplido = int.Parse(cumplidos);
@@ -514,6 +547,88 @@ namespace SIM_PLE_2._0
                (e.KeyChar != '.'))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btn_calcularPremios_Click(object sender, EventArgs e)
+        {
+            if (txtbox_maxPorCliente.Text == String.Empty || txtbox_maxPorCaminante.Text == String.Empty)
+            {
+                MessageBox.Show("Debe ingresar los valores maximos por PSR y por Caminante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (txtbox_REP_pRecarga.Text.Contains("Primera"))
+                {
+                    dgv_Premios40.Rows.Clear();
+                    //============================= VARIABLES =============================\\
+                    int montoMaxPSR = int.Parse(txtbox_maxPorCliente.Text);
+                    int montoMaxCaminante = int.Parse(txtbox_maxPorCaminante.Text);
+                    //=========================== DICCIONARIOS =============================\\
+                    var allRecargas = new Dictionary<string, SimRecargada>();
+                    var empleadosPremiados = new Dictionary<string, Premio40>();
+                    //=======================================================================\\
+
+                    string[] arrPrimeraRecargas = File.ReadAllLines(txtbox_REP_pRecarga.Text);
+                    int LenRecargas = arrPrimeraRecargas.Length;
+
+                    for (int i = 2; i < LenRecargas; i++)
+                    {
+                        string[] itemsRecargas = arrPrimeraRecargas[i].Split(';');
+                        if (allRecargas.ContainsKey(itemsRecargas[INDEX_RECARGAS_CODPSR].Trim()))
+                        {
+                            allRecargas[itemsRecargas[INDEX_RECARGAS_CODPSR].Trim()].monto += Obtener40Porciento(itemsRecargas[INDEX_RECARGAS_MONTO]);
+                        }
+                        else
+                        {
+                            SimRecargada sim = new SimRecargada
+                            {
+                                codpsr = itemsRecargas[INDEX_RECARGAS_CODPSR].Trim(),
+                                caminante = itemsRecargas[INDEX_RECARGAS_CAMINANTE],
+                                monto = Obtener40Porciento(itemsRecargas[INDEX_RECARGAS_MONTO])
+                            };
+                            allRecargas[sim.codpsr] = sim;
+                        }
+                    }
+                    foreach (var item in allRecargas.Values)
+                    {
+                        if (item.monto > montoMaxPSR)
+                        {
+                            item.monto = montoMaxPSR;
+                        }
+                        if (empleadosPremiados.ContainsKey(item.caminante))
+                        {
+                            empleadosPremiados[item.caminante].simConRecarga++;
+                            empleadosPremiados[item.caminante].montoPremio += item.monto;
+                        }
+                        else
+                        {
+                            Premio40 empleadoPremiado = new Premio40
+                            {
+                                simConRecarga = 1,
+                                montoPremio = item.monto,
+                                nombre = item.caminante
+                            };
+                            empleadosPremiados[item.caminante] = empleadoPremiado;
+                        }
+                    }
+
+                    foreach (var item in empleadosPremiados.Values)
+                    {
+                        if (item.montoPremio > montoMaxCaminante)
+                        {
+                            item.montoPremio = montoMaxCaminante;
+                        }
+                        int cantidadFilas = dgv_Premios40.Rows.Add();
+                        dgv_Premios40.Rows[cantidadFilas].Cells[0].Value = item.nombre;
+                        dgv_Premios40.Rows[cantidadFilas].Cells[1].Value = item.simConRecarga;
+                        dgv_Premios40.Rows[cantidadFilas].Cells[2].Value = "$" + item.montoPremio;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe elegir un reporte de Primera Recarga!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
     }
