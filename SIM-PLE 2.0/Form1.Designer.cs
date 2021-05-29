@@ -55,6 +55,7 @@ namespace SIM_PLE_2._0
             this.lbl_psrAgencia = new System.Windows.Forms.Button();
             this.tabPage2Sellout = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_undo_SO = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.SO_efectividad = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -71,6 +72,7 @@ namespace SIM_PLE_2._0
             this.listBox_Sellout = new System.Windows.Forms.ListBox();
             this.tabPage3SIM = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_undo = new FontAwesome.Sharp.IconButton();
             this.btn_SIM_calcular = new System.Windows.Forms.Button();
             this.txtBox_Efectividad = new System.Windows.Forms.Button();
             this.txtbox_montoObjSIM = new System.Windows.Forms.TextBox();
@@ -92,12 +94,14 @@ namespace SIM_PLE_2._0
             this.button2 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.dgv_Premios40 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.paneltapaPestaña = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -428,6 +432,7 @@ namespace SIM_PLE_2._0
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.btn_undo_SO);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.SO_efectividad);
             this.panel1.Controls.Add(this.button6);
@@ -447,6 +452,23 @@ namespace SIM_PLE_2._0
             this.panel1.Size = new System.Drawing.Size(773, 487);
             this.panel1.TabIndex = 0;
             // 
+            // btn_undo_SO
+            // 
+            this.btn_undo_SO.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_undo_SO.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.btn_undo_SO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_undo_SO.IconChar = FontAwesome.Sharp.IconChar.Undo;
+            this.btn_undo_SO.IconColor = System.Drawing.Color.White;
+            this.btn_undo_SO.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_undo_SO.IconSize = 35;
+            this.btn_undo_SO.Location = new System.Drawing.Point(30, 425);
+            this.btn_undo_SO.Name = "btn_undo_SO";
+            this.btn_undo_SO.Padding = new System.Windows.Forms.Padding(4, 6, 0, 0);
+            this.btn_undo_SO.Size = new System.Drawing.Size(46, 40);
+            this.btn_undo_SO.TabIndex = 41;
+            this.btn_undo_SO.UseVisualStyleBackColor = true;
+            this.btn_undo_SO.Click += new System.EventHandler(this.btn_undo_SO_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -456,9 +478,9 @@ namespace SIM_PLE_2._0
             this.label2.Location = new System.Drawing.Point(31, 22);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(3);
-            this.label2.Size = new System.Drawing.Size(191, 19);
+            this.label2.Size = new System.Drawing.Size(185, 19);
             this.label2.TabIndex = 40;
-            this.label2.Text = "INGRESE OBJETIVO DE VENTA";
+            this.label2.Text = "INGRESE OBJETIVO SELLOUT";
             // 
             // SO_efectividad
             // 
@@ -561,7 +583,7 @@ namespace SIM_PLE_2._0
             this.btn_calcularSellout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_calcularSellout.Location = new System.Drawing.Point(281, 425);
             this.btn_calcularSellout.Name = "btn_calcularSellout";
-            this.btn_calcularSellout.Size = new System.Drawing.Size(213, 28);
+            this.btn_calcularSellout.Size = new System.Drawing.Size(227, 40);
             this.btn_calcularSellout.TabIndex = 0;
             this.btn_calcularSellout.Text = "Calcular";
             this.btn_calcularSellout.UseVisualStyleBackColor = true;
@@ -629,6 +651,7 @@ namespace SIM_PLE_2._0
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.btn_undo);
             this.panel2.Controls.Add(this.btn_SIM_calcular);
             this.panel2.Controls.Add(this.txtBox_Efectividad);
             this.panel2.Controls.Add(this.txtbox_montoObjSIM);
@@ -647,6 +670,23 @@ namespace SIM_PLE_2._0
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(773, 487);
             this.panel2.TabIndex = 0;
+            // 
+            // btn_undo
+            // 
+            this.btn_undo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_undo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.btn_undo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_undo.IconChar = FontAwesome.Sharp.IconChar.Undo;
+            this.btn_undo.IconColor = System.Drawing.Color.White;
+            this.btn_undo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_undo.IconSize = 35;
+            this.btn_undo.Location = new System.Drawing.Point(30, 425);
+            this.btn_undo.Name = "btn_undo";
+            this.btn_undo.Padding = new System.Windows.Forms.Padding(4, 6, 0, 0);
+            this.btn_undo.Size = new System.Drawing.Size(46, 40);
+            this.btn_undo.TabIndex = 26;
+            this.btn_undo.UseVisualStyleBackColor = true;
+            this.btn_undo.Click += new System.EventHandler(this.btn_undo_Click);
             // 
             // btn_SIM_calcular
             // 
@@ -676,7 +716,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_montoObjSIM
             // 
-            this.txtbox_montoObjSIM.Location = new System.Drawing.Point(228, 22);
+            this.txtbox_montoObjSIM.Location = new System.Drawing.Point(191, 22);
             this.txtbox_montoObjSIM.Name = "txtbox_montoObjSIM";
             this.txtbox_montoObjSIM.Size = new System.Drawing.Size(48, 20);
             this.txtbox_montoObjSIM.TabIndex = 24;
@@ -692,9 +732,9 @@ namespace SIM_PLE_2._0
             this.label1.Location = new System.Drawing.Point(31, 22);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(191, 19);
+            this.label1.Size = new System.Drawing.Size(154, 19);
             this.label1.TabIndex = 25;
-            this.label1.Text = "INGRESE OBJETIVO DE VENTA";
+            this.label1.Text = "INGRESE OBJETIVO SIM";
             // 
             // button3
             // 
@@ -839,9 +879,9 @@ namespace SIM_PLE_2._0
             this.btn_calcularPremios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_calcularPremios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_calcularPremios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_calcularPremios.Location = new System.Drawing.Point(471, 203);
+            this.btn_calcularPremios.Location = new System.Drawing.Point(418, 58);
             this.btn_calcularPremios.Name = "btn_calcularPremios";
-            this.btn_calcularPremios.Size = new System.Drawing.Size(252, 73);
+            this.btn_calcularPremios.Size = new System.Drawing.Size(228, 58);
             this.btn_calcularPremios.TabIndex = 23;
             this.btn_calcularPremios.Text = "Calcular";
             this.btn_calcularPremios.UseVisualStyleBackColor = true;
@@ -849,7 +889,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_maxPorCaminante
             // 
-            this.txtbox_maxPorCaminante.Location = new System.Drawing.Point(600, 162);
+            this.txtbox_maxPorCaminante.Location = new System.Drawing.Point(268, 96);
             this.txtbox_maxPorCaminante.Name = "txtbox_maxPorCaminante";
             this.txtbox_maxPorCaminante.Size = new System.Drawing.Size(123, 20);
             this.txtbox_maxPorCaminante.TabIndex = 22;
@@ -858,7 +898,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_maxPorCliente
             // 
-            this.txtbox_maxPorCliente.Location = new System.Drawing.Point(471, 162);
+            this.txtbox_maxPorCliente.Location = new System.Drawing.Point(139, 96);
             this.txtbox_maxPorCliente.Name = "txtbox_maxPorCliente";
             this.txtbox_maxPorCliente.Size = new System.Drawing.Size(123, 20);
             this.txtbox_maxPorCliente.TabIndex = 21;
@@ -869,7 +909,7 @@ namespace SIM_PLE_2._0
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(600, 124);
+            this.button2.Location = new System.Drawing.Point(268, 58);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(123, 32);
             this.button2.TabIndex = 20;
@@ -880,7 +920,7 @@ namespace SIM_PLE_2._0
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(471, 124);
+            this.button8.Location = new System.Drawing.Point(139, 58);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(123, 32);
             this.button8.TabIndex = 19;
@@ -889,31 +929,21 @@ namespace SIM_PLE_2._0
             // 
             // dgv_Premios40
             // 
+            this.dgv_Premios40.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
+            this.dgv_Premios40.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.dgv_Premios40.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Premios40.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column3});
-            this.dgv_Premios40.Location = new System.Drawing.Point(41, 62);
+            this.Column3,
+            this.Column4,
+            this.Column5});
+            this.dgv_Premios40.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.dgv_Premios40.Location = new System.Drawing.Point(139, 156);
             this.dgv_Premios40.Name = "dgv_Premios40";
-            this.dgv_Premios40.Size = new System.Drawing.Size(395, 248);
+            this.dgv_Premios40.RowHeadersVisible = false;
+            this.dgv_Premios40.Size = new System.Drawing.Size(507, 234);
             this.dgv_Premios40.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Caminante";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Sim c/recarga";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Premio";
-            this.Column3.Name = "Column3";
             // 
             // openFileDialog1
             // 
@@ -927,6 +957,36 @@ namespace SIM_PLE_2._0
             this.paneltapaPestaña.Name = "paneltapaPestaña";
             this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
             this.paneltapaPestaña.TabIndex = 12;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Caminante";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Cantidad";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 84;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Monto";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 90;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Premio";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 90;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Efectividad";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 90;
             // 
             // Form1
             // 
@@ -1020,15 +1080,19 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Button btn_tabPremios40;
         private System.Windows.Forms.TabPage tp_premios40;
         private System.Windows.Forms.DataGridView dgv_Premios40;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.TextBox txtbox_maxPorCliente;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button btn_calcularPremios;
         private System.Windows.Forms.TextBox txtbox_maxPorCaminante;
         private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconButton btn_undo;
+        private FontAwesome.Sharp.IconButton btn_undo_SO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }
 
