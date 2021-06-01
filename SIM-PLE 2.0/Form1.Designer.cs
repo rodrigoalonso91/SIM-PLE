@@ -94,14 +94,14 @@ namespace SIM_PLE_2._0
             this.button2 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.dgv_Premios40 = new System.Windows.Forms.DataGridView();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.paneltapaPestaña = new System.Windows.Forms.Panel();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.paneltapaPestaña = new System.Windows.Forms.Panel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -513,6 +513,7 @@ namespace SIM_PLE_2._0
             this.txtBox_Sellout_objVenta.Size = new System.Drawing.Size(48, 20);
             this.txtBox_Sellout_objVenta.TabIndex = 30;
             this.txtBox_Sellout_objVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBox_Sellout_objVenta.TextChanged += new System.EventHandler(this.txtBox_Sellout_objVenta_TextChanged);
             this.txtBox_Sellout_objVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBox_Sellout_objVenta_KeyPress);
             // 
             // SO_psrTotales
@@ -716,11 +717,13 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_montoObjSIM
             // 
+            this.txtbox_montoObjSIM.BackColor = System.Drawing.SystemColors.Window;
             this.txtbox_montoObjSIM.Location = new System.Drawing.Point(191, 22);
             this.txtbox_montoObjSIM.Name = "txtbox_montoObjSIM";
             this.txtbox_montoObjSIM.Size = new System.Drawing.Size(48, 20);
             this.txtbox_montoObjSIM.TabIndex = 24;
             this.txtbox_montoObjSIM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_montoObjSIM.TextChanged += new System.EventHandler(this.txtbox_montoObjSIM_TextChanged);
             this.txtbox_montoObjSIM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_montoObjSIM_KeyPress);
             // 
             // label1
@@ -894,6 +897,7 @@ namespace SIM_PLE_2._0
             this.txtbox_maxPorCaminante.Size = new System.Drawing.Size(123, 20);
             this.txtbox_maxPorCaminante.TabIndex = 22;
             this.txtbox_maxPorCaminante.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_maxPorCaminante.TextChanged += new System.EventHandler(this.txtbox_maxPorCaminante_TextChanged);
             this.txtbox_maxPorCaminante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCaminante_KeyPress);
             // 
             // txtbox_maxPorCliente
@@ -903,6 +907,7 @@ namespace SIM_PLE_2._0
             this.txtbox_maxPorCliente.Size = new System.Drawing.Size(123, 20);
             this.txtbox_maxPorCliente.TabIndex = 21;
             this.txtbox_maxPorCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_maxPorCliente.TextChanged += new System.EventHandler(this.txtbox_maxPorCliente_TextChanged);
             this.txtbox_maxPorCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCliente_KeyPress);
             // 
             // button2
@@ -945,19 +950,6 @@ namespace SIM_PLE_2._0
             this.dgv_Premios40.Size = new System.Drawing.Size(507, 234);
             this.dgv_Premios40.TabIndex = 0;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Archivos csv (*.csv)|*.csv";
-            // 
-            // paneltapaPestaña
-            // 
-            this.paneltapaPestaña.BackColor = System.Drawing.Color.Black;
-            this.paneltapaPestaña.Location = new System.Drawing.Point(189, 0);
-            this.paneltapaPestaña.Name = "paneltapaPestaña";
-            this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
-            this.paneltapaPestaña.TabIndex = 12;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Caminante";
@@ -988,6 +980,19 @@ namespace SIM_PLE_2._0
             this.Column5.Name = "Column5";
             this.Column5.Width = 90;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Archivos csv (*.csv)|*.csv";
+            // 
+            // paneltapaPestaña
+            // 
+            this.paneltapaPestaña.BackColor = System.Drawing.Color.Black;
+            this.paneltapaPestaña.Location = new System.Drawing.Point(189, 0);
+            this.paneltapaPestaña.Name = "paneltapaPestaña";
+            this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
+            this.paneltapaPestaña.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1001,6 +1006,7 @@ namespace SIM_PLE_2._0
             this.MinimumSize = new System.Drawing.Size(982, 552);
             this.Name = "Form1";
             this.Text = "SIM-PLE";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panerSuperior.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);

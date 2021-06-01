@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using SIM_PLE_2._0.Properties;
 
 namespace SIM_PLE_2._0
 {
@@ -224,6 +225,41 @@ namespace SIM_PLE_2._0
         }
         #endregion
 
+        #region // ======= Settings ====== \\
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txtbox_montoObjSIM.Text = (string)Settings.Default["objSim"];
+            txtBox_Sellout_objVenta.Text = (string)Settings.Default["objSO"];
+            txtbox_maxPorCaminante.Text = (string)Settings.Default["maxCaminante"];
+            txtbox_maxPorCliente.Text = (string)Settings.Default["maxCliente"];
+        }
+
+        private void txtbox_montoObjSIM_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default["objSim"] = txtbox_montoObjSIM.Text;
+            Settings.Default.Save();
+        }
+
+
+        private void txtbox_maxPorCliente_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default["maxCliente"] = txtbox_maxPorCliente.Text;
+            Settings.Default.Save();
+        }
+
+        private void txtbox_maxPorCaminante_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default["maxCaminante"] = txtbox_maxPorCaminante.Text;
+            Settings.Default.Save();
+        }
+
+        private void txtBox_Sellout_objVenta_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default["objSO"] = txtBox_Sellout_objVenta.Text;
+            Settings.Default.Save();
+        }
+        #endregion
+
         #region //========Stack + BTN Undo ========\\
         Stack<string> elementosUndoSim = new Stack<string>();
         Stack<string> elementosUndoSO = new Stack<string>();
@@ -273,8 +309,6 @@ namespace SIM_PLE_2._0
             }
         }
         #endregion
-
-
 
         private void btn_SIM_calcular_Click_1(object sender, EventArgs e) //Calcula objetivo SIM
         {
@@ -698,7 +732,6 @@ namespace SIM_PLE_2._0
                 }
             }
         }
-
         
     }
 
