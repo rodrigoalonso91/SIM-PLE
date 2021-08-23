@@ -33,7 +33,7 @@ namespace SIM_PLE_2._0
             this.panerSuperior = new System.Windows.Forms.Panel();
             this.btn_tabPremios40 = new System.Windows.Forms.Button();
             this.btn_clipBoard = new FontAwesome.Sharp.IconButton();
-            this.comboBox_SIMcaminantes = new System.Windows.Forms.ComboBox();
+            this.cb_walkers = new System.Windows.Forms.ComboBox();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_tabBO = new System.Windows.Forms.Button();
@@ -55,6 +55,7 @@ namespace SIM_PLE_2._0
             this.lbl_psrAgencia = new System.Windows.Forms.Button();
             this.tabPage2Sellout = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgv_So = new System.Windows.Forms.DataGridView();
             this.btn_undo_SO = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.SO_efectividad = new System.Windows.Forms.Button();
@@ -69,9 +70,14 @@ namespace SIM_PLE_2._0
             this.button14 = new System.Windows.Forms.Button();
             this.txtB_soConObjetivo = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
-            this.listBox_Sellout = new System.Windows.Forms.ListBox();
             this.tabPage3SIM = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dgv_Sim = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btn_undo = new FontAwesome.Sharp.IconButton();
             this.btn_SIM_calcular = new System.Windows.Forms.Button();
             this.txtBox_Efectividad = new System.Windows.Forms.Button();
@@ -82,12 +88,37 @@ namespace SIM_PLE_2._0
             this.lbl_totalPSR = new System.Windows.Forms.Button();
             this.txtBox_inver = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.listBox_SIM = new System.Windows.Forms.ListBox();
             this.txtBox_faltaCumplir = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.txtBox_SimConObj = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tp_premios40 = new System.Windows.Forms.TabPage();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.button23 = new System.Windows.Forms.Button();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.button22 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button18 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.button20 = new System.Windows.Forms.Button();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.button21 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button17 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button15 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button11 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_calcularPremios = new System.Windows.Forms.Button();
             this.txtbox_maxPorCaminante = new System.Windows.Forms.TextBox();
             this.txtbox_maxPorCliente = new System.Windows.Forms.TextBox();
@@ -102,15 +133,23 @@ namespace SIM_PLE_2._0
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.paneltapaPestaña = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1Reportes.SuspendLayout();
             this.tabPage2Sellout.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_So)).BeginInit();
             this.tabPage3SIM.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Sim)).BeginInit();
             this.tp_premios40.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Premios40)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,7 +158,7 @@ namespace SIM_PLE_2._0
             this.panerSuperior.BackColor = System.Drawing.Color.Black;
             this.panerSuperior.Controls.Add(this.btn_tabPremios40);
             this.panerSuperior.Controls.Add(this.btn_clipBoard);
-            this.panerSuperior.Controls.Add(this.comboBox_SIMcaminantes);
+            this.panerSuperior.Controls.Add(this.cb_walkers);
             this.panerSuperior.Controls.Add(this.btnSave);
             this.panerSuperior.Controls.Add(this.pictureBox1);
             this.panerSuperior.Controls.Add(this.btn_tabBO);
@@ -142,7 +181,7 @@ namespace SIM_PLE_2._0
             this.btn_tabPremios40.Name = "btn_tabPremios40";
             this.btn_tabPremios40.Size = new System.Drawing.Size(185, 43);
             this.btn_tabPremios40.TabIndex = 13;
-            this.btn_tabPremios40.Text = "PREMIOS 40%";
+            this.btn_tabPremios40.Text = "COMISIONES";
             this.btn_tabPremios40.UseVisualStyleBackColor = true;
             this.btn_tabPremios40.Click += new System.EventHandler(this.btn_tabPremios40_Click);
             // 
@@ -164,19 +203,13 @@ namespace SIM_PLE_2._0
             this.btn_clipBoard.UseVisualStyleBackColor = true;
             this.btn_clipBoard.Click += new System.EventHandler(this.btn_clipBoard_Click);
             // 
-            // comboBox_SIMcaminantes
+            // cb_walkers
             // 
-            this.comboBox_SIMcaminantes.FormattingEnabled = true;
-            this.comboBox_SIMcaminantes.Items.AddRange(new object[] {
-            "Alonso, Rodrigo",
-            "Valiente, Brian",
-            "Pollio, Dante",
-            "Artoni, Efrain",
-            "Alonso, Lucas"});
-            this.comboBox_SIMcaminantes.Location = new System.Drawing.Point(27, 391);
-            this.comboBox_SIMcaminantes.Name = "comboBox_SIMcaminantes";
-            this.comboBox_SIMcaminantes.Size = new System.Drawing.Size(133, 21);
-            this.comboBox_SIMcaminantes.TabIndex = 22;
+            this.cb_walkers.FormattingEnabled = true;
+            this.cb_walkers.Location = new System.Drawing.Point(27, 391);
+            this.cb_walkers.Name = "cb_walkers";
+            this.cb_walkers.Size = new System.Drawing.Size(133, 21);
+            this.cb_walkers.TabIndex = 22;
             // 
             // btnSave
             // 
@@ -432,6 +465,7 @@ namespace SIM_PLE_2._0
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.dgv_So);
             this.panel1.Controls.Add(this.btn_undo_SO);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.SO_efectividad);
@@ -446,11 +480,29 @@ namespace SIM_PLE_2._0
             this.panel1.Controls.Add(this.button14);
             this.panel1.Controls.Add(this.txtB_soConObjetivo);
             this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.listBox_Sellout);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(773, 487);
             this.panel1.TabIndex = 0;
+            // 
+            // dgv_So
+            // 
+            this.dgv_So.AllowUserToDeleteRows = false;
+            this.dgv_So.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_So.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewButtonColumn1});
+            this.dgv_So.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgv_So.Location = new System.Drawing.Point(30, 56);
+            this.dgv_So.Name = "dgv_So";
+            this.dgv_So.ReadOnly = true;
+            this.dgv_So.RowHeadersVisible = false;
+            this.dgv_So.Size = new System.Drawing.Size(574, 348);
+            this.dgv_So.TabIndex = 42;
+            this.dgv_So.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_So_CellContentClick);
             // 
             // btn_undo_SO
             // 
@@ -486,7 +538,7 @@ namespace SIM_PLE_2._0
             // 
             this.SO_efectividad.BackColor = System.Drawing.Color.WhiteSmoke;
             this.SO_efectividad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SO_efectividad.Location = new System.Drawing.Point(609, 374);
+            this.SO_efectividad.Location = new System.Drawing.Point(609, 372);
             this.SO_efectividad.Name = "SO_efectividad";
             this.SO_efectividad.Size = new System.Drawing.Size(123, 32);
             this.SO_efectividad.TabIndex = 39;
@@ -499,7 +551,7 @@ namespace SIM_PLE_2._0
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button6.Location = new System.Drawing.Point(609, 343);
+            this.button6.Location = new System.Drawing.Point(609, 341);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(123, 32);
             this.button6.TabIndex = 38;
@@ -582,9 +634,9 @@ namespace SIM_PLE_2._0
             this.btn_calcularSellout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_calcularSellout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_calcularSellout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_calcularSellout.Location = new System.Drawing.Point(281, 425);
+            this.btn_calcularSellout.Location = new System.Drawing.Point(82, 425);
             this.btn_calcularSellout.Name = "btn_calcularSellout";
-            this.btn_calcularSellout.Size = new System.Drawing.Size(227, 40);
+            this.btn_calcularSellout.Size = new System.Drawing.Size(650, 40);
             this.btn_calcularSellout.TabIndex = 0;
             this.btn_calcularSellout.Text = "Calcular";
             this.btn_calcularSellout.UseVisualStyleBackColor = true;
@@ -627,17 +679,6 @@ namespace SIM_PLE_2._0
             this.button16.Text = "Cumplen objetivo";
             this.button16.UseVisualStyleBackColor = false;
             // 
-            // listBox_Sellout
-            // 
-            this.listBox_Sellout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox_Sellout.FormattingEnabled = true;
-            this.listBox_Sellout.ItemHeight = 15;
-            this.listBox_Sellout.Location = new System.Drawing.Point(30, 57);
-            this.listBox_Sellout.Name = "listBox_Sellout";
-            this.listBox_Sellout.Size = new System.Drawing.Size(541, 349);
-            this.listBox_Sellout.TabIndex = 29;
-            this.listBox_Sellout.DoubleClick += new System.EventHandler(this.listBox_Sellout_DoubleClick);
-            // 
             // tabPage3SIM
             // 
             this.tabPage3SIM.Controls.Add(this.panel2);
@@ -652,6 +693,7 @@ namespace SIM_PLE_2._0
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.dgv_Sim);
             this.panel2.Controls.Add(this.btn_undo);
             this.panel2.Controls.Add(this.btn_SIM_calcular);
             this.panel2.Controls.Add(this.txtBox_Efectividad);
@@ -662,7 +704,6 @@ namespace SIM_PLE_2._0
             this.panel2.Controls.Add(this.lbl_totalPSR);
             this.panel2.Controls.Add(this.txtBox_inver);
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.listBox_SIM);
             this.panel2.Controls.Add(this.txtBox_faltaCumplir);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.txtBox_SimConObj);
@@ -671,6 +712,58 @@ namespace SIM_PLE_2._0
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(773, 487);
             this.panel2.TabIndex = 0;
+            // 
+            // dgv_Sim
+            // 
+            this.dgv_Sim.AllowUserToDeleteRows = false;
+            this.dgv_Sim.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Sim.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9,
+            this.Column10});
+            this.dgv_Sim.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgv_Sim.Location = new System.Drawing.Point(30, 56);
+            this.dgv_Sim.Name = "dgv_Sim";
+            this.dgv_Sim.ReadOnly = true;
+            this.dgv_Sim.RowHeadersVisible = false;
+            this.dgv_Sim.Size = new System.Drawing.Size(574, 348);
+            this.dgv_Sim.TabIndex = 27;
+            this.dgv_Sim.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Sim_CellContentClick);
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Cliente";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 150;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Primera Recarga";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 110;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Al numero";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Lote";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 90;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Forzar";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
             // 
             // btn_undo
             // 
@@ -687,7 +780,6 @@ namespace SIM_PLE_2._0
             this.btn_undo.Size = new System.Drawing.Size(46, 40);
             this.btn_undo.TabIndex = 26;
             this.btn_undo.UseVisualStyleBackColor = true;
-            this.btn_undo.Click += new System.EventHandler(this.btn_undo_Click);
             // 
             // btn_SIM_calcular
             // 
@@ -696,9 +788,9 @@ namespace SIM_PLE_2._0
             this.btn_SIM_calcular.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_SIM_calcular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SIM_calcular.ForeColor = System.Drawing.Color.Snow;
-            this.btn_SIM_calcular.Location = new System.Drawing.Point(281, 425);
+            this.btn_SIM_calcular.Location = new System.Drawing.Point(82, 425);
             this.btn_SIM_calcular.Name = "btn_SIM_calcular";
-            this.btn_SIM_calcular.Size = new System.Drawing.Size(227, 40);
+            this.btn_SIM_calcular.Size = new System.Drawing.Size(660, 40);
             this.btn_SIM_calcular.TabIndex = 21;
             this.btn_SIM_calcular.Text = "Calcular";
             this.btn_SIM_calcular.UseVisualStyleBackColor = true;
@@ -708,7 +800,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtBox_Efectividad.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBox_Efectividad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_Efectividad.Location = new System.Drawing.Point(609, 374);
+            this.txtBox_Efectividad.Location = new System.Drawing.Point(619, 372);
             this.txtBox_Efectividad.Name = "txtBox_Efectividad";
             this.txtBox_Efectividad.Size = new System.Drawing.Size(123, 32);
             this.txtBox_Efectividad.TabIndex = 19;
@@ -745,7 +837,7 @@ namespace SIM_PLE_2._0
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button3.Location = new System.Drawing.Point(609, 343);
+            this.button3.Location = new System.Drawing.Point(619, 341);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(123, 32);
             this.button3.TabIndex = 18;
@@ -756,7 +848,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtBox_PSRTotales.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBox_PSRTotales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_PSRTotales.Location = new System.Drawing.Point(609, 87);
+            this.txtBox_PSRTotales.Location = new System.Drawing.Point(619, 87);
             this.txtBox_PSRTotales.Name = "txtBox_PSRTotales";
             this.txtBox_PSRTotales.Size = new System.Drawing.Size(123, 32);
             this.txtBox_PSRTotales.TabIndex = 17;
@@ -769,7 +861,7 @@ namespace SIM_PLE_2._0
             this.lbl_totalPSR.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.lbl_totalPSR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_totalPSR.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lbl_totalPSR.Location = new System.Drawing.Point(609, 56);
+            this.lbl_totalPSR.Location = new System.Drawing.Point(619, 56);
             this.lbl_totalPSR.Name = "lbl_totalPSR";
             this.lbl_totalPSR.Size = new System.Drawing.Size(123, 32);
             this.lbl_totalPSR.TabIndex = 16;
@@ -780,7 +872,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtBox_inver.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBox_inver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_inver.Location = new System.Drawing.Point(609, 300);
+            this.txtBox_inver.Location = new System.Drawing.Point(619, 300);
             this.txtBox_inver.Name = "txtBox_inver";
             this.txtBox_inver.Size = new System.Drawing.Size(123, 32);
             this.txtBox_inver.TabIndex = 15;
@@ -793,29 +885,18 @@ namespace SIM_PLE_2._0
             this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button7.Location = new System.Drawing.Point(609, 269);
+            this.button7.Location = new System.Drawing.Point(619, 269);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(123, 32);
             this.button7.TabIndex = 14;
             this.button7.Text = "Inversion";
             this.button7.UseVisualStyleBackColor = false;
             // 
-            // listBox_SIM
-            // 
-            this.listBox_SIM.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox_SIM.FormattingEnabled = true;
-            this.listBox_SIM.ItemHeight = 15;
-            this.listBox_SIM.Location = new System.Drawing.Point(30, 57);
-            this.listBox_SIM.Name = "listBox_SIM";
-            this.listBox_SIM.Size = new System.Drawing.Size(541, 349);
-            this.listBox_SIM.TabIndex = 23;
-            this.listBox_SIM.DoubleClick += new System.EventHandler(this.listBox_SIM_DoubleClick);
-            // 
             // txtBox_faltaCumplir
             // 
             this.txtBox_faltaCumplir.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBox_faltaCumplir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_faltaCumplir.Location = new System.Drawing.Point(609, 229);
+            this.txtBox_faltaCumplir.Location = new System.Drawing.Point(619, 229);
             this.txtBox_faltaCumplir.Name = "txtBox_faltaCumplir";
             this.txtBox_faltaCumplir.Size = new System.Drawing.Size(123, 32);
             this.txtBox_faltaCumplir.TabIndex = 13;
@@ -828,7 +909,7 @@ namespace SIM_PLE_2._0
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button4.Location = new System.Drawing.Point(609, 198);
+            this.button4.Location = new System.Drawing.Point(619, 198);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(123, 32);
             this.button4.TabIndex = 12;
@@ -839,7 +920,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtBox_SimConObj.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBox_SimConObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_SimConObj.Location = new System.Drawing.Point(609, 158);
+            this.txtBox_SimConObj.Location = new System.Drawing.Point(619, 158);
             this.txtBox_SimConObj.Name = "txtBox_SimConObj";
             this.txtBox_SimConObj.Size = new System.Drawing.Size(123, 32);
             this.txtBox_SimConObj.TabIndex = 11;
@@ -852,7 +933,7 @@ namespace SIM_PLE_2._0
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button1.Location = new System.Drawing.Point(609, 127);
+            this.button1.Location = new System.Drawing.Point(619, 127);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 32);
             this.button1.TabIndex = 10;
@@ -862,6 +943,27 @@ namespace SIM_PLE_2._0
             // tp_premios40
             // 
             this.tp_premios40.BackColor = System.Drawing.Color.Black;
+            this.tp_premios40.Controls.Add(this.textBox10);
+            this.tp_premios40.Controls.Add(this.button23);
+            this.tp_premios40.Controls.Add(this.textBox9);
+            this.tp_premios40.Controls.Add(this.button22);
+            this.tp_premios40.Controls.Add(this.textBox5);
+            this.tp_premios40.Controls.Add(this.button18);
+            this.tp_premios40.Controls.Add(this.textBox6);
+            this.tp_premios40.Controls.Add(this.button19);
+            this.tp_premios40.Controls.Add(this.textBox7);
+            this.tp_premios40.Controls.Add(this.button20);
+            this.tp_premios40.Controls.Add(this.textBox8);
+            this.tp_premios40.Controls.Add(this.button21);
+            this.tp_premios40.Controls.Add(this.textBox4);
+            this.tp_premios40.Controls.Add(this.button17);
+            this.tp_premios40.Controls.Add(this.textBox3);
+            this.tp_premios40.Controls.Add(this.button15);
+            this.tp_premios40.Controls.Add(this.textBox2);
+            this.tp_premios40.Controls.Add(this.button13);
+            this.tp_premios40.Controls.Add(this.textBox1);
+            this.tp_premios40.Controls.Add(this.button11);
+            this.tp_premios40.Controls.Add(this.dataGridView1);
             this.tp_premios40.Controls.Add(this.btn_calcularPremios);
             this.tp_premios40.Controls.Add(this.txtbox_maxPorCaminante);
             this.tp_premios40.Controls.Add(this.txtbox_maxPorCliente);
@@ -875,6 +977,245 @@ namespace SIM_PLE_2._0
             this.tp_premios40.TabIndex = 3;
             this.tp_premios40.Text = "tabPage1";
             // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(431, 132);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(119, 20);
+            this.textBox10.TabIndex = 44;
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button23.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button23.Location = new System.Drawing.Point(431, 94);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(119, 32);
+            this.button23.TabIndex = 43;
+            this.button23.Text = "Comision Volumen";
+            this.button23.UseVisualStyleBackColor = false;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(431, 68);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(119, 20);
+            this.textBox9.TabIndex = 42;
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button22
+            // 
+            this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button22.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button22.Location = new System.Drawing.Point(431, 30);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(119, 32);
+            this.button22.TabIndex = 41;
+            this.button22.Text = "Volumen Objetivo";
+            this.button22.UseVisualStyleBackColor = false;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(330, 132);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(67, 20);
+            this.textBox5.TabIndex = 40;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button18
+            // 
+            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button18.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button18.Location = new System.Drawing.Point(330, 94);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(67, 32);
+            this.button18.TabIndex = 39;
+            this.button18.Text = "+150 SO";
+            this.button18.UseVisualStyleBackColor = false;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(257, 132);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(67, 20);
+            this.textBox6.TabIndex = 38;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button19
+            // 
+            this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button19.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button19.Location = new System.Drawing.Point(257, 94);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(67, 32);
+            this.button19.TabIndex = 37;
+            this.button19.Text = "+120 SO";
+            this.button19.UseVisualStyleBackColor = false;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(184, 132);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(67, 20);
+            this.textBox7.TabIndex = 36;
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button20.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button20.Location = new System.Drawing.Point(184, 94);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(67, 32);
+            this.button20.TabIndex = 35;
+            this.button20.Text = "+100 SO";
+            this.button20.UseVisualStyleBackColor = false;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(111, 132);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(67, 20);
+            this.textBox8.TabIndex = 34;
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button21
+            // 
+            this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button21.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button21.Location = new System.Drawing.Point(111, 94);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(67, 32);
+            this.button21.TabIndex = 33;
+            this.button21.Text = "Valor SO";
+            this.button21.UseVisualStyleBackColor = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(330, 68);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(67, 20);
+            this.textBox4.TabIndex = 32;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button17
+            // 
+            this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button17.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button17.Location = new System.Drawing.Point(330, 30);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(67, 32);
+            this.button17.TabIndex = 31;
+            this.button17.Text = "+150 SIM";
+            this.button17.UseVisualStyleBackColor = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(257, 68);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(67, 20);
+            this.textBox3.TabIndex = 30;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button15.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button15.Location = new System.Drawing.Point(257, 30);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(67, 32);
+            this.button15.TabIndex = 29;
+            this.button15.Text = "+120 SIM";
+            this.button15.UseVisualStyleBackColor = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(184, 68);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(67, 20);
+            this.textBox2.TabIndex = 28;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button13.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button13.Location = new System.Drawing.Point(184, 30);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(67, 32);
+            this.button13.TabIndex = 27;
+            this.button13.Text = "+100 SIM";
+            this.button13.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(111, 68);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(67, 20);
+            this.textBox1.TabIndex = 26;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button11.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button11.Location = new System.Drawing.Point(111, 30);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(67, 32);
+            this.button11.TabIndex = 25;
+            this.button11.Text = "Valor SIM";
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column11,
+            this.Column12,
+            this.Column13,
+            this.Column14,
+            this.Column15});
+            this.dataGridView1.Location = new System.Drawing.Point(111, 353);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(545, 70);
+            this.dataGridView1.TabIndex = 24;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Comision SIM";
+            this.Column11.Name = "Column11";
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Comision SO";
+            this.Column12.Name = "Column12";
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Volumen";
+            this.Column13.Name = "Column13";
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "Premios 40%";
+            this.Column14.Name = "Column14";
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "Total";
+            this.Column15.Name = "Column15";
+            // 
             // btn_calcularPremios
             // 
             this.btn_calcularPremios.Enabled = false;
@@ -882,9 +1223,9 @@ namespace SIM_PLE_2._0
             this.btn_calcularPremios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_calcularPremios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_calcularPremios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_calcularPremios.Location = new System.Drawing.Point(418, 58);
+            this.btn_calcularPremios.Location = new System.Drawing.Point(111, 163);
             this.btn_calcularPremios.Name = "btn_calcularPremios";
-            this.btn_calcularPremios.Size = new System.Drawing.Size(228, 58);
+            this.btn_calcularPremios.Size = new System.Drawing.Size(545, 46);
             this.btn_calcularPremios.TabIndex = 23;
             this.btn_calcularPremios.Text = "Calcular";
             this.btn_calcularPremios.UseVisualStyleBackColor = true;
@@ -892,9 +1233,9 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_maxPorCaminante
             // 
-            this.txtbox_maxPorCaminante.Location = new System.Drawing.Point(268, 96);
+            this.txtbox_maxPorCaminante.Location = new System.Drawing.Point(556, 132);
             this.txtbox_maxPorCaminante.Name = "txtbox_maxPorCaminante";
-            this.txtbox_maxPorCaminante.Size = new System.Drawing.Size(123, 20);
+            this.txtbox_maxPorCaminante.Size = new System.Drawing.Size(100, 20);
             this.txtbox_maxPorCaminante.TabIndex = 22;
             this.txtbox_maxPorCaminante.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtbox_maxPorCaminante.TextChanged += new System.EventHandler(this.txtbox_maxPorCaminante_TextChanged);
@@ -902,9 +1243,9 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_maxPorCliente
             // 
-            this.txtbox_maxPorCliente.Location = new System.Drawing.Point(139, 96);
+            this.txtbox_maxPorCliente.Location = new System.Drawing.Point(556, 68);
             this.txtbox_maxPorCliente.Name = "txtbox_maxPorCliente";
-            this.txtbox_maxPorCliente.Size = new System.Drawing.Size(123, 20);
+            this.txtbox_maxPorCliente.Size = new System.Drawing.Size(100, 20);
             this.txtbox_maxPorCliente.TabIndex = 21;
             this.txtbox_maxPorCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtbox_maxPorCliente.TextChanged += new System.EventHandler(this.txtbox_maxPorCliente_TextChanged);
@@ -913,23 +1254,25 @@ namespace SIM_PLE_2._0
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(268, 58);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(556, 94);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 32);
+            this.button2.Size = new System.Drawing.Size(100, 32);
             this.button2.TabIndex = 20;
-            this.button2.Text = "Maximo Caminante";
+            this.button2.Text = "Max Caminante";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(139, 58);
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button8.Location = new System.Drawing.Point(556, 30);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(123, 32);
+            this.button8.Size = new System.Drawing.Size(100, 32);
             this.button8.TabIndex = 19;
-            this.button8.Text = "Maximo PSR";
+            this.button8.Text = "Max PSR";
             this.button8.UseVisualStyleBackColor = false;
             // 
             // dgv_Premios40
@@ -944,10 +1287,10 @@ namespace SIM_PLE_2._0
             this.Column4,
             this.Column5});
             this.dgv_Premios40.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dgv_Premios40.Location = new System.Drawing.Point(139, 156);
+            this.dgv_Premios40.Location = new System.Drawing.Point(111, 217);
             this.dgv_Premios40.Name = "dgv_Premios40";
             this.dgv_Premios40.RowHeadersVisible = false;
-            this.dgv_Premios40.Size = new System.Drawing.Size(507, 234);
+            this.dgv_Premios40.Size = new System.Drawing.Size(545, 129);
             this.dgv_Premios40.TabIndex = 0;
             // 
             // Column1
@@ -993,6 +1336,41 @@ namespace SIM_PLE_2._0
             this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
             this.paneltapaPestaña.TabIndex = 12;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Cliente";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Venta PSR";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Venta Caminante";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Pos";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 90;
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "Forzar";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.ReadOnly = true;
+            this.dataGridViewButtonColumn1.Width = 80;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1015,11 +1393,14 @@ namespace SIM_PLE_2._0
             this.tabPage2Sellout.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_So)).EndInit();
             this.tabPage3SIM.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Sim)).EndInit();
             this.tp_premios40.ResumeLayout(false);
             this.tp_premios40.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Premios40)).EndInit();
             this.ResumeLayout(false);
 
@@ -1061,13 +1442,11 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btn_calcularSellout;
         private System.Windows.Forms.TextBox txtBox_Sellout_objVenta;
-        private System.Windows.Forms.ListBox listBox_Sellout;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbox_montoObjSIM;
-        private System.Windows.Forms.ListBox listBox_SIM;
         private System.Windows.Forms.Button btn_SIM_calcular;
-        private System.Windows.Forms.ComboBox comboBox_SIMcaminantes;
+        private System.Windows.Forms.ComboBox cb_walkers;
         private System.Windows.Forms.Button examinar_sellout_dealer;
         private System.Windows.Forms.TextBox txtBox_REPsellout_dealer;
         private System.Windows.Forms.Button button9;
@@ -1099,6 +1478,44 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridView dgv_Sim;
+        private System.Windows.Forms.DataGridView dgv_So;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewButtonColumn Column10;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
     }
 }
 
