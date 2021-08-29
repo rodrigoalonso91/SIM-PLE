@@ -56,6 +56,11 @@ namespace SIM_PLE_2._0
             this.tabPage2Sellout = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_So = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btn_undo_SO = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.SO_efectividad = new System.Windows.Forms.Button();
@@ -93,25 +98,25 @@ namespace SIM_PLE_2._0
             this.txtBox_SimConObj = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tp_premios40 = new System.Windows.Forms.TabPage();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtbox_commissionVol = new System.Windows.Forms.TextBox();
             this.button23 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtbox_targetVol = new System.Windows.Forms.TextBox();
             this.button22 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtbox_150ValueSo = new System.Windows.Forms.TextBox();
             this.button18 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtbox_120ValueSo = new System.Windows.Forms.TextBox();
             this.button19 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtbox_100ValueSo = new System.Windows.Forms.TextBox();
             this.button20 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtbox_defaultValueSo = new System.Windows.Forms.TextBox();
             this.button21 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtbox_150ValueSim = new System.Windows.Forms.TextBox();
             this.button17 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtbox_120ValueSim = new System.Windows.Forms.TextBox();
             this.button15 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtbox_100ValueSim = new System.Windows.Forms.TextBox();
             this.button13 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtbox_defaultValueSim = new System.Windows.Forms.TextBox();
             this.button11 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,8 +125,8 @@ namespace SIM_PLE_2._0
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_calcularPremios = new System.Windows.Forms.Button();
-            this.txtbox_maxPorCaminante = new System.Windows.Forms.TextBox();
-            this.txtbox_maxPorCliente = new System.Windows.Forms.TextBox();
+            this.txtbox_maxWalker = new System.Windows.Forms.TextBox();
+            this.txtbox_maxClient = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.dgv_Premios40 = new System.Windows.Forms.DataGridView();
@@ -133,11 +138,6 @@ namespace SIM_PLE_2._0
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.paneltapaPestaña = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -487,6 +487,7 @@ namespace SIM_PLE_2._0
             // 
             // dgv_So
             // 
+            this.dgv_So.AllowUserToAddRows = false;
             this.dgv_So.AllowUserToDeleteRows = false;
             this.dgv_So.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_So.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -503,6 +504,41 @@ namespace SIM_PLE_2._0
             this.dgv_So.Size = new System.Drawing.Size(574, 348);
             this.dgv_So.TabIndex = 42;
             this.dgv_So.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_So_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Cliente";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Venta PSR";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Venta Caminante";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Pos";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 90;
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "Forzar";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.ReadOnly = true;
+            this.dataGridViewButtonColumn1.Width = 80;
             // 
             // btn_undo_SO
             // 
@@ -538,7 +574,7 @@ namespace SIM_PLE_2._0
             // 
             this.SO_efectividad.BackColor = System.Drawing.Color.WhiteSmoke;
             this.SO_efectividad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SO_efectividad.Location = new System.Drawing.Point(609, 372);
+            this.SO_efectividad.Location = new System.Drawing.Point(619, 372);
             this.SO_efectividad.Name = "SO_efectividad";
             this.SO_efectividad.Size = new System.Drawing.Size(123, 32);
             this.SO_efectividad.TabIndex = 39;
@@ -551,7 +587,7 @@ namespace SIM_PLE_2._0
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button6.Location = new System.Drawing.Point(609, 341);
+            this.button6.Location = new System.Drawing.Point(619, 341);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(123, 32);
             this.button6.TabIndex = 38;
@@ -572,7 +608,7 @@ namespace SIM_PLE_2._0
             // 
             this.SO_psrTotales.BackColor = System.Drawing.Color.WhiteSmoke;
             this.SO_psrTotales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SO_psrTotales.Location = new System.Drawing.Point(609, 87);
+            this.SO_psrTotales.Location = new System.Drawing.Point(619, 87);
             this.SO_psrTotales.Name = "SO_psrTotales";
             this.SO_psrTotales.Size = new System.Drawing.Size(123, 32);
             this.SO_psrTotales.TabIndex = 37;
@@ -585,7 +621,7 @@ namespace SIM_PLE_2._0
             this.button10.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button10.Location = new System.Drawing.Point(609, 56);
+            this.button10.Location = new System.Drawing.Point(619, 56);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(123, 32);
             this.button10.TabIndex = 36;
@@ -596,7 +632,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtB_soVolumen.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtB_soVolumen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtB_soVolumen.Location = new System.Drawing.Point(609, 300);
+            this.txtB_soVolumen.Location = new System.Drawing.Point(619, 300);
             this.txtB_soVolumen.Name = "txtB_soVolumen";
             this.txtB_soVolumen.Size = new System.Drawing.Size(123, 32);
             this.txtB_soVolumen.TabIndex = 35;
@@ -609,7 +645,7 @@ namespace SIM_PLE_2._0
             this.button12.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button12.Location = new System.Drawing.Point(609, 269);
+            this.button12.Location = new System.Drawing.Point(619, 269);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(123, 32);
             this.button12.TabIndex = 34;
@@ -620,7 +656,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtBox_soFaltan.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBox_soFaltan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_soFaltan.Location = new System.Drawing.Point(609, 229);
+            this.txtBox_soFaltan.Location = new System.Drawing.Point(619, 229);
             this.txtBox_soFaltan.Name = "txtBox_soFaltan";
             this.txtBox_soFaltan.Size = new System.Drawing.Size(123, 32);
             this.txtBox_soFaltan.TabIndex = 33;
@@ -648,7 +684,7 @@ namespace SIM_PLE_2._0
             this.button14.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button14.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button14.Location = new System.Drawing.Point(609, 198);
+            this.button14.Location = new System.Drawing.Point(619, 198);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(123, 32);
             this.button14.TabIndex = 32;
@@ -659,7 +695,7 @@ namespace SIM_PLE_2._0
             // 
             this.txtB_soConObjetivo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtB_soConObjetivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtB_soConObjetivo.Location = new System.Drawing.Point(609, 158);
+            this.txtB_soConObjetivo.Location = new System.Drawing.Point(619, 158);
             this.txtB_soConObjetivo.Name = "txtB_soConObjetivo";
             this.txtB_soConObjetivo.Size = new System.Drawing.Size(123, 32);
             this.txtB_soConObjetivo.TabIndex = 31;
@@ -672,7 +708,7 @@ namespace SIM_PLE_2._0
             this.button16.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button16.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button16.Location = new System.Drawing.Point(609, 127);
+            this.button16.Location = new System.Drawing.Point(619, 127);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(123, 32);
             this.button16.TabIndex = 30;
@@ -715,6 +751,7 @@ namespace SIM_PLE_2._0
             // 
             // dgv_Sim
             // 
+            this.dgv_Sim.AllowUserToAddRows = false;
             this.dgv_Sim.AllowUserToDeleteRows = false;
             this.dgv_Sim.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Sim.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -943,30 +980,30 @@ namespace SIM_PLE_2._0
             // tp_premios40
             // 
             this.tp_premios40.BackColor = System.Drawing.Color.Black;
-            this.tp_premios40.Controls.Add(this.textBox10);
+            this.tp_premios40.Controls.Add(this.txtbox_commissionVol);
             this.tp_premios40.Controls.Add(this.button23);
-            this.tp_premios40.Controls.Add(this.textBox9);
+            this.tp_premios40.Controls.Add(this.txtbox_targetVol);
             this.tp_premios40.Controls.Add(this.button22);
-            this.tp_premios40.Controls.Add(this.textBox5);
+            this.tp_premios40.Controls.Add(this.txtbox_150ValueSo);
             this.tp_premios40.Controls.Add(this.button18);
-            this.tp_premios40.Controls.Add(this.textBox6);
+            this.tp_premios40.Controls.Add(this.txtbox_120ValueSo);
             this.tp_premios40.Controls.Add(this.button19);
-            this.tp_premios40.Controls.Add(this.textBox7);
+            this.tp_premios40.Controls.Add(this.txtbox_100ValueSo);
             this.tp_premios40.Controls.Add(this.button20);
-            this.tp_premios40.Controls.Add(this.textBox8);
+            this.tp_premios40.Controls.Add(this.txtbox_defaultValueSo);
             this.tp_premios40.Controls.Add(this.button21);
-            this.tp_premios40.Controls.Add(this.textBox4);
+            this.tp_premios40.Controls.Add(this.txtbox_150ValueSim);
             this.tp_premios40.Controls.Add(this.button17);
-            this.tp_premios40.Controls.Add(this.textBox3);
+            this.tp_premios40.Controls.Add(this.txtbox_120ValueSim);
             this.tp_premios40.Controls.Add(this.button15);
-            this.tp_premios40.Controls.Add(this.textBox2);
+            this.tp_premios40.Controls.Add(this.txtbox_100ValueSim);
             this.tp_premios40.Controls.Add(this.button13);
-            this.tp_premios40.Controls.Add(this.textBox1);
+            this.tp_premios40.Controls.Add(this.txtbox_defaultValueSim);
             this.tp_premios40.Controls.Add(this.button11);
             this.tp_premios40.Controls.Add(this.dataGridView1);
             this.tp_premios40.Controls.Add(this.btn_calcularPremios);
-            this.tp_premios40.Controls.Add(this.txtbox_maxPorCaminante);
-            this.tp_premios40.Controls.Add(this.txtbox_maxPorCliente);
+            this.tp_premios40.Controls.Add(this.txtbox_maxWalker);
+            this.tp_premios40.Controls.Add(this.txtbox_maxClient);
             this.tp_premios40.Controls.Add(this.button2);
             this.tp_premios40.Controls.Add(this.button8);
             this.tp_premios40.Controls.Add(this.dgv_Premios40);
@@ -977,13 +1014,13 @@ namespace SIM_PLE_2._0
             this.tp_premios40.TabIndex = 3;
             this.tp_premios40.Text = "tabPage1";
             // 
-            // textBox10
+            // txtbox_commissionVol
             // 
-            this.textBox10.Location = new System.Drawing.Point(431, 132);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(119, 20);
-            this.textBox10.TabIndex = 44;
-            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_commissionVol.Location = new System.Drawing.Point(431, 132);
+            this.txtbox_commissionVol.Name = "txtbox_commissionVol";
+            this.txtbox_commissionVol.Size = new System.Drawing.Size(119, 20);
+            this.txtbox_commissionVol.TabIndex = 44;
+            this.txtbox_commissionVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button23
             // 
@@ -997,13 +1034,13 @@ namespace SIM_PLE_2._0
             this.button23.Text = "Comision Volumen";
             this.button23.UseVisualStyleBackColor = false;
             // 
-            // textBox9
+            // txtbox_targetVol
             // 
-            this.textBox9.Location = new System.Drawing.Point(431, 68);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(119, 20);
-            this.textBox9.TabIndex = 42;
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_targetVol.Location = new System.Drawing.Point(431, 68);
+            this.txtbox_targetVol.Name = "txtbox_targetVol";
+            this.txtbox_targetVol.Size = new System.Drawing.Size(119, 20);
+            this.txtbox_targetVol.TabIndex = 42;
+            this.txtbox_targetVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button22
             // 
@@ -1017,13 +1054,13 @@ namespace SIM_PLE_2._0
             this.button22.Text = "Volumen Objetivo";
             this.button22.UseVisualStyleBackColor = false;
             // 
-            // textBox5
+            // txtbox_150ValueSo
             // 
-            this.textBox5.Location = new System.Drawing.Point(330, 132);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(67, 20);
-            this.textBox5.TabIndex = 40;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_150ValueSo.Location = new System.Drawing.Point(330, 132);
+            this.txtbox_150ValueSo.Name = "txtbox_150ValueSo";
+            this.txtbox_150ValueSo.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_150ValueSo.TabIndex = 40;
+            this.txtbox_150ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button18
             // 
@@ -1037,13 +1074,13 @@ namespace SIM_PLE_2._0
             this.button18.Text = "+150 SO";
             this.button18.UseVisualStyleBackColor = false;
             // 
-            // textBox6
+            // txtbox_120ValueSo
             // 
-            this.textBox6.Location = new System.Drawing.Point(257, 132);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(67, 20);
-            this.textBox6.TabIndex = 38;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_120ValueSo.Location = new System.Drawing.Point(257, 132);
+            this.txtbox_120ValueSo.Name = "txtbox_120ValueSo";
+            this.txtbox_120ValueSo.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_120ValueSo.TabIndex = 38;
+            this.txtbox_120ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button19
             // 
@@ -1057,13 +1094,13 @@ namespace SIM_PLE_2._0
             this.button19.Text = "+120 SO";
             this.button19.UseVisualStyleBackColor = false;
             // 
-            // textBox7
+            // txtbox_100ValueSo
             // 
-            this.textBox7.Location = new System.Drawing.Point(184, 132);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(67, 20);
-            this.textBox7.TabIndex = 36;
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_100ValueSo.Location = new System.Drawing.Point(184, 132);
+            this.txtbox_100ValueSo.Name = "txtbox_100ValueSo";
+            this.txtbox_100ValueSo.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_100ValueSo.TabIndex = 36;
+            this.txtbox_100ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button20
             // 
@@ -1077,13 +1114,13 @@ namespace SIM_PLE_2._0
             this.button20.Text = "+100 SO";
             this.button20.UseVisualStyleBackColor = false;
             // 
-            // textBox8
+            // txtbox_defaultValueSo
             // 
-            this.textBox8.Location = new System.Drawing.Point(111, 132);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(67, 20);
-            this.textBox8.TabIndex = 34;
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_defaultValueSo.Location = new System.Drawing.Point(111, 132);
+            this.txtbox_defaultValueSo.Name = "txtbox_defaultValueSo";
+            this.txtbox_defaultValueSo.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_defaultValueSo.TabIndex = 34;
+            this.txtbox_defaultValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button21
             // 
@@ -1097,13 +1134,13 @@ namespace SIM_PLE_2._0
             this.button21.Text = "Valor SO";
             this.button21.UseVisualStyleBackColor = false;
             // 
-            // textBox4
+            // txtbox_150ValueSim
             // 
-            this.textBox4.Location = new System.Drawing.Point(330, 68);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(67, 20);
-            this.textBox4.TabIndex = 32;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_150ValueSim.Location = new System.Drawing.Point(330, 68);
+            this.txtbox_150ValueSim.Name = "txtbox_150ValueSim";
+            this.txtbox_150ValueSim.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_150ValueSim.TabIndex = 32;
+            this.txtbox_150ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button17
             // 
@@ -1117,13 +1154,13 @@ namespace SIM_PLE_2._0
             this.button17.Text = "+150 SIM";
             this.button17.UseVisualStyleBackColor = false;
             // 
-            // textBox3
+            // txtbox_120ValueSim
             // 
-            this.textBox3.Location = new System.Drawing.Point(257, 68);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(67, 20);
-            this.textBox3.TabIndex = 30;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_120ValueSim.Location = new System.Drawing.Point(257, 68);
+            this.txtbox_120ValueSim.Name = "txtbox_120ValueSim";
+            this.txtbox_120ValueSim.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_120ValueSim.TabIndex = 30;
+            this.txtbox_120ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button15
             // 
@@ -1137,13 +1174,13 @@ namespace SIM_PLE_2._0
             this.button15.Text = "+120 SIM";
             this.button15.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // txtbox_100ValueSim
             // 
-            this.textBox2.Location = new System.Drawing.Point(184, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(67, 20);
-            this.textBox2.TabIndex = 28;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_100ValueSim.Location = new System.Drawing.Point(184, 68);
+            this.txtbox_100ValueSim.Name = "txtbox_100ValueSim";
+            this.txtbox_100ValueSim.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_100ValueSim.TabIndex = 28;
+            this.txtbox_100ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button13
             // 
@@ -1157,13 +1194,13 @@ namespace SIM_PLE_2._0
             this.button13.Text = "+100 SIM";
             this.button13.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtbox_defaultValueSim
             // 
-            this.textBox1.Location = new System.Drawing.Point(111, 68);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(67, 20);
-            this.textBox1.TabIndex = 26;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_defaultValueSim.Location = new System.Drawing.Point(111, 68);
+            this.txtbox_defaultValueSim.Name = "txtbox_defaultValueSim";
+            this.txtbox_defaultValueSim.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_defaultValueSim.TabIndex = 26;
+            this.txtbox_defaultValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button11
             // 
@@ -1179,6 +1216,8 @@ namespace SIM_PLE_2._0
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column11,
@@ -1188,6 +1227,7 @@ namespace SIM_PLE_2._0
             this.Column15});
             this.dataGridView1.Location = new System.Drawing.Point(111, 353);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(545, 70);
             this.dataGridView1.TabIndex = 24;
             // 
@@ -1231,25 +1271,25 @@ namespace SIM_PLE_2._0
             this.btn_calcularPremios.UseVisualStyleBackColor = true;
             this.btn_calcularPremios.Click += new System.EventHandler(this.btn_calcularPremios_Click);
             // 
-            // txtbox_maxPorCaminante
+            // txtbox_maxWalker
             // 
-            this.txtbox_maxPorCaminante.Location = new System.Drawing.Point(556, 132);
-            this.txtbox_maxPorCaminante.Name = "txtbox_maxPorCaminante";
-            this.txtbox_maxPorCaminante.Size = new System.Drawing.Size(100, 20);
-            this.txtbox_maxPorCaminante.TabIndex = 22;
-            this.txtbox_maxPorCaminante.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_maxPorCaminante.TextChanged += new System.EventHandler(this.txtbox_maxPorCaminante_TextChanged);
-            this.txtbox_maxPorCaminante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCaminante_KeyPress);
+            this.txtbox_maxWalker.Location = new System.Drawing.Point(556, 132);
+            this.txtbox_maxWalker.Name = "txtbox_maxWalker";
+            this.txtbox_maxWalker.Size = new System.Drawing.Size(100, 20);
+            this.txtbox_maxWalker.TabIndex = 22;
+            this.txtbox_maxWalker.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_maxWalker.TextChanged += new System.EventHandler(this.txtbox_maxPorCaminante_TextChanged);
+            this.txtbox_maxWalker.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCaminante_KeyPress);
             // 
-            // txtbox_maxPorCliente
+            // txtbox_maxClient
             // 
-            this.txtbox_maxPorCliente.Location = new System.Drawing.Point(556, 68);
-            this.txtbox_maxPorCliente.Name = "txtbox_maxPorCliente";
-            this.txtbox_maxPorCliente.Size = new System.Drawing.Size(100, 20);
-            this.txtbox_maxPorCliente.TabIndex = 21;
-            this.txtbox_maxPorCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_maxPorCliente.TextChanged += new System.EventHandler(this.txtbox_maxPorCliente_TextChanged);
-            this.txtbox_maxPorCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCliente_KeyPress);
+            this.txtbox_maxClient.Location = new System.Drawing.Point(556, 68);
+            this.txtbox_maxClient.Name = "txtbox_maxClient";
+            this.txtbox_maxClient.Size = new System.Drawing.Size(100, 20);
+            this.txtbox_maxClient.TabIndex = 21;
+            this.txtbox_maxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_maxClient.TextChanged += new System.EventHandler(this.txtbox_maxPorCliente_TextChanged);
+            this.txtbox_maxClient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCliente_KeyPress);
             // 
             // button2
             // 
@@ -1277,6 +1317,8 @@ namespace SIM_PLE_2._0
             // 
             // dgv_Premios40
             // 
+            this.dgv_Premios40.AllowUserToAddRows = false;
+            this.dgv_Premios40.AllowUserToDeleteRows = false;
             this.dgv_Premios40.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
             this.dgv_Premios40.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.dgv_Premios40.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1289,6 +1331,7 @@ namespace SIM_PLE_2._0
             this.dgv_Premios40.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.dgv_Premios40.Location = new System.Drawing.Point(111, 217);
             this.dgv_Premios40.Name = "dgv_Premios40";
+            this.dgv_Premios40.ReadOnly = true;
             this.dgv_Premios40.RowHeadersVisible = false;
             this.dgv_Premios40.Size = new System.Drawing.Size(545, 129);
             this.dgv_Premios40.TabIndex = 0;
@@ -1335,41 +1378,6 @@ namespace SIM_PLE_2._0
             this.paneltapaPestaña.Name = "paneltapaPestaña";
             this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
             this.paneltapaPestaña.TabIndex = 12;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Cliente";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Venta PSR";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 110;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Venta Caminante";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Pos";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 90;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.HeaderText = "Forzar";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            this.dataGridViewButtonColumn1.ReadOnly = true;
-            this.dataGridViewButtonColumn1.Width = 80;
             // 
             // Form1
             // 
@@ -1465,11 +1473,11 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Button btn_tabPremios40;
         private System.Windows.Forms.TabPage tp_premios40;
         private System.Windows.Forms.DataGridView dgv_Premios40;
-        private System.Windows.Forms.TextBox txtbox_maxPorCliente;
+        private System.Windows.Forms.TextBox txtbox_maxClient;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button btn_calcularPremios;
-        private System.Windows.Forms.TextBox txtbox_maxPorCaminante;
+        private System.Windows.Forms.TextBox txtbox_maxWalker;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btn_undo;
         private FontAwesome.Sharp.IconButton btn_undo_SO;
@@ -1491,25 +1499,25 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtbox_commissionVol;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtbox_targetVol;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtbox_150ValueSo;
         private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtbox_120ValueSo;
         private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtbox_100ValueSo;
         private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtbox_defaultValueSo;
         private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtbox_150ValueSim;
         private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtbox_120ValueSim;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtbox_100ValueSim;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtbox_defaultValueSim;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

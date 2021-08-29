@@ -24,6 +24,7 @@ namespace SIM_PLE_2._0
         //================ Globals =================\\
         Dictionary<string, PSR> psrSIM = new Dictionary<string, PSR>();
         Dictionary<string, PSR> psrSellout = new Dictionary<string, PSR>();
+        Dictionary<string, Walker> allEmployee = new Dictionary<string, Walker>();
         List<string> nonCompiliantSim = new List<string>();
         List<string> nonCompiliantSo = new List<string>();
         Stack<string> itemsUndoSim = new Stack<string>();
@@ -31,30 +32,31 @@ namespace SIM_PLE_2._0
 
         #region //========== INDEX ==========\\
         //Indexs PSR Agencia
-        const int INDEX_AGENCIA_CODPSR = 1;
-        const int INDEX_AGENCIA_RAZONSOCIAL = 2;
-        const int INDEX_AGENCIA_DIRECCION = 3;
-        const int INDEX_AGENCIA_ALTURA = 4;
-        const int INDEX_AGENCIA_CAMINANTE = 11;
-        const int INDEX_AGENCIA_POS = 16;
-        //Indexs Primera Recarga
-        const int INDEX_RECARGAS_CODPSR = 0;
-        const int INDEX_RECARGAS_RAZONSOCIAL = 1;
-        const int INDEX_RECARGAS_CAMINANTE = 7;
-        const int INDEX_RECARGAS_ID = 9;
-        const int INDEX_RECARGAS_MONTO = 14;
-        const int INDEX_RECARGAS_NIM = 10;
-        //Index Productos Vendidos
-        const int INDEX_PVENDIDOS_CODPSR = 1;
-        const int INDEX_PVENDIDOS_LOTE = 16;
-        const int INDEX_PVENDIDOS_CHECKER = 10;
-        const int INDEX_PVENDIDOS_CAMINANTE = 8;
-        const int INDEX_PVENDIDOS_TRANSFERENCIAS = 13;
-        //Index Venta de saldo - Analitico
-        const int INDEX_DEALER_CODPSR = 2;
-        const int INDEX_DEALER_VENTASFINALES = 4;
-        const int INDEX_DEALER_VENTASPSR = 5;
-        const int INDEX_DEALER_POS = 3;
+        
+        const byte INDEX_AGENCIA_CODPSR = 1;
+        const byte INDEX_AGENCIA_RAZONSOCIAL = 2;
+        const byte INDEX_AGENCIA_DIRECCION = 3;
+        const byte INDEX_AGENCIA_ALTURA = 4;
+        const byte INDEX_AGENCIA_CAMINANTE = 11;
+        const byte INDEX_AGENCIA_POS = 16;
+        //IndebytePrimera Recarga
+        const byte INDEX_RECARGAS_CODPSR = 0;
+        const byte INDEX_RECARGAS_RAZONSOCIAL = 1;
+        const byte INDEX_RECARGAS_CAMINANTE = 7;
+        const byte INDEX_RECARGAS_ID = 9;
+        const byte INDEX_RECARGAS_MONTO = 14;
+        const byte INDEX_RECARGAS_NIM = 10;
+        //Indebyteroductos Vendidos
+        const byte INDEX_PVENDIDOS_CODPSR = 1;
+        const byte INDEX_PVENDIDOS_LOTE = 16;
+        const byte INDEX_PVENDIDOS_CHECKER = 10;
+        const byte INDEX_PVENDIDOS_CAMINANTE = 8;
+        const byte INDEX_PVENDIDOS_TRANSFERENCIAS = 13;
+        //Indebyteenta de saldo - Analitico
+        const byte INDEX_DEALER_CODPSR = 2;
+        const byte INDEX_DEALER_VENTASFINALES = 4;
+        const byte INDEX_DEALER_VENTASPSR = 5;
+        const byte INDEX_DEALER_POS = 3;
         #endregion
 
         #region //========== METODOS ==========\\
@@ -172,7 +174,7 @@ namespace SIM_PLE_2._0
 
                     var walkersList = new List<string>();
                     string[] arrReport = File.ReadAllLines(txtbox_REP_psragencia.Text);
-                    bool isNamed;
+                    bool isEmpty;
 
                     int reportLen = arrReport.Length;
                     for (int i = 2; i < reportLen; i++)
@@ -184,8 +186,8 @@ namespace SIM_PLE_2._0
                         }
                         else
                         {
-                            isNamed = itemReport[INDEX_AGENCIA_CAMINANTE].Contains(" ");
-                            if (isNamed) walkersList.Add(itemReport[INDEX_AGENCIA_CAMINANTE]);
+                            isEmpty = String.IsNullOrWhiteSpace(itemReport[INDEX_AGENCIA_CAMINANTE]);
+                            if (!isEmpty) walkersList.Add(itemReport[INDEX_AGENCIA_CAMINANTE]);
                         }
                     }
 
@@ -253,8 +255,8 @@ namespace SIM_PLE_2._0
         {
             txtbox_montoObjSIM.Text = (string)Settings.Default["objSim"];
             txtBox_Sellout_objVenta.Text = (string)Settings.Default["objSO"];
-            txtbox_maxPorCaminante.Text = (string)Settings.Default["maxCaminante"];
-            txtbox_maxPorCliente.Text = (string)Settings.Default["maxCliente"];
+            txtbox_maxWalker.Text = (string)Settings.Default["maxCaminante"];
+            txtbox_maxClient.Text = (string)Settings.Default["maxCliente"];
         }
 
         private void txtbox_montoObjSIM_TextChanged(object sender, EventArgs e)
@@ -266,13 +268,13 @@ namespace SIM_PLE_2._0
 
         private void txtbox_maxPorCliente_TextChanged(object sender, EventArgs e)
         {
-            Settings.Default["maxCliente"] = txtbox_maxPorCliente.Text;
+            Settings.Default["maxCliente"] = txtbox_maxClient.Text;
             Settings.Default.Save();
         }
 
         private void txtbox_maxPorCaminante_TextChanged(object sender, EventArgs e)
         {
-            Settings.Default["maxCaminante"] = txtbox_maxPorCaminante.Text;
+            Settings.Default["maxCaminante"] = txtbox_maxWalker.Text;
             Settings.Default.Save();
         }
 
@@ -437,7 +439,12 @@ namespace SIM_PLE_2._0
                 return;
             }
 
+            //Limpiar datos
             itemsUndoSO.Clear();
+            dgv_So.Rows.Clear();
+            nonCompiliantSo.Clear();
+            psrSellout.Clear();
+
             int objVenta = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
             string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
             string[] reporte_dealer = File.ReadAllLines(txtBox_REPsellout_dealer.Text); //Contemplar exeptions
@@ -447,7 +454,7 @@ namespace SIM_PLE_2._0
             int prodVendidosLen = reporte_prodVendidos.Length;
 
             int objCumplido = 0;
-            int psrTotales = 0;
+            int psrTotales;
 
             //Reporte PSR de la agencia
             for (int i = 2; i < psrAgenciaLen; i++)
@@ -630,18 +637,32 @@ namespace SIM_PLE_2._0
         }
         private void btn_calcularPremios_Click(object sender, EventArgs e) //Calcula Premio de 40%
         {
-            if (txtbox_maxPorCliente.Text == String.Empty || txtbox_maxPorCaminante.Text == String.Empty)
+            bool txtboxNotCompleted = String.IsNullOrWhiteSpace(txtbox_defaultValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_100ValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_120ValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_150ValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_defaultValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_100ValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_120ValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_150ValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_maxClient.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_maxClient.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_commissionVol.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_targetVol.Text);
+
+            if (txtboxNotCompleted)
             {
-                MessageBox.Show("Debe ingresar los valores maximos por PSR y por Caminante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar los valores de comisiones.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if (txtbox_REP_pRecarga.Text.Contains("Primera"))
+
+                if (txtbox_REP_pRecarga.Text.ToLower().Contains("primera"))
                 {
                     dgv_Premios40.Rows.Clear();
                     //============================= VARIABLES =============================\\
-                    int montoMaxPSR = int.Parse(txtbox_maxPorCliente.Text);
-                    int montoMaxCaminante = int.Parse(txtbox_maxPorCaminante.Text);
+                    int montoMaxPSR = int.Parse(txtbox_maxClient.Text);
+                    int montoMaxCaminante = int.Parse(txtbox_maxWalker.Text);
                     //=========================== DICCIONARIOS =============================\\
                     var allRecargas = new Dictionary<string, SimRecargada>();
                     var empleadosPremiados = new Dictionary<string, Premio40>();
@@ -749,12 +770,9 @@ namespace SIM_PLE_2._0
                     int invercionActual = int.Parse(txtBox_inver.Text.Replace("$", String.Empty));
                     int recargeValue = int.Parse(txtbox_montoObjSIM.Text) - Convert.ToInt32(dgv_Sim.Rows[rowTarget].Cells[1].Value);
                     txtBox_inver.Text = "$" + (invercionActual + recargeValue);
-
                 }
-
             }
         }
-
         private void dgv_So_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int cellTarget = e.ColumnIndex;
@@ -783,12 +801,11 @@ namespace SIM_PLE_2._0
                 {
                     string itemRestored = itemsUndoSO.Pop();
                     nonCompiliantSo.Add(itemRestored);
-                    txtBox_faltaCumplir.Text = nonCompiliantSo.Count().ToString();
-
                     txtB_soConObjetivo.Text = reduceCounter(txtB_soConObjetivo.Text);
-
+                    txtBox_soFaltan.Text = nonCompiliantSo.Count().ToString();
                     int psrTotal = int.Parse(SO_psrTotales.Text);
                     SO_efectividad.Text = (int.Parse(txtB_soConObjetivo.Text) *100) / psrTotal + "%";
+
                 }
             }
         }
