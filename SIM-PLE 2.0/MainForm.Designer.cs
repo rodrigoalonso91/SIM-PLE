@@ -1,7 +1,7 @@
 ﻿
 namespace SIM_PLE_2._0
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,7 +29,7 @@ namespace SIM_PLE_2._0
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panerSuperior = new System.Windows.Forms.Panel();
             this.btn_tabPremios40 = new System.Windows.Forms.Button();
             this.btn_clipBoard = new FontAwesome.Sharp.IconButton();
@@ -555,7 +555,6 @@ namespace SIM_PLE_2._0
             this.btn_undo_SO.Size = new System.Drawing.Size(46, 40);
             this.btn_undo_SO.TabIndex = 41;
             this.btn_undo_SO.UseVisualStyleBackColor = true;
-            this.btn_undo_SO.Click += new System.EventHandler(this.btn_undo_SO_Click);
             // 
             // label2
             // 

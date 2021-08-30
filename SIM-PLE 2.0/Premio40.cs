@@ -12,4 +12,5 @@ namespace SIM_PLE_2._0
         public int montoPremio { get; set; }
         public string nombre { get; set; }
     }
+
 }

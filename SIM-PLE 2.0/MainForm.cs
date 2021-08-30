@@ -12,10 +12,10 @@ using SIM_PLE_2._0.Properties;
 
 namespace SIM_PLE_2._0
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             SelectWalker();
@@ -29,36 +29,7 @@ namespace SIM_PLE_2._0
         List<string> nonCompiliantSo = new List<string>();
         Stack<string> itemsUndoSim = new Stack<string>();
         Stack<string> itemsUndoSO = new Stack<string>();
-
-        #region //========== INDEX ==========\\
-        //Indexs PSR Agencia
-        
-        const byte INDEX_AGENCIA_CODPSR = 1;
-        const byte INDEX_AGENCIA_RAZONSOCIAL = 2;
-        const byte INDEX_AGENCIA_DIRECCION = 3;
-        const byte INDEX_AGENCIA_ALTURA = 4;
-        const byte INDEX_AGENCIA_CAMINANTE = 11;
-        const byte INDEX_AGENCIA_POS = 16;
-        //IndebytePrimera Recarga
-        const byte INDEX_RECARGAS_CODPSR = 0;
-        const byte INDEX_RECARGAS_RAZONSOCIAL = 1;
-        const byte INDEX_RECARGAS_CAMINANTE = 7;
-        const byte INDEX_RECARGAS_ID = 9;
-        const byte INDEX_RECARGAS_MONTO = 14;
-        const byte INDEX_RECARGAS_NIM = 10;
-        //Indebyteroductos Vendidos
-        const byte INDEX_PVENDIDOS_CODPSR = 1;
-        const byte INDEX_PVENDIDOS_LOTE = 16;
-        const byte INDEX_PVENDIDOS_CHECKER = 10;
-        const byte INDEX_PVENDIDOS_CAMINANTE = 8;
-        const byte INDEX_PVENDIDOS_TRANSFERENCIAS = 13;
-        //Indebyteenta de saldo - Analitico
-        const byte INDEX_DEALER_CODPSR = 2;
-        const byte INDEX_DEALER_VENTASFINALES = 4;
-        const byte INDEX_DEALER_VENTASPSR = 5;
-        const byte INDEX_DEALER_POS = 3;
-        #endregion
-
+  
         #region //========== METODOS ==========\\
 
 
@@ -67,7 +38,6 @@ namespace SIM_PLE_2._0
             cb_walkers.Text = "Elija caminante";
         }
 
-        
         private void EnableCalculate() //Metodo para habilitar botones de calcular
         {
             if (txtbox_REP_psragencia.Text != "" && txtbox_REP_pRecarga.Text != "" && txtbox_REP_productosVendidos.Text != "")
@@ -171,39 +141,14 @@ namespace SIM_PLE_2._0
                 if (txtbox_REP_psragencia.Text.ToLower().Contains("agencia"))
                 {
                     EnableCalculate();
-
-                    var walkersList = new List<string>();
-                    string[] arrReport = File.ReadAllLines(txtbox_REP_psragencia.Text);
-                    bool isEmpty;
-
-                    int reportLen = arrReport.Length;
-                    for (int i = 2; i < reportLen; i++)
-                    {
-                        string[] itemReport = arrReport[i].Split(';');
-                        if (walkersList.Contains(itemReport[INDEX_AGENCIA_CAMINANTE]))
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            isEmpty = String.IsNullOrWhiteSpace(itemReport[INDEX_AGENCIA_CAMINANTE]);
-                            if (!isEmpty) walkersList.Add(itemReport[INDEX_AGENCIA_CAMINANTE]);
-                        }
-                    }
-
-                    foreach (var walker in walkersList)
-                    {
+                    foreach (var walker in Walker.GetWalkerFromReport(txtbox_REP_psragencia.Text)) 
                         cb_walkers.Items.Add(walker);
-                    }
-                    
                 }
                 else
                 {
                     MessageBox.Show("Asegurate de estar seleccionando el reporte PSR de la Agencia", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-
             }
-
         }  
         private void btn_Examinar2_Click(object sender, EventArgs e)
         {
@@ -285,13 +230,6 @@ namespace SIM_PLE_2._0
         }
         #endregion
 
-        #region //Editar
-
-        private void btn_undo_SO_Click(object sender, EventArgs e)
-        {
-           
-        }
-        #endregion 
 
         private void btn_SIM_calcular_Click_1(object sender, EventArgs e) //Calcula objetivo SIM
         {
@@ -312,98 +250,18 @@ namespace SIM_PLE_2._0
             nonCompiliantSim.Clear();
             // ================================================== \\
 
-            //======== Se leen las lineas de los reportes =======\\
-            string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text);
-            string[] reporte_pRecarga = File.ReadAllLines(txtbox_REP_pRecarga.Text);
-            string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);
-            //======== Variables & Diccionario =======\\
             int salesTarget = int.Parse(txtbox_montoObjSIM.Text);
-            int objCumplido = 0;
-            int psrTotal = 0;
-            int investment = 0;
-            int psrAgenciaLen = reporte_PSRagencia.Length;
-            int pRecargasLen = reporte_pRecarga.Length;
-            int prodVendidosLen = reporte_prodVendidos.Length;
             string walkerSelected = Convert.ToString(cb_walkers.SelectedItem);
 
-            for (int i = 2; i < psrAgenciaLen; i++)
-            {
-                // Array con el contenido de dichas lineas.
-                string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
-                // Si pertenece al caminante seleccionado entonces se asignan los datos al objeto PSR.
-                if (itemsAgencia[INDEX_AGENCIA_CAMINANTE] == walkerSelected)
-                {
-                    PSR client = new PSR
-                    {
-                        CodPSR = itemsAgencia[INDEX_AGENCIA_CODPSR],
-                        Caminante = itemsAgencia[INDEX_AGENCIA_CAMINANTE],
-                        Pos = itemsAgencia[INDEX_AGENCIA_POS],
-                        Nombre = itemsAgencia[INDEX_AGENCIA_RAZONSOCIAL].Replace('"', ' ').Trim(),
-                        Calle = itemsAgencia[INDEX_AGENCIA_DIRECCION],
-                        Altura = itemsAgencia[INDEX_AGENCIA_ALTURA],
-                        NimCliente = "",
-                        PrimeraRecarga = 0,
-                        IdSIM = "",
-                        Lote = "",
-                        EsCumplidor = false
-                    };
-                    psrSIM[client.CodPSR] = client; // Se guarda el objeto cliente en el diccionario.
-                }
-            }
-            psrTotal = psrSIM.Count;
+            var simData = new PSR();
+            psrSIM = simData.SetDataForSims(txtbox_REP_psragencia.Text, txtbox_REP_pRecarga.Text, txtbox_REP_productosVendidos.Text, walkerSelected, salesTarget);
 
-            for (int y = 2; y < pRecargasLen; y++)
-            {
-                //Array con el contenido del segundo reporte
-                string[] itemspRecarga = reporte_pRecarga[y].Trim().Split(';');
-
-                if (itemspRecarga[INDEX_RECARGAS_CAMINANTE] == walkerSelected)
-                {
-                    string auxPSRcode = itemspRecarga[INDEX_RECARGAS_CODPSR];
-                    int auxPrecarga = Convert.ToInt32(itemspRecarga[INDEX_RECARGAS_MONTO]);
-                    string auxNim = itemspRecarga[INDEX_RECARGAS_NIM];
-                    string auxIdSim = itemspRecarga[INDEX_RECARGAS_ID];
-
-
-                    if (psrSIM.ContainsKey(auxPSRcode))
-                    {
-                        if (psrSIM[auxPSRcode].PrimeraRecarga == 0)
-                        {
-                            psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
-                            psrSIM[auxPSRcode].NimCliente = auxNim;
-                            psrSIM[auxPSRcode].IdSIM = auxIdSim;
-                        }
-                        else if (auxPrecarga > psrSIM[auxPSRcode].PrimeraRecarga)
-                        {
-                            psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
-                            psrSIM[auxPSRcode].NimCliente = auxNim;
-                            psrSIM[auxPSRcode].IdSIM = auxIdSim;
-                        }
-                        if (psrSIM[auxPSRcode].PrimeraRecarga >= salesTarget)
-                        {
-                            psrSIM[auxPSRcode].EsCumplidor = true;
-                        }
-                    }
-                }
-            }
-            for (int z = 2; z < prodVendidosLen; z++)
-            {
-                string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
-
-                if (psrSIM.ContainsKey(itemspVendidos[INDEX_PVENDIDOS_CODPSR]) && 
-                    psrSIM[itemspVendidos[INDEX_PVENDIDOS_CODPSR]].PrimeraRecarga == 0 && 
-                    itemspVendidos[INDEX_PVENDIDOS_CHECKER] != "Carga Virtual")
-                {
-                    psrSIM[itemspVendidos[INDEX_PVENDIDOS_CODPSR]].Lote = itemspVendidos[INDEX_PVENDIDOS_LOTE];
-                }
-            }
+            int objCumplido = 0;
+            int investment = 0;
 
             foreach (var psr in psrSIM.Values)
             {
-                if (psr.EsCumplidor)
-                {
-                    objCumplido++;
-                }
+                if (psr.EsCumplidor) objCumplido++;
                 else
                 {
                     // Carga de datos en DGV
@@ -419,12 +277,13 @@ namespace SIM_PLE_2._0
                 }
             }
 
+            int psrTotal = psrSIM.Count;
             int efectividad = (objCumplido * 100) / psrTotal;
-            txtBox_SimConObj.Text = Convert.ToString(objCumplido);
             txtBox_PSRTotales.Text = Convert.ToString(psrTotal);
+            txtBox_SimConObj.Text = Convert.ToString(objCumplido);
             txtBox_faltaCumplir.Text = Convert.ToString(nonCompiliantSim.Count);
-            txtBox_Efectividad.Text = efectividad + "%";
             txtBox_inver.Text = "$" + investment;
+            txtBox_Efectividad.Text = efectividad + "%";
         } 
         private void btn_calcularSellout_Click(object sender, EventArgs e) //Calcula objetivo SO.
         {
@@ -444,6 +303,7 @@ namespace SIM_PLE_2._0
             dgv_So.Rows.Clear();
             nonCompiliantSo.Clear();
             psrSellout.Clear();
+            //TODO: Seguir refactorizando desde aqui.
 
             int objVenta = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
             string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
@@ -457,6 +317,7 @@ namespace SIM_PLE_2._0
             int psrTotales;
 
             //Reporte PSR de la agencia
+            /*
             for (int i = 2; i < psrAgenciaLen; i++)
             {
                 string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
@@ -476,7 +337,7 @@ namespace SIM_PLE_2._0
                 }
             }
             psrTotales = psrSellout.Count;
-
+            
             //Reporte Productos Vendidos
             for (int z = 2; z < prodVendidosLen; z++)
             {
@@ -527,7 +388,7 @@ namespace SIM_PLE_2._0
             txtB_soVolumen.Text = "$" + volumenVendedor;
             int efectividad = (objCumplido * 100) / psrTotales;
             SO_efectividad.Text = efectividad + "%";
-
+            */
         }
         private void btn_clipBoard_Click(object sender, EventArgs e) //Codigo para reporte en ClipBoard
         {
