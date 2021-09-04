@@ -1339,30 +1339,35 @@ namespace SIM_PLE_2._0
             // 
             this.Column1.HeaderText = "Caminante";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 150;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Cantidad";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             this.Column2.Width = 84;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Monto";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 90;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Premio";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             this.Column4.Width = 90;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Efectividad";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             this.Column5.Width = 90;
             // 
             // openFileDialog1
@@ -1378,7 +1383,7 @@ namespace SIM_PLE_2._0
             this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
             this.paneltapaPestaña.TabIndex = 12;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1389,7 +1394,7 @@ namespace SIM_PLE_2._0
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(982, 552);
             this.MinimumSize = new System.Drawing.Size(982, 552);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "SIM-PLE";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panerSuperior.ResumeLayout(false);

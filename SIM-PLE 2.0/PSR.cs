@@ -10,20 +10,20 @@ namespace SIM_PLE_2._0
     public class PSR
     {
         public string CodPSR { get; private set; }
-        public string Nombre { get; private set; }
-        public string Calle { get; private set; }
-        public string Altura { get; private set; }
-        public string Caminante { get; private set; }
+        public string Name { get; private set; }
+        public string Address { get; private set; }
+        public string NumAddress { get; private set; }
+        public string Walker { get; private set; }
         public string Pos { get; private set; }
-        public int PrimeraRecarga { get; private set; }
+        public int FirstCharge { get; private set; }
         public string Lote { get; private set; }
-        public string NimCliente { get; private set; }
+        public string ClientNim { get; private set; }
         public string IdSIM { get; private set; }
-        public bool EsCumplidor { get; private set; }
-        public int StockCarga { get; private set; }
+        public bool IsCompliant { get; private set; }
+        public int StochCharges { get; private set; }
         public int StockSim { get; private set; }
-        public int Transferencias { get; private set; }
-        public double VentaMensual { get; private set; }
+        public int Transactions { get; private set; }
+        public double MonthSolds { get; private set; }
 
         #region "Index from reports"
         // Index Reporte PSR de la agencia
@@ -48,14 +48,14 @@ namespace SIM_PLE_2._0
         const byte INDEX_PRODUCTS_TRANSACTIONS = 13;
         //Index Venta de saldo - Analitico
         const byte INDEX_DEALER_CODPSR = 2;
-        const byte INDEX_DEALER_VENTASFINALES = 4;
+        const byte INDEX_DEALER_TOTALSOLDS = 4;
         const byte INDEX_DEALER_VENTASPSR = 5;
         const byte INDEX_DEALER_POS = 3;
         #endregion
 
-        public Dictionary<string, PSR> SetDataForSims(string reportAgency, string reportFirstCharge, string reportSoldProducts, string walkerSelected, int salesTarget)
+        public Dictionary<string, PSR> SetDataForSims(string reportAgency, string reportFirstCharge, string reportSoldProducts, string walkerSelected, int salesTarget) 
         {
-            Dictionary<string, PSR> psrSIM = new Dictionary<string, PSR>();
+            var psrSIM = new Dictionary<string, PSR>();
 
             //======== Se crea un array a partir de cada linea de los reportes =======\\
             string[] arrayReportAgency = File.ReadAllLines(reportAgency);
@@ -72,14 +72,14 @@ namespace SIM_PLE_2._0
                     PSR client = new PSR
                     {
                         CodPSR = itemsAgency[INDEX_AGENCY_CODPSR],
-                        Caminante = itemsAgency[INDEX_AGENCY_WALKER],
+                        Walker = itemsAgency[INDEX_AGENCY_WALKER],
                         Pos = itemsAgency[INDEX_AGENCY_POS],
-                        Nombre = itemsAgency[INDEX_AGENCY_NAME].Replace('"', ' ').Trim(),
-                        Calle = itemsAgency[INDEX_AGENCY_ADRESS],
-                        Altura = itemsAgency[INDEX_AGENCY_NUMBER],
-                        PrimeraRecarga = 0,
-                        NimCliente = "S/N",
-                        EsCumplidor = false
+                        Name = itemsAgency[INDEX_AGENCY_NAME].Replace('"', ' ').Trim(),
+                        Address = itemsAgency[INDEX_AGENCY_ADRESS],
+                        NumAddress = itemsAgency[INDEX_AGENCY_NUMBER],
+                        FirstCharge = 0,
+                        ClientNim = "S/N",
+                        IsCompliant = false
                     };
                     psrSIM[client.CodPSR] = client; // Se guarda el objeto cliente en el diccionario.
                 }
@@ -94,28 +94,28 @@ namespace SIM_PLE_2._0
 
                 if (itemspRecarga[INDEX_CHARGES_WALKER] == walkerSelected)
                 {
-                    string auxPSRcode = itemspRecarga[INDEX_CHARGES_CODPSR];
-                    int auxPrecarga = Convert.ToInt32(itemspRecarga[INDEX_CHARGES_AMOUNT]);
-                    string auxNim = itemspRecarga[INDEX_CHARGES_NIM];
-                    string auxIdSim = itemspRecarga[INDEX_CHARGES_ID];
+                    var auxPSRcode = itemspRecarga[INDEX_CHARGES_CODPSR];
+                    var auxPrecarga = Convert.ToInt32(itemspRecarga[INDEX_CHARGES_AMOUNT]);
+                    var auxNim = itemspRecarga[INDEX_CHARGES_NIM];
+                    var auxIdSim = itemspRecarga[INDEX_CHARGES_ID];
 
                     if (psrSIM.ContainsKey(auxPSRcode))
                     {
-                        if (psrSIM[auxPSRcode].PrimeraRecarga == 0)
+                        if (psrSIM[auxPSRcode].FirstCharge == 0)
                         {
-                            psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
-                            psrSIM[auxPSRcode].NimCliente = auxNim;
+                            psrSIM[auxPSRcode].FirstCharge = auxPrecarga;
+                            psrSIM[auxPSRcode].ClientNim = auxNim;
                             psrSIM[auxPSRcode].IdSIM = auxIdSim;
                         }
-                        else if (auxPrecarga > psrSIM[auxPSRcode].PrimeraRecarga)
+                        else if (auxPrecarga > psrSIM[auxPSRcode].FirstCharge)
                         {
-                            psrSIM[auxPSRcode].PrimeraRecarga = auxPrecarga;
-                            psrSIM[auxPSRcode].NimCliente = auxNim;
+                            psrSIM[auxPSRcode].FirstCharge = auxPrecarga;
+                            psrSIM[auxPSRcode].ClientNim = auxNim;
                             psrSIM[auxPSRcode].IdSIM = auxIdSim;
                         }
-                        if (psrSIM[auxPSRcode].PrimeraRecarga >= salesTarget)
+                        if (psrSIM[auxPSRcode].FirstCharge >= salesTarget)
                         {
-                            psrSIM[auxPSRcode].EsCumplidor = true;
+                            psrSIM[auxPSRcode].IsCompliant = true;
                         }
                     }
                 }
@@ -127,18 +127,71 @@ namespace SIM_PLE_2._0
             for (int z = 2; z < reportSoldProducts_len; z++)
             {
                 string[] itemsSoldProducts = arrayReportSoldProducts[z].Split(';');
-                string auxPSRcode = itemsSoldProducts[INDEX_PRODUCTS_CODPSR];
+                var auxPSRcode = itemsSoldProducts[INDEX_PRODUCTS_CODPSR];
 
-                if (psrSIM.ContainsKey(auxPSRcode) && psrSIM[auxPSRcode].PrimeraRecarga == 0 && itemsSoldProducts[INDEX_PRODUCTS_CHECKER] != "Carga Virtual")
+                if (psrSIM.ContainsKey(auxPSRcode) && psrSIM[auxPSRcode].FirstCharge == 0 && itemsSoldProducts[INDEX_PRODUCTS_CHECKER] != "Carga Virtual")
                     psrSIM[auxPSRcode].Lote = itemsSoldProducts[INDEX_PRODUCTS_LOTE];
             }
 
             return psrSIM;
         }
-        public Dictionary<string, PSR> SetDataForSellout()
+        public Dictionary<string, PSR> SetDataForSellout(string reportAgency, string reportDealer, string reportSoldProducts, string selectedWalker, int salesTarget)
         {
-            Dictionary<string, PSR> psrSellout = new Dictionary<string, PSR>();
-            //TODO: Logica de objetivo SellOut
+            var psrSellout = new Dictionary<string, PSR>();
+
+            string[] arrayReportAgency = File.ReadAllLines(reportAgency);
+            int reportAgency_len = arrayReportAgency.Length;
+
+            for (int i = 2; i < reportAgency_len; i++)
+            {
+                string[] itemsAgency = arrayReportAgency[i].Split(';');
+                if (itemsAgency[INDEX_AGENCY_WALKER] == selectedWalker)
+                {
+                    PSR clientSellout = new PSR()
+                    {
+                        CodPSR = itemsAgency[INDEX_AGENCY_CODPSR],
+                        Name = itemsAgency[INDEX_AGENCY_NAME].Replace('"', ' ').Trim(),
+                        Walker = itemsAgency[INDEX_AGENCY_WALKER],
+                        Pos = itemsAgency[INDEX_AGENCY_POS],
+                        Transactions = 0,
+                        StochCharges = 0,
+                        StockSim = 0,
+                        MonthSolds = 0,
+                        IsCompliant = false
+                    };
+                    psrSellout[clientSellout.CodPSR] = clientSellout;
+                }
+            }
+
+            string[] arrayReportSoldProducts = File.ReadAllLines(reportSoldProducts);
+            int reportSoldProducts_len = arrayReportSoldProducts.Length;
+
+            for (int z = 2; z < reportSoldProducts_len; z++)
+            {
+                string[] itemsSoldProducts = arrayReportSoldProducts[z].Split(';');
+                var auxpsrcode = itemsSoldProducts[INDEX_PRODUCTS_CODPSR];
+
+                if (itemsSoldProducts[INDEX_PRODUCTS_CHECKER] == "Carga Virtual" && itemsSoldProducts[INDEX_PRODUCTS_WALKER] == selectedWalker)
+                {
+                    psrSellout[auxpsrcode].Transactions += Convert.ToInt32(itemsSoldProducts[INDEX_PRODUCTS_TRANSACTIONS]);
+                }
+            }
+
+            string[] arrayReportDealer = File.ReadAllLines(reportDealer);
+            int reporDealer_len = arrayReportDealer.Length;
+
+            for (int y = 5; y < reporDealer_len; y++)
+            {
+                string[] totalSolds = arrayReportDealer[y].Split(';');
+                string auxPsrcode = totalSolds[INDEX_DEALER_CODPSR].Insert(0, "0"); //algunos PSR cod no incliyen el "0" del inicio.
+
+                if (psrSellout.ContainsKey(auxPsrcode))
+                {
+                    psrSellout[auxPsrcode].MonthSolds = Convert.ToDouble(totalSolds[INDEX_DEALER_TOTALSOLDS]);
+                    if (psrSellout[auxPsrcode].MonthSolds >= salesTarget)
+                        psrSellout[auxPsrcode].IsCompliant = true;
+                }
+            }
             return psrSellout;
         }
     }

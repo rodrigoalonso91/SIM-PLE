@@ -14,7 +14,6 @@ namespace SIM_PLE_2._0
 {
     public partial class MainForm : Form
     {
-
         public MainForm()
         {
             InitializeComponent();
@@ -30,7 +29,7 @@ namespace SIM_PLE_2._0
         Stack<string> itemsUndoSim = new Stack<string>();
         Stack<string> itemsUndoSO = new Stack<string>();
   
-        #region //========== METODOS ==========\\
+        #region //========== METHODS ==========\\
 
 
         private void SelectWalker() //asigna el mensaje "Elige caminante" a todos los ComboBOX
@@ -110,7 +109,7 @@ namespace SIM_PLE_2._0
         }
         #endregion
 
-        #region //========== BTNS MENU LATERAL ==========\\
+        #region //========== BTNs LEFT PANEL ==========\\
         private void btn_tabSIM_Click_1(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage1Reportes;
@@ -230,7 +229,6 @@ namespace SIM_PLE_2._0
         }
         #endregion
 
-
         private void btn_SIM_calcular_Click_1(object sender, EventArgs e) //Calcula objetivo SIM
         {
             if (cb_walkers.Text == "Elija caminante")
@@ -243,37 +241,37 @@ namespace SIM_PLE_2._0
                 MessageBox.Show("Primero debe ingresar un objetivo de venta.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // ===== Elimina datos del list, Dgv y stack ===== \\
+            // ===== Se limpia la informacion relacionada a los sims ===== \\
             itemsUndoSim.Clear();
             dgv_Sim.Rows.Clear();
             psrSIM.Clear();
             nonCompiliantSim.Clear();
             // ================================================== \\
 
-            int salesTarget = int.Parse(txtbox_montoObjSIM.Text);
-            string walkerSelected = Convert.ToString(cb_walkers.SelectedItem);
+            var salesTarget = int.Parse(txtbox_montoObjSIM.Text);
+            var walkerSelected = Convert.ToString(cb_walkers.SelectedItem);
 
             var simData = new PSR();
             psrSIM = simData.SetDataForSims(txtbox_REP_psragencia.Text, txtbox_REP_pRecarga.Text, txtbox_REP_productosVendidos.Text, walkerSelected, salesTarget);
 
-            int objCumplido = 0;
-            int investment = 0;
+            var objCumplido = 0;
+            var investment = 0;
 
             foreach (var psr in psrSIM.Values)
             {
-                if (psr.EsCumplidor) objCumplido++;
+                if (psr.IsCompliant) objCumplido++;
                 else
                 {
                     // Carga de datos en DGV
                     int rowsIndex = dgv_Sim.Rows.Add();
-                    dgv_Sim.Rows[rowsIndex].Cells[0].Value = psr.Nombre;
-                    dgv_Sim.Rows[rowsIndex].Cells[1].Value = psr.PrimeraRecarga;
-                    dgv_Sim.Rows[rowsIndex].Cells[2].Value = psr.NimCliente;
+                    dgv_Sim.Rows[rowsIndex].Cells[0].Value = psr.name;
+                    dgv_Sim.Rows[rowsIndex].Cells[1].Value = psr.FirstCharge;
+                    dgv_Sim.Rows[rowsIndex].Cells[2].Value = psr.ClientNim;
                     dgv_Sim.Rows[rowsIndex].Cells[3].Value = psr.Lote;
                     dgv_Sim.Rows[rowsIndex].Cells[4].Value = "Ok";
 
-                    investment += (salesTarget - psr.PrimeraRecarga);
-                    nonCompiliantSim.Add(psr.Nombre);
+                    investment += (salesTarget - psr.FirstCharge);
+                    nonCompiliantSim.Add(psr.name);
                 }
             }
 
@@ -298,97 +296,46 @@ namespace SIM_PLE_2._0
                 return;
             }
 
-            //Limpiar datos
+            // Limpia toda la informacion relacionada al SellOut
             itemsUndoSO.Clear();
             dgv_So.Rows.Clear();
             nonCompiliantSo.Clear();
             psrSellout.Clear();
-            //TODO: Seguir refactorizando desde aqui.
 
-            int objVenta = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
-            string[] reporte_PSRagencia = File.ReadAllLines(txtbox_REP_psragencia.Text); //Contemplar exeptions
-            string[] reporte_dealer = File.ReadAllLines(txtBox_REPsellout_dealer.Text); //Contemplar exeptions
-            string[] reporte_prodVendidos = File.ReadAllLines(txtbox_REP_productosVendidos.Text);//Contemplar exeptions
-            int psrAgenciaLen = reporte_PSRagencia.Length;
-            int ventaAnaliticoLen = reporte_dealer.Length;
-            int prodVendidosLen = reporte_prodVendidos.Length;
+            var salesTarget = Convert.ToInt32(txtBox_Sellout_objVenta.Text);
+            var walkerSelected = Convert.ToString(cb_walkers.SelectedItem);
 
-            int objCumplido = 0;
-            int psrTotales;
+            var selloutData = new PSR();
+            psrSellout = selloutData.SetDataForSellout(txtbox_REP_psragencia.Text, txtBox_REPsellout_dealer.Text, txtbox_REP_productosVendidos.Text, walkerSelected, salesTarget);
 
-            //Reporte PSR de la agencia
-            /*
-            for (int i = 2; i < psrAgenciaLen; i++)
-            {
-                string[] itemsAgencia = reporte_PSRagencia[i].Split(';');
-                if (itemsAgencia[INDEX_AGENCIA_CAMINANTE] == Convert.ToString(cb_walkers.SelectedItem))
-                {
-                    PSR clientSellout = new PSR();
-                    clientSellout.CodPSR = itemsAgencia[INDEX_AGENCIA_CODPSR];
-                    clientSellout.Nombre = itemsAgencia[INDEX_AGENCIA_RAZONSOCIAL].Replace('"', ' ').Trim();
-                    clientSellout.Caminante = itemsAgencia[INDEX_AGENCIA_CAMINANTE];
-                    clientSellout.Pos = itemsAgencia[INDEX_AGENCIA_POS];
-                    clientSellout.Transferencias = 0;
-                    clientSellout.StockCarga = 0;
-                    clientSellout.StockSim = 0;
-                    clientSellout.VentaMensual = 0;
-                    clientSellout.EsCumplidor = false;
-                    psrSellout[clientSellout.CodPSR] = clientSellout;
-                }
-            }
-            psrTotales = psrSellout.Count;
-            
-            //Reporte Productos Vendidos
-            for (int z = 2; z < prodVendidosLen; z++)
-            {
-                string[] itemspVendidos = reporte_prodVendidos[z].Split(';');
-                string auxpsrcode = itemspVendidos[INDEX_PVENDIDOS_CODPSR];
+            var psrTotales = psrSellout.Count;
+            var objCumplido = 0;
+            double walkerVolumen = 0;
 
-                if (itemspVendidos[INDEX_PVENDIDOS_CHECKER] == "Carga Virtual" && itemspVendidos[INDEX_PVENDIDOS_CAMINANTE] == Convert.ToString(cb_walkers.SelectedItem))
-                {
-                    psrSellout[auxpsrcode].Transferencias += Convert.ToInt32(itemspVendidos[INDEX_PVENDIDOS_TRANSFERENCIAS]);
-                }
-            }
-
-            //Reporte Ventas Analitico
-            for (int y = 5; y < ventaAnaliticoLen; y++)
-            {
-                string[] ventasFinales = reporte_dealer[y].Split(';');
-                string auxPsrcode = "0" + ventasFinales[INDEX_DEALER_CODPSR];
-                if (psrSellout.ContainsKey(auxPsrcode))
-                {
-                    psrSellout[auxPsrcode].VentaMensual = Convert.ToDouble(ventasFinales[INDEX_DEALER_VENTASFINALES]);
-                }
-            }
-            double volumenVendedor = 0;
             foreach (var psr in psrSellout.Values)
             {
-                volumenVendedor += psr.VentaMensual;
-                if (psr.VentaMensual >= objVenta)
-                {
-                    psr.EsCumplidor = true;
-                }
-                if (psr.EsCumplidor)
-                    objCumplido++;
+                walkerVolumen += psr.MonthSolds;
+
+                if (psr.IsCompliant) objCumplido++;
                 else
                 {
                     int rowIndex = dgv_So.Rows.Add();
-                    dgv_So.Rows[rowIndex].Cells[0].Value = psr.Nombre;
-                    dgv_So.Rows[rowIndex].Cells[1].Value = psr.VentaMensual;
-                    dgv_So.Rows[rowIndex].Cells[2].Value = psr.Transferencias;
+                    dgv_So.Rows[rowIndex].Cells[0].Value = psr.name;
+                    dgv_So.Rows[rowIndex].Cells[1].Value = psr.MonthSolds;
+                    dgv_So.Rows[rowIndex].Cells[2].Value = psr.Transactions;
                     dgv_So.Rows[rowIndex].Cells[3].Value = psr.Pos;
                     dgv_So.Rows[rowIndex].Cells[4].Value = "Ok";
 
-                    nonCompiliantSo.Add(psr.Nombre);
+                    nonCompiliantSo.Add(psr.name);
                 }
             }
+
             SO_psrTotales.Text = psrTotales.ToString();
             txtB_soConObjetivo.Text = objCumplido.ToString();
             txtBox_soFaltan.Text = nonCompiliantSo.Count().ToString();
-            txtB_soVolumen.Text = "$" + volumenVendedor;
+            txtB_soVolumen.Text = "$" + walkerVolumen;
             int efectividad = (objCumplido * 100) / psrTotales;
             SO_efectividad.Text = efectividad + "%";
-            */
         }
         private void btn_clipBoard_Click(object sender, EventArgs e) //Codigo para reporte en ClipBoard
         {
@@ -497,7 +444,7 @@ namespace SIM_PLE_2._0
             }
         }
         private void btn_calcularPremios_Click(object sender, EventArgs e) //Calcula Premio de 40%
-        {
+        {/*
             bool txtboxNotCompleted = String.IsNullOrWhiteSpace(txtbox_defaultValueSim.Text) ||
                                       String.IsNullOrWhiteSpace(txtbox_100ValueSim.Text) ||
                                       String.IsNullOrWhiteSpace(txtbox_120ValueSim.Text) ||
@@ -512,8 +459,9 @@ namespace SIM_PLE_2._0
                                       String.IsNullOrWhiteSpace(txtbox_targetVol.Text);
 
             if (txtboxNotCompleted)
-            {
+            { 
                 MessageBox.Show("Debe ingresar los valores de comisiones.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
@@ -591,6 +539,7 @@ namespace SIM_PLE_2._0
                     MessageBox.Show("Debe elegir un reporte de Primera Recarga!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            */
         }
         private void dgv_Sim_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
