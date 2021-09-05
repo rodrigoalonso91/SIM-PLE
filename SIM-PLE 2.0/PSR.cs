@@ -194,5 +194,68 @@ namespace SIM_PLE_2._0
             }
             return psrSellout;
         }
+        public Dictionary<string, Reward40> SetDataForRewards(string reportFirstCharges, int maxForClient, int maxForWalker)
+        {
+
+            var arrayReportFirstCharges = File.ReadAllLines(reportFirstCharges);
+            int reporFirstCharges_len = arrayReportFirstCharges.Length;
+            var allFirstCharges = new Dictionary<string, Reward40>();
+
+            for (int i = 2; i < reporFirstCharges_len; i++)
+            {
+                var itemsFirstCharges = arrayReportFirstCharges[i].Split(';');
+                var codPsr = itemsFirstCharges[INDEX_CHARGES_CODPSR].Trim();
+                var walker = itemsFirstCharges[INDEX_CHARGES_WALKER].Trim();
+                var amount = itemsFirstCharges[INDEX_CHARGES_AMOUNT].Trim();
+
+                if (allFirstCharges.ContainsKey(codPsr))
+                {
+                    allFirstCharges[codPsr].TotalSim++;
+                    allFirstCharges[codPsr].Amount += Get40percent(amount);
+                    if (allFirstCharges[codPsr].Amount > maxForClient)
+                        allFirstCharges[codPsr].TopReward = maxForClient;
+                    else
+                        allFirstCharges[codPsr].TopReward = allFirstCharges[codPsr].Amount;
+                }
+                else
+                {
+                    var sim = new Reward40()
+                    {
+                        CodPsr = codPsr,
+                        Walker = walker,
+                        Amount = Get40percent(amount),
+                        TotalSim = 1,
+                        TopReward = (Get40percent(amount) > maxForClient) ? maxForClient : Get40percent(amount)
+                    };
+                    allFirstCharges[sim.CodPsr] = sim;
+                }
+            }
+
+            var employeeRewards = new Dictionary<string, Reward40>();
+
+            foreach (var item in allFirstCharges.Values)
+            {
+                if (!employeeRewards.ContainsKey(item.Walker))
+                {
+                    employeeRewards[item.Walker] = item;
+                    employeeRewards[item.Walker].WalkerReward = item.TopReward;
+                }
+                else
+                {
+                    employeeRewards[item.Walker].Amount += item.Amount;
+                    employeeRewards[item.Walker].TotalSim += item.TotalSim;
+                    employeeRewards[item.Walker].WalkerReward += item.TopReward;
+                    if (employeeRewards[item.Walker].WalkerReward > maxForWalker)
+                        employeeRewards[item.Walker].WalkerReward = maxForWalker;
+                }
+            }
+            return employeeRewards;
+        }
+        private int Get40percent(string input) //obtine el 40% del input
+        {
+            double mathOperation = double.Parse(input) * 0.4;
+            int result = Convert.ToInt32(Math.Round(mathOperation));
+            return result;
+        }
     }
 }

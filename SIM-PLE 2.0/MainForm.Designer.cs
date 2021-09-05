@@ -118,7 +118,7 @@ namespace SIM_PLE_2._0
             this.button13 = new System.Windows.Forms.Button();
             this.txtbox_defaultValueSim = new System.Windows.Forms.TextBox();
             this.button11 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSalary = new System.Windows.Forms.DataGridView();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -129,15 +129,14 @@ namespace SIM_PLE_2._0
             this.txtbox_maxClient = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.dgv_Premios40 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_reward40 = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.paneltapaPestaña = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -149,8 +148,8 @@ namespace SIM_PLE_2._0
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Sim)).BeginInit();
             this.tp_premios40.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Premios40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSalary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_reward40)).BeginInit();
             this.SuspendLayout();
             // 
             // panerSuperior
@@ -601,6 +600,7 @@ namespace SIM_PLE_2._0
             this.txtBox_Sellout_objVenta.TabIndex = 30;
             this.txtBox_Sellout_objVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_Sellout_objVenta.TextChanged += new System.EventHandler(this.txtBox_Sellout_objVenta_TextChanged);
+            this.txtBox_Sellout_objVenta.Enter += new System.EventHandler(this.txtBox_Sellout_objVenta_Enter);
             this.txtBox_Sellout_objVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBox_Sellout_objVenta_KeyPress);
             // 
             // SO_psrTotales
@@ -676,6 +676,7 @@ namespace SIM_PLE_2._0
             this.btn_calcularSellout.Text = "Calcular";
             this.btn_calcularSellout.UseVisualStyleBackColor = true;
             this.btn_calcularSellout.Click += new System.EventHandler(this.btn_calcularSellout_Click);
+            this.btn_calcularSellout.Enter += new System.EventHandler(this.btn_calcularSellout_Enter);
             // 
             // button14
             // 
@@ -999,13 +1000,13 @@ namespace SIM_PLE_2._0
             this.tp_premios40.Controls.Add(this.button13);
             this.tp_premios40.Controls.Add(this.txtbox_defaultValueSim);
             this.tp_premios40.Controls.Add(this.button11);
-            this.tp_premios40.Controls.Add(this.dataGridView1);
+            this.tp_premios40.Controls.Add(this.dgvSalary);
             this.tp_premios40.Controls.Add(this.btn_calcularPremios);
             this.tp_premios40.Controls.Add(this.txtbox_maxWalker);
             this.tp_premios40.Controls.Add(this.txtbox_maxClient);
             this.tp_premios40.Controls.Add(this.button2);
             this.tp_premios40.Controls.Add(this.button8);
-            this.tp_premios40.Controls.Add(this.dgv_Premios40);
+            this.tp_premios40.Controls.Add(this.dgv_reward40);
             this.tp_premios40.Location = new System.Drawing.Point(4, 22);
             this.tp_premios40.Name = "tp_premios40";
             this.tp_premios40.Padding = new System.Windows.Forms.Padding(3);
@@ -1020,6 +1021,8 @@ namespace SIM_PLE_2._0
             this.txtbox_commissionVol.Size = new System.Drawing.Size(119, 20);
             this.txtbox_commissionVol.TabIndex = 44;
             this.txtbox_commissionVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_commissionVol.TextChanged += new System.EventHandler(this.txtbox_commissionVol_TextChanged);
+            this.txtbox_commissionVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_commissionVol_KeyPress);
             // 
             // button23
             // 
@@ -1030,6 +1033,7 @@ namespace SIM_PLE_2._0
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(119, 32);
             this.button23.TabIndex = 43;
+            this.button23.TabStop = false;
             this.button23.Text = "Comision Volumen";
             this.button23.UseVisualStyleBackColor = false;
             // 
@@ -1040,6 +1044,8 @@ namespace SIM_PLE_2._0
             this.txtbox_targetVol.Size = new System.Drawing.Size(119, 20);
             this.txtbox_targetVol.TabIndex = 42;
             this.txtbox_targetVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_targetVol.TextChanged += new System.EventHandler(this.txtbox_targetVol_TextChanged);
+            this.txtbox_targetVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_targetVol_KeyPress);
             // 
             // button22
             // 
@@ -1050,6 +1056,7 @@ namespace SIM_PLE_2._0
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(119, 32);
             this.button22.TabIndex = 41;
+            this.button22.TabStop = false;
             this.button22.Text = "Volumen Objetivo";
             this.button22.UseVisualStyleBackColor = false;
             // 
@@ -1060,6 +1067,8 @@ namespace SIM_PLE_2._0
             this.txtbox_150ValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_150ValueSo.TabIndex = 40;
             this.txtbox_150ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_150ValueSo.TextChanged += new System.EventHandler(this.txtbox_150ValueSo_TextChanged);
+            this.txtbox_150ValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_150ValueSo_KeyPress);
             // 
             // button18
             // 
@@ -1070,6 +1079,7 @@ namespace SIM_PLE_2._0
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(67, 32);
             this.button18.TabIndex = 39;
+            this.button18.TabStop = false;
             this.button18.Text = "+150 SO";
             this.button18.UseVisualStyleBackColor = false;
             // 
@@ -1080,6 +1090,8 @@ namespace SIM_PLE_2._0
             this.txtbox_120ValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_120ValueSo.TabIndex = 38;
             this.txtbox_120ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_120ValueSo.TextChanged += new System.EventHandler(this.txtbox_120ValueSo_TextChanged);
+            this.txtbox_120ValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_120ValueSo_KeyPress);
             // 
             // button19
             // 
@@ -1090,6 +1102,7 @@ namespace SIM_PLE_2._0
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(67, 32);
             this.button19.TabIndex = 37;
+            this.button19.TabStop = false;
             this.button19.Text = "+120 SO";
             this.button19.UseVisualStyleBackColor = false;
             // 
@@ -1100,6 +1113,8 @@ namespace SIM_PLE_2._0
             this.txtbox_100ValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_100ValueSo.TabIndex = 36;
             this.txtbox_100ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_100ValueSo.TextChanged += new System.EventHandler(this.txtbox_100ValueSo_TextChanged);
+            this.txtbox_100ValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_100ValueSo_KeyPress);
             // 
             // button20
             // 
@@ -1110,6 +1125,7 @@ namespace SIM_PLE_2._0
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(67, 32);
             this.button20.TabIndex = 35;
+            this.button20.TabStop = false;
             this.button20.Text = "+100 SO";
             this.button20.UseVisualStyleBackColor = false;
             // 
@@ -1120,6 +1136,8 @@ namespace SIM_PLE_2._0
             this.txtbox_defaultValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_defaultValueSo.TabIndex = 34;
             this.txtbox_defaultValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_defaultValueSo.TextChanged += new System.EventHandler(this.txtbox_defaultValueSo_TextChanged);
+            this.txtbox_defaultValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_defaultValueSo_KeyPress);
             // 
             // button21
             // 
@@ -1130,6 +1148,7 @@ namespace SIM_PLE_2._0
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(67, 32);
             this.button21.TabIndex = 33;
+            this.button21.TabStop = false;
             this.button21.Text = "Valor SO";
             this.button21.UseVisualStyleBackColor = false;
             // 
@@ -1140,6 +1159,8 @@ namespace SIM_PLE_2._0
             this.txtbox_150ValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_150ValueSim.TabIndex = 32;
             this.txtbox_150ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_150ValueSim.TextChanged += new System.EventHandler(this.txtbox_150ValueSim_TextChanged);
+            this.txtbox_150ValueSim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_150ValueSim_KeyPress);
             // 
             // button17
             // 
@@ -1150,6 +1171,7 @@ namespace SIM_PLE_2._0
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(67, 32);
             this.button17.TabIndex = 31;
+            this.button17.TabStop = false;
             this.button17.Text = "+150 SIM";
             this.button17.UseVisualStyleBackColor = false;
             // 
@@ -1160,6 +1182,8 @@ namespace SIM_PLE_2._0
             this.txtbox_120ValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_120ValueSim.TabIndex = 30;
             this.txtbox_120ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_120ValueSim.TextChanged += new System.EventHandler(this.txtbox_120ValueSim_TextChanged);
+            this.txtbox_120ValueSim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_120ValueSim_KeyPress);
             // 
             // button15
             // 
@@ -1170,6 +1194,7 @@ namespace SIM_PLE_2._0
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(67, 32);
             this.button15.TabIndex = 29;
+            this.button15.TabStop = false;
             this.button15.Text = "+120 SIM";
             this.button15.UseVisualStyleBackColor = false;
             // 
@@ -1178,8 +1203,10 @@ namespace SIM_PLE_2._0
             this.txtbox_100ValueSim.Location = new System.Drawing.Point(184, 68);
             this.txtbox_100ValueSim.Name = "txtbox_100ValueSim";
             this.txtbox_100ValueSim.Size = new System.Drawing.Size(67, 20);
-            this.txtbox_100ValueSim.TabIndex = 28;
+            this.txtbox_100ValueSim.TabIndex = 27;
             this.txtbox_100ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_100ValueSim.TextChanged += new System.EventHandler(this.txtbox_100ValueSim_TextChanged);
+            this.txtbox_100ValueSim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_100ValueSim_KeyPress);
             // 
             // button13
             // 
@@ -1190,6 +1217,7 @@ namespace SIM_PLE_2._0
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(67, 32);
             this.button13.TabIndex = 27;
+            this.button13.TabStop = false;
             this.button13.Text = "+100 SIM";
             this.button13.UseVisualStyleBackColor = false;
             // 
@@ -1200,6 +1228,8 @@ namespace SIM_PLE_2._0
             this.txtbox_defaultValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_defaultValueSim.TabIndex = 26;
             this.txtbox_defaultValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_defaultValueSim.TextChanged += new System.EventHandler(this.txtbox_defaultValueSim_TextChanged);
+            this.txtbox_defaultValueSim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_defaultValueSim_KeyPress);
             // 
             // button11
             // 
@@ -1210,25 +1240,26 @@ namespace SIM_PLE_2._0
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(67, 32);
             this.button11.TabIndex = 25;
+            this.button11.TabStop = false;
             this.button11.Text = "Valor SIM";
             this.button11.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvSalary
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSalary.AllowUserToAddRows = false;
+            this.dgvSalary.AllowUserToDeleteRows = false;
+            this.dgvSalary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSalary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column11,
             this.Column12,
             this.Column13,
             this.Column14,
             this.Column15});
-            this.dataGridView1.Location = new System.Drawing.Point(111, 353);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(545, 70);
-            this.dataGridView1.TabIndex = 24;
+            this.dgvSalary.Location = new System.Drawing.Point(111, 353);
+            this.dgvSalary.Name = "dgvSalary";
+            this.dgvSalary.RowHeadersVisible = false;
+            this.dgvSalary.Size = new System.Drawing.Size(545, 70);
+            this.dgvSalary.TabIndex = 24;
             // 
             // Column11
             // 
@@ -1299,6 +1330,7 @@ namespace SIM_PLE_2._0
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 32);
             this.button2.TabIndex = 20;
+            this.button2.TabStop = false;
             this.button2.Text = "Max Caminante";
             this.button2.UseVisualStyleBackColor = false;
             // 
@@ -1311,29 +1343,42 @@ namespace SIM_PLE_2._0
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(100, 32);
             this.button8.TabIndex = 19;
+            this.button8.TabStop = false;
             this.button8.Text = "Max PSR";
             this.button8.UseVisualStyleBackColor = false;
             // 
-            // dgv_Premios40
+            // dgv_reward40
             // 
-            this.dgv_Premios40.AllowUserToAddRows = false;
-            this.dgv_Premios40.AllowUserToDeleteRows = false;
-            this.dgv_Premios40.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
-            this.dgv_Premios40.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            this.dgv_Premios40.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Premios40.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_reward40.AllowUserToAddRows = false;
+            this.dgv_reward40.AllowUserToDeleteRows = false;
+            this.dgv_reward40.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
+            this.dgv_reward40.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            this.dgv_reward40.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_reward40.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
-            this.Column3,
             this.Column4,
-            this.Column5});
-            this.dgv_Premios40.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dgv_Premios40.Location = new System.Drawing.Point(111, 217);
-            this.dgv_Premios40.Name = "dgv_Premios40";
-            this.dgv_Premios40.ReadOnly = true;
-            this.dgv_Premios40.RowHeadersVisible = false;
-            this.dgv_Premios40.Size = new System.Drawing.Size(545, 129);
-            this.dgv_Premios40.TabIndex = 0;
+            this.Column2,
+            this.Column3});
+            this.dgv_reward40.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.dgv_reward40.Location = new System.Drawing.Point(111, 217);
+            this.dgv_reward40.Name = "dgv_reward40";
+            this.dgv_reward40.ReadOnly = true;
+            this.dgv_reward40.RowHeadersVisible = false;
+            this.dgv_reward40.Size = new System.Drawing.Size(545, 129);
+            this.dgv_reward40.TabIndex = 0;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Archivos csv (*.csv)|*.csv";
+            // 
+            // paneltapaPestaña
+            // 
+            this.paneltapaPestaña.BackColor = System.Drawing.Color.Black;
+            this.paneltapaPestaña.Location = new System.Drawing.Point(189, 0);
+            this.paneltapaPestaña.Name = "paneltapaPestaña";
+            this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
+            this.paneltapaPestaña.TabIndex = 12;
             // 
             // Column1
             // 
@@ -1341,6 +1386,13 @@ namespace SIM_PLE_2._0
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Premio";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 90;
             // 
             // Column2
             // 
@@ -1355,33 +1407,6 @@ namespace SIM_PLE_2._0
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 90;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Premio";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 90;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Efectividad";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 90;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Archivos csv (*.csv)|*.csv";
-            // 
-            // paneltapaPestaña
-            // 
-            this.paneltapaPestaña.BackColor = System.Drawing.Color.Black;
-            this.paneltapaPestaña.Location = new System.Drawing.Point(189, 0);
-            this.paneltapaPestaña.Name = "paneltapaPestaña";
-            this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
-            this.paneltapaPestaña.TabIndex = 12;
             // 
             // MainForm
             // 
@@ -1412,8 +1437,8 @@ namespace SIM_PLE_2._0
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Sim)).EndInit();
             this.tp_premios40.ResumeLayout(false);
             this.tp_premios40.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Premios40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSalary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_reward40)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1476,7 +1501,7 @@ namespace SIM_PLE_2._0
         private FontAwesome.Sharp.IconButton btn_clipBoard;
         private System.Windows.Forms.Button btn_tabPremios40;
         private System.Windows.Forms.TabPage tp_premios40;
-        private System.Windows.Forms.DataGridView dgv_Premios40;
+        private System.Windows.Forms.DataGridView dgv_reward40;
         private System.Windows.Forms.TextBox txtbox_maxClient;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button8;
@@ -1485,11 +1510,6 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btn_undo;
         private FontAwesome.Sharp.IconButton btn_undo_SO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridView dgv_Sim;
         private System.Windows.Forms.DataGridView dgv_So;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
@@ -1497,7 +1517,7 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewButtonColumn Column10;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSalary;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
@@ -1528,6 +1548,10 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 
