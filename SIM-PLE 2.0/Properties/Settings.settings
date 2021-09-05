@@ -29,7 +29,7 @@
     <Setting Name="soValue" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="so100" Type="System.String" Scope="User">
+    <Setting Name="psrReq" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="so120" Type="System.String" Scope="User">
@@ -38,10 +38,7 @@
     <Setting Name="so150" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="volumenTarget" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="volumen" Type="System.String" Scope="User">
+    <Setting Name="volCommision" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

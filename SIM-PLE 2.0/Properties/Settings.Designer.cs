@@ -134,12 +134,12 @@ namespace SIM_PLE_2._0.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string so100 {
+        public string psrReq {
             get {
-                return ((string)(this["so100"]));
+                return ((string)(this["psrReq"]));
             }
             set {
-                this["so100"] = value;
+                this["psrReq"] = value;
             }
         }
         
@@ -170,24 +170,12 @@ namespace SIM_PLE_2._0.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string volumenTarget {
+        public string volCommision {
             get {
-                return ((string)(this["volumenTarget"]));
+                return ((string)(this["volCommision"]));
             }
             set {
-                this["volumenTarget"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string volumen {
-            get {
-                return ((string)(this["volumen"]));
-            }
-            set {
-                this["volumen"] = value;
+                this["volCommision"] = value;
             }
         }
     }

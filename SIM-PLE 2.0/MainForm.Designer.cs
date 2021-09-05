@@ -34,7 +34,7 @@ namespace SIM_PLE_2._0
             this.btn_tabPremios40 = new System.Windows.Forms.Button();
             this.btn_clipBoard = new FontAwesome.Sharp.IconButton();
             this.cb_walkers = new System.Windows.Forms.ComboBox();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.btn_Save = new FontAwesome.Sharp.IconButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_tabBO = new System.Windows.Forms.Button();
             this.btn_tabSellout = new System.Windows.Forms.Button();
@@ -63,7 +63,7 @@ namespace SIM_PLE_2._0
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btn_undo_SO = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.SO_efectividad = new System.Windows.Forms.Button();
+            this.lbl_soEffectiveness = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.txtBox_Sellout_objVenta = new System.Windows.Forms.TextBox();
             this.SO_psrTotales = new System.Windows.Forms.Button();
@@ -85,7 +85,7 @@ namespace SIM_PLE_2._0
             this.Column10 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btn_undo = new FontAwesome.Sharp.IconButton();
             this.btn_SIM_calcular = new System.Windows.Forms.Button();
-            this.txtBox_Efectividad = new System.Windows.Forms.Button();
+            this.lbl_simEffectiveness = new System.Windows.Forms.Button();
             this.txtbox_montoObjSIM = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -99,14 +99,12 @@ namespace SIM_PLE_2._0
             this.button1 = new System.Windows.Forms.Button();
             this.tp_premios40 = new System.Windows.Forms.TabPage();
             this.txtbox_commissionVol = new System.Windows.Forms.TextBox();
-            this.button23 = new System.Windows.Forms.Button();
-            this.txtbox_targetVol = new System.Windows.Forms.TextBox();
-            this.button22 = new System.Windows.Forms.Button();
+            this.lbl_totalVol = new System.Windows.Forms.Button();
             this.txtbox_150ValueSo = new System.Windows.Forms.TextBox();
             this.button18 = new System.Windows.Forms.Button();
             this.txtbox_120ValueSo = new System.Windows.Forms.TextBox();
             this.button19 = new System.Windows.Forms.Button();
-            this.txtbox_100ValueSo = new System.Windows.Forms.TextBox();
+            this.txtbox_requiredPsr = new System.Windows.Forms.TextBox();
             this.button20 = new System.Windows.Forms.Button();
             this.txtbox_defaultValueSo = new System.Windows.Forms.TextBox();
             this.button21 = new System.Windows.Forms.Button();
@@ -130,13 +128,13 @@ namespace SIM_PLE_2._0
             this.button2 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.dgv_reward40 = new System.Windows.Forms.DataGridView();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.paneltapaPestaña = new System.Windows.Forms.Panel();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.paneltapaPestaña = new System.Windows.Forms.Panel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panerSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -158,7 +156,7 @@ namespace SIM_PLE_2._0
             this.panerSuperior.Controls.Add(this.btn_tabPremios40);
             this.panerSuperior.Controls.Add(this.btn_clipBoard);
             this.panerSuperior.Controls.Add(this.cb_walkers);
-            this.panerSuperior.Controls.Add(this.btnSave);
+            this.panerSuperior.Controls.Add(this.btn_Save);
             this.panerSuperior.Controls.Add(this.pictureBox1);
             this.panerSuperior.Controls.Add(this.btn_tabBO);
             this.panerSuperior.Controls.Add(this.btn_tabSellout);
@@ -210,23 +208,23 @@ namespace SIM_PLE_2._0
             this.cb_walkers.Size = new System.Drawing.Size(133, 21);
             this.cb_walkers.TabIndex = 22;
             // 
-            // btnSave
+            // btn_Save
             // 
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.Download;
-            this.btnSave.IconColor = System.Drawing.Color.White;
-            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.IconSize = 35;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnSave.Location = new System.Drawing.Point(43, 447);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.btnSave.Size = new System.Drawing.Size(46, 40);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btn_Save.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_Save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Save.IconChar = FontAwesome.Sharp.IconChar.Download;
+            this.btn_Save.IconColor = System.Drawing.Color.White;
+            this.btn_Save.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Save.IconSize = 35;
+            this.btn_Save.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_Save.Location = new System.Drawing.Point(43, 447);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.btn_Save.Size = new System.Drawing.Size(46, 40);
+            this.btn_Save.TabIndex = 5;
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // pictureBox1
             // 
@@ -467,7 +465,7 @@ namespace SIM_PLE_2._0
             this.panel1.Controls.Add(this.dgv_So);
             this.panel1.Controls.Add(this.btn_undo_SO);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.SO_efectividad);
+            this.panel1.Controls.Add(this.lbl_soEffectiveness);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.txtBox_Sellout_objVenta);
             this.panel1.Controls.Add(this.SO_psrTotales);
@@ -568,16 +566,16 @@ namespace SIM_PLE_2._0
             this.label2.TabIndex = 40;
             this.label2.Text = "INGRESE OBJETIVO SELLOUT";
             // 
-            // SO_efectividad
+            // lbl_soEffectiveness
             // 
-            this.SO_efectividad.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.SO_efectividad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SO_efectividad.Location = new System.Drawing.Point(619, 372);
-            this.SO_efectividad.Name = "SO_efectividad";
-            this.SO_efectividad.Size = new System.Drawing.Size(123, 32);
-            this.SO_efectividad.TabIndex = 39;
-            this.SO_efectividad.Text = "-";
-            this.SO_efectividad.UseVisualStyleBackColor = false;
+            this.lbl_soEffectiveness.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_soEffectiveness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_soEffectiveness.Location = new System.Drawing.Point(619, 372);
+            this.lbl_soEffectiveness.Name = "lbl_soEffectiveness";
+            this.lbl_soEffectiveness.Size = new System.Drawing.Size(123, 32);
+            this.lbl_soEffectiveness.TabIndex = 39;
+            this.lbl_soEffectiveness.Text = "-";
+            this.lbl_soEffectiveness.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -732,7 +730,7 @@ namespace SIM_PLE_2._0
             this.panel2.Controls.Add(this.dgv_Sim);
             this.panel2.Controls.Add(this.btn_undo);
             this.panel2.Controls.Add(this.btn_SIM_calcular);
-            this.panel2.Controls.Add(this.txtBox_Efectividad);
+            this.panel2.Controls.Add(this.lbl_simEffectiveness);
             this.panel2.Controls.Add(this.txtbox_montoObjSIM);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.button3);
@@ -833,16 +831,16 @@ namespace SIM_PLE_2._0
             this.btn_SIM_calcular.UseVisualStyleBackColor = true;
             this.btn_SIM_calcular.Click += new System.EventHandler(this.btn_SIM_calcular_Click_1);
             // 
-            // txtBox_Efectividad
+            // lbl_simEffectiveness
             // 
-            this.txtBox_Efectividad.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtBox_Efectividad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.txtBox_Efectividad.Location = new System.Drawing.Point(619, 372);
-            this.txtBox_Efectividad.Name = "txtBox_Efectividad";
-            this.txtBox_Efectividad.Size = new System.Drawing.Size(123, 32);
-            this.txtBox_Efectividad.TabIndex = 19;
-            this.txtBox_Efectividad.Text = "-";
-            this.txtBox_Efectividad.UseVisualStyleBackColor = false;
+            this.lbl_simEffectiveness.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_simEffectiveness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_simEffectiveness.Location = new System.Drawing.Point(619, 372);
+            this.lbl_simEffectiveness.Name = "lbl_simEffectiveness";
+            this.lbl_simEffectiveness.Size = new System.Drawing.Size(123, 32);
+            this.lbl_simEffectiveness.TabIndex = 19;
+            this.lbl_simEffectiveness.Text = "-";
+            this.lbl_simEffectiveness.UseVisualStyleBackColor = false;
             // 
             // txtbox_montoObjSIM
             // 
@@ -981,14 +979,12 @@ namespace SIM_PLE_2._0
             // 
             this.tp_premios40.BackColor = System.Drawing.Color.Black;
             this.tp_premios40.Controls.Add(this.txtbox_commissionVol);
-            this.tp_premios40.Controls.Add(this.button23);
-            this.tp_premios40.Controls.Add(this.txtbox_targetVol);
-            this.tp_premios40.Controls.Add(this.button22);
+            this.tp_premios40.Controls.Add(this.lbl_totalVol);
             this.tp_premios40.Controls.Add(this.txtbox_150ValueSo);
             this.tp_premios40.Controls.Add(this.button18);
             this.tp_premios40.Controls.Add(this.txtbox_120ValueSo);
             this.tp_premios40.Controls.Add(this.button19);
-            this.tp_premios40.Controls.Add(this.txtbox_100ValueSo);
+            this.tp_premios40.Controls.Add(this.txtbox_requiredPsr);
             this.tp_premios40.Controls.Add(this.button20);
             this.tp_premios40.Controls.Add(this.txtbox_defaultValueSo);
             this.tp_premios40.Controls.Add(this.button21);
@@ -1016,7 +1012,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_commissionVol
             // 
-            this.txtbox_commissionVol.Location = new System.Drawing.Point(431, 132);
+            this.txtbox_commissionVol.Location = new System.Drawing.Point(537, 83);
             this.txtbox_commissionVol.Name = "txtbox_commissionVol";
             this.txtbox_commissionVol.Size = new System.Drawing.Size(119, 20);
             this.txtbox_commissionVol.TabIndex = 44;
@@ -1024,45 +1020,22 @@ namespace SIM_PLE_2._0
             this.txtbox_commissionVol.TextChanged += new System.EventHandler(this.txtbox_commissionVol_TextChanged);
             this.txtbox_commissionVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_commissionVol_KeyPress);
             // 
-            // button23
+            // lbl_totalVol
             // 
-            this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
-            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button23.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button23.Location = new System.Drawing.Point(431, 94);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(119, 32);
-            this.button23.TabIndex = 43;
-            this.button23.TabStop = false;
-            this.button23.Text = "Comision Volumen";
-            this.button23.UseVisualStyleBackColor = false;
-            // 
-            // txtbox_targetVol
-            // 
-            this.txtbox_targetVol.Location = new System.Drawing.Point(431, 68);
-            this.txtbox_targetVol.Name = "txtbox_targetVol";
-            this.txtbox_targetVol.Size = new System.Drawing.Size(119, 20);
-            this.txtbox_targetVol.TabIndex = 42;
-            this.txtbox_targetVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_targetVol.TextChanged += new System.EventHandler(this.txtbox_targetVol_TextChanged);
-            this.txtbox_targetVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_targetVol_KeyPress);
-            // 
-            // button22
-            // 
-            this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button22.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button22.Location = new System.Drawing.Point(431, 30);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(119, 32);
-            this.button22.TabIndex = 41;
-            this.button22.TabStop = false;
-            this.button22.Text = "Volumen Objetivo";
-            this.button22.UseVisualStyleBackColor = false;
+            this.lbl_totalVol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.lbl_totalVol.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lbl_totalVol.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_totalVol.Location = new System.Drawing.Point(537, 45);
+            this.lbl_totalVol.Name = "lbl_totalVol";
+            this.lbl_totalVol.Size = new System.Drawing.Size(119, 32);
+            this.lbl_totalVol.TabIndex = 43;
+            this.lbl_totalVol.TabStop = false;
+            this.lbl_totalVol.Text = "Total Vol:";
+            this.lbl_totalVol.UseVisualStyleBackColor = false;
             // 
             // txtbox_150ValueSo
             // 
-            this.txtbox_150ValueSo.Location = new System.Drawing.Point(330, 132);
+            this.txtbox_150ValueSo.Location = new System.Drawing.Point(257, 147);
             this.txtbox_150ValueSo.Name = "txtbox_150ValueSo";
             this.txtbox_150ValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_150ValueSo.TabIndex = 40;
@@ -1075,7 +1048,7 @@ namespace SIM_PLE_2._0
             this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button18.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button18.Location = new System.Drawing.Point(330, 94);
+            this.button18.Location = new System.Drawing.Point(257, 109);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(67, 32);
             this.button18.TabIndex = 39;
@@ -1085,7 +1058,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_120ValueSo
             // 
-            this.txtbox_120ValueSo.Location = new System.Drawing.Point(257, 132);
+            this.txtbox_120ValueSo.Location = new System.Drawing.Point(184, 147);
             this.txtbox_120ValueSo.Name = "txtbox_120ValueSo";
             this.txtbox_120ValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_120ValueSo.TabIndex = 38;
@@ -1098,7 +1071,7 @@ namespace SIM_PLE_2._0
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button19.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button19.Location = new System.Drawing.Point(257, 94);
+            this.button19.Location = new System.Drawing.Point(184, 109);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(67, 32);
             this.button19.TabIndex = 37;
@@ -1106,32 +1079,32 @@ namespace SIM_PLE_2._0
             this.button19.Text = "+120 SO";
             this.button19.UseVisualStyleBackColor = false;
             // 
-            // txtbox_100ValueSo
+            // txtbox_requiredPsr
             // 
-            this.txtbox_100ValueSo.Location = new System.Drawing.Point(184, 132);
-            this.txtbox_100ValueSo.Name = "txtbox_100ValueSo";
-            this.txtbox_100ValueSo.Size = new System.Drawing.Size(67, 20);
-            this.txtbox_100ValueSo.TabIndex = 36;
-            this.txtbox_100ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_100ValueSo.TextChanged += new System.EventHandler(this.txtbox_100ValueSo_TextChanged);
-            this.txtbox_100ValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_100ValueSo_KeyPress);
+            this.txtbox_requiredPsr.Location = new System.Drawing.Point(330, 147);
+            this.txtbox_requiredPsr.Name = "txtbox_requiredPsr";
+            this.txtbox_requiredPsr.Size = new System.Drawing.Size(67, 20);
+            this.txtbox_requiredPsr.TabIndex = 36;
+            this.txtbox_requiredPsr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbox_requiredPsr.TextChanged += new System.EventHandler(this.txtbox_100ValueSo_TextChanged);
+            this.txtbox_requiredPsr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_100ValueSo_KeyPress);
             // 
             // button20
             // 
             this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button20.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button20.Location = new System.Drawing.Point(184, 94);
+            this.button20.Location = new System.Drawing.Point(330, 109);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(67, 32);
             this.button20.TabIndex = 35;
             this.button20.TabStop = false;
-            this.button20.Text = "+100 SO";
+            this.button20.Text = "PSR Req,";
             this.button20.UseVisualStyleBackColor = false;
             // 
             // txtbox_defaultValueSo
             // 
-            this.txtbox_defaultValueSo.Location = new System.Drawing.Point(111, 132);
+            this.txtbox_defaultValueSo.Location = new System.Drawing.Point(111, 147);
             this.txtbox_defaultValueSo.Name = "txtbox_defaultValueSo";
             this.txtbox_defaultValueSo.Size = new System.Drawing.Size(67, 20);
             this.txtbox_defaultValueSo.TabIndex = 34;
@@ -1144,7 +1117,7 @@ namespace SIM_PLE_2._0
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button21.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button21.Location = new System.Drawing.Point(111, 94);
+            this.button21.Location = new System.Drawing.Point(111, 109);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(67, 32);
             this.button21.TabIndex = 33;
@@ -1154,7 +1127,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_150ValueSim
             // 
-            this.txtbox_150ValueSim.Location = new System.Drawing.Point(330, 68);
+            this.txtbox_150ValueSim.Location = new System.Drawing.Point(330, 83);
             this.txtbox_150ValueSim.Name = "txtbox_150ValueSim";
             this.txtbox_150ValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_150ValueSim.TabIndex = 32;
@@ -1167,7 +1140,7 @@ namespace SIM_PLE_2._0
             this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button17.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button17.Location = new System.Drawing.Point(330, 30);
+            this.button17.Location = new System.Drawing.Point(330, 45);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(67, 32);
             this.button17.TabIndex = 31;
@@ -1177,7 +1150,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_120ValueSim
             // 
-            this.txtbox_120ValueSim.Location = new System.Drawing.Point(257, 68);
+            this.txtbox_120ValueSim.Location = new System.Drawing.Point(257, 83);
             this.txtbox_120ValueSim.Name = "txtbox_120ValueSim";
             this.txtbox_120ValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_120ValueSim.TabIndex = 30;
@@ -1190,7 +1163,7 @@ namespace SIM_PLE_2._0
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button15.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button15.Location = new System.Drawing.Point(257, 30);
+            this.button15.Location = new System.Drawing.Point(257, 45);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(67, 32);
             this.button15.TabIndex = 29;
@@ -1200,7 +1173,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_100ValueSim
             // 
-            this.txtbox_100ValueSim.Location = new System.Drawing.Point(184, 68);
+            this.txtbox_100ValueSim.Location = new System.Drawing.Point(184, 83);
             this.txtbox_100ValueSim.Name = "txtbox_100ValueSim";
             this.txtbox_100ValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_100ValueSim.TabIndex = 27;
@@ -1213,7 +1186,7 @@ namespace SIM_PLE_2._0
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button13.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button13.Location = new System.Drawing.Point(184, 30);
+            this.button13.Location = new System.Drawing.Point(184, 45);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(67, 32);
             this.button13.TabIndex = 27;
@@ -1223,7 +1196,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_defaultValueSim
             // 
-            this.txtbox_defaultValueSim.Location = new System.Drawing.Point(111, 68);
+            this.txtbox_defaultValueSim.Location = new System.Drawing.Point(111, 83);
             this.txtbox_defaultValueSim.Name = "txtbox_defaultValueSim";
             this.txtbox_defaultValueSim.Size = new System.Drawing.Size(67, 20);
             this.txtbox_defaultValueSim.TabIndex = 26;
@@ -1236,7 +1209,7 @@ namespace SIM_PLE_2._0
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button11.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button11.Location = new System.Drawing.Point(111, 30);
+            this.button11.Location = new System.Drawing.Point(111, 45);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(67, 32);
             this.button11.TabIndex = 25;
@@ -1255,7 +1228,7 @@ namespace SIM_PLE_2._0
             this.Column13,
             this.Column14,
             this.Column15});
-            this.dgvSalary.Location = new System.Drawing.Point(111, 353);
+            this.dgvSalary.Location = new System.Drawing.Point(111, 335);
             this.dgvSalary.Name = "dgvSalary";
             this.dgvSalary.RowHeadersVisible = false;
             this.dgvSalary.Size = new System.Drawing.Size(545, 70);
@@ -1293,9 +1266,9 @@ namespace SIM_PLE_2._0
             this.btn_calcularPremios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_calcularPremios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_calcularPremios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_calcularPremios.Location = new System.Drawing.Point(111, 163);
+            this.btn_calcularPremios.Location = new System.Drawing.Point(537, 109);
             this.btn_calcularPremios.Name = "btn_calcularPremios";
-            this.btn_calcularPremios.Size = new System.Drawing.Size(545, 46);
+            this.btn_calcularPremios.Size = new System.Drawing.Size(119, 58);
             this.btn_calcularPremios.TabIndex = 23;
             this.btn_calcularPremios.Text = "Calcular";
             this.btn_calcularPremios.UseVisualStyleBackColor = true;
@@ -1303,7 +1276,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_maxWalker
             // 
-            this.txtbox_maxWalker.Location = new System.Drawing.Point(556, 132);
+            this.txtbox_maxWalker.Location = new System.Drawing.Point(414, 147);
             this.txtbox_maxWalker.Name = "txtbox_maxWalker";
             this.txtbox_maxWalker.Size = new System.Drawing.Size(100, 20);
             this.txtbox_maxWalker.TabIndex = 22;
@@ -1313,7 +1286,7 @@ namespace SIM_PLE_2._0
             // 
             // txtbox_maxClient
             // 
-            this.txtbox_maxClient.Location = new System.Drawing.Point(556, 68);
+            this.txtbox_maxClient.Location = new System.Drawing.Point(414, 83);
             this.txtbox_maxClient.Name = "txtbox_maxClient";
             this.txtbox_maxClient.Size = new System.Drawing.Size(100, 20);
             this.txtbox_maxClient.TabIndex = 21;
@@ -1326,7 +1299,7 @@ namespace SIM_PLE_2._0
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(556, 94);
+            this.button2.Location = new System.Drawing.Point(414, 109);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 32);
             this.button2.TabIndex = 20;
@@ -1339,7 +1312,7 @@ namespace SIM_PLE_2._0
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button8.Location = new System.Drawing.Point(556, 30);
+            this.button8.Location = new System.Drawing.Point(414, 45);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(100, 32);
             this.button8.TabIndex = 19;
@@ -1360,25 +1333,12 @@ namespace SIM_PLE_2._0
             this.Column2,
             this.Column3});
             this.dgv_reward40.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dgv_reward40.Location = new System.Drawing.Point(111, 217);
+            this.dgv_reward40.Location = new System.Drawing.Point(111, 180);
             this.dgv_reward40.Name = "dgv_reward40";
             this.dgv_reward40.ReadOnly = true;
             this.dgv_reward40.RowHeadersVisible = false;
             this.dgv_reward40.Size = new System.Drawing.Size(545, 129);
             this.dgv_reward40.TabIndex = 0;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Archivos csv (*.csv)|*.csv";
-            // 
-            // paneltapaPestaña
-            // 
-            this.paneltapaPestaña.BackColor = System.Drawing.Color.Black;
-            this.paneltapaPestaña.Location = new System.Drawing.Point(189, 0);
-            this.paneltapaPestaña.Name = "paneltapaPestaña";
-            this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
-            this.paneltapaPestaña.TabIndex = 12;
             // 
             // Column1
             // 
@@ -1403,10 +1363,23 @@ namespace SIM_PLE_2._0
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Monto";
+            this.Column3.HeaderText = "Total Primeras recargas";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 90;
+            this.Column3.Width = 150;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Archivos csv (*.csv)|*.csv";
+            // 
+            // paneltapaPestaña
+            // 
+            this.paneltapaPestaña.BackColor = System.Drawing.Color.Black;
+            this.paneltapaPestaña.Location = new System.Drawing.Point(189, 0);
+            this.paneltapaPestaña.Name = "paneltapaPestaña";
+            this.paneltapaPestaña.Size = new System.Drawing.Size(773, 22);
+            this.paneltapaPestaña.TabIndex = 12;
             // 
             // MainForm
             // 
@@ -1473,7 +1446,7 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button txtBox_PSRTotales;
         private System.Windows.Forms.Button lbl_totalPSR;
-        private System.Windows.Forms.Button txtBox_Efectividad;
+        private System.Windows.Forms.Button lbl_simEffectiveness;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -1487,7 +1460,7 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Button examinar_sellout_dealer;
         private System.Windows.Forms.TextBox txtBox_REPsellout_dealer;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button SO_efectividad;
+        private System.Windows.Forms.Button lbl_soEffectiveness;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button SO_psrTotales;
         private System.Windows.Forms.Button button10;
@@ -1497,7 +1470,7 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button txtB_soConObjetivo;
         private System.Windows.Forms.Button button16;
-        private FontAwesome.Sharp.IconButton btnSave;
+        private FontAwesome.Sharp.IconButton btn_Save;
         private FontAwesome.Sharp.IconButton btn_clipBoard;
         private System.Windows.Forms.Button btn_tabPremios40;
         private System.Windows.Forms.TabPage tp_premios40;
@@ -1524,14 +1497,12 @@ namespace SIM_PLE_2._0
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.TextBox txtbox_commissionVol;
-        private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.TextBox txtbox_targetVol;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button lbl_totalVol;
         private System.Windows.Forms.TextBox txtbox_150ValueSo;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.TextBox txtbox_120ValueSo;
         private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.TextBox txtbox_100ValueSo;
+        private System.Windows.Forms.TextBox txtbox_requiredPsr;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.TextBox txtbox_defaultValueSo;
         private System.Windows.Forms.Button button21;

@@ -47,6 +47,7 @@ namespace SIM_PLE_2._0
         const byte INDEX_PRODUCTS_WALKER = 8;
         const byte INDEX_PRODUCTS_TRANSACTIONS = 13;
         //Index Venta de saldo - Analitico
+        const byte INDEX_DEALER_TOTAL = 0;
         const byte INDEX_DEALER_CODPSR = 2;
         const byte INDEX_DEALER_TOTALSOLDS = 4;
         const byte INDEX_DEALER_VENTASPSR = 5;
@@ -251,7 +252,7 @@ namespace SIM_PLE_2._0
             }
             return employeeRewards;
         }
-        private int Get40percent(string input) //obtine el 40% del input
+        private int Get40percent(string input) //retona un int con el 40% del string input
         {
             double mathOperation = double.Parse(input) * 0.4;
             int result = Convert.ToInt32(Math.Round(mathOperation));

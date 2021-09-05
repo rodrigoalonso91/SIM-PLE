@@ -28,7 +28,10 @@ namespace SIM_PLE_2._0
         List<string> nonCompiliantSo = new List<string>();
         Stack<string> itemsUndoSim = new Stack<string>();
         Stack<string> itemsUndoSO = new Stack<string>();
-  
+        double totalVol;
+        Walker report = new Walker();
+        //=============== End Globals ================\\
+
         #region //========== METHODS ==========\\
         private void ShowSelloutInfo()
         {
@@ -82,7 +85,155 @@ namespace SIM_PLE_2._0
             txtBox_soFaltan.Text = nonCompiliantSo.Count().ToString();
             txtB_soVolumen.Text = "$" + walkerVolumen;
             int efectividad = (objCumplido * 100) / psrTotales;
-            SO_efectividad.Text = efectividad + "%";
+            lbl_soEffectiveness.Text = efectividad + "%";
+        }
+        private void ShowSimInfo()
+        {
+            if (cb_walkers.Text == "Elija caminante")
+            {
+                MessageBox.Show("Primero debe elegir un caminante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (txtbox_montoObjSIM.Text == String.Empty)
+            {
+                MessageBox.Show("Primero debe ingresar un objetivo de venta.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            // ===== Se limpia la informacion relacionada a los sims ===== \\
+            itemsUndoSim.Clear();
+            dgv_Sim.Rows.Clear();
+            psrSIM.Clear();
+            nonCompiliantSim.Clear();
+            // ================================================== \\
+
+            var salesTarget = int.Parse(txtbox_montoObjSIM.Text);
+            var walkerSelected = Convert.ToString(cb_walkers.SelectedItem);
+
+            var simData = new PSR();
+            psrSIM = simData.SetDataForSims(txtbox_REP_psragencia.Text, txtbox_REP_pRecarga.Text, txtbox_REP_productosVendidos.Text, walkerSelected, salesTarget);
+
+            var objCumplido = 0;
+            var investment = 0;
+
+            foreach (var psr in psrSIM.Values)
+            {
+                if (psr.IsCompliant) objCumplido++;
+                else
+                {
+                    // Carga de datos en DGV
+                    int rowsIndex = dgv_Sim.Rows.Add();
+                    dgv_Sim.Rows[rowsIndex].Cells[0].Value = psr.Name;
+                    dgv_Sim.Rows[rowsIndex].Cells[1].Value = psr.FirstCharge;
+                    dgv_Sim.Rows[rowsIndex].Cells[2].Value = psr.ClientNim;
+                    dgv_Sim.Rows[rowsIndex].Cells[3].Value = psr.Lote;
+                    dgv_Sim.Rows[rowsIndex].Cells[4].Value = "Ok";
+
+                    investment += (salesTarget - psr.FirstCharge);
+                    nonCompiliantSim.Add(psr.Name);
+                }
+            }
+
+            int psrTotal = psrSIM.Count;
+            int efectividad = (objCumplido * 100) / psrTotal;
+            txtBox_PSRTotales.Text = Convert.ToString(psrTotal);
+            txtBox_SimConObj.Text = Convert.ToString(objCumplido);
+            txtBox_faltaCumplir.Text = Convert.ToString(nonCompiliantSim.Count);
+            txtBox_inver.Text = "$" + investment;
+            lbl_simEffectiveness.Text = efectividad + "%";
+        }
+        private void ShowSalary() 
+        {
+            bool txtboxNotCompleted = String.IsNullOrWhiteSpace(txtbox_defaultValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_100ValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_120ValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_150ValueSim.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_defaultValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_requiredPsr.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_120ValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_150ValueSo.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_maxClient.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_maxClient.Text) ||
+                                      String.IsNullOrWhiteSpace(txtbox_commissionVol.Text);
+
+            if (txtboxNotCompleted)
+            {
+                MessageBox.Show("Debe ingresar los valores de comisiones.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!txtbox_REP_pRecarga.Text.ToLower().Contains("primera"))
+            {
+                MessageBox.Show("El reporte ingresado en 'Primera Recargas' no es correcto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //========================== Reward 40% Section ==========================\\
+            dgv_reward40.Rows.Clear();
+                
+            int maxValueClient = int.Parse(txtbox_maxClient.Text);
+            int maxValueWalker = int.Parse(txtbox_maxWalker.Text);
+
+            var walkerName = cb_walkers.SelectedItem.ToString();
+
+            var rewardSim = new PSR();
+            var employedRewards = rewardSim.SetDataForRewards(txtbox_REP_pRecarga.Text, maxValueClient, maxValueWalker);
+            int reward40SelectWalker = 0;
+            foreach (var reward in employedRewards.Values)
+            {
+                if (walkerName == reward.Walker)
+                    reward40SelectWalker = reward.WalkerReward;
+
+                int rowCount = dgv_reward40.Rows.Add();
+                dgv_reward40.Rows[rowCount].Cells[0].Value = reward.Walker;
+                dgv_reward40.Rows[rowCount].Cells[1].Value = "$ " + reward.WalkerReward;
+                dgv_reward40.Rows[rowCount].Cells[2].Value = reward.TotalSim + " Sims";
+                dgv_reward40.Rows[rowCount].Cells[3].Value = "$ " + reward.Amount;
+            }
+            //========================================================================\\
+
+            //========================== Salary Section ==========================\\
+            if (txtBox_SimConObj.Text == "-" || txtB_soConObjetivo.Text == "-")
+            {
+                MessageBox.Show("Debe calcurar los objetivos Sim y Sellout para calcular el salario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var walkerSalary = new Walker();
+
+            var simCounter = int.Parse(txtBox_SimConObj.Text);
+            var simDefaultValue = int.Parse(txtbox_defaultValueSim.Text);
+            var sim100 = int.Parse(txtbox_100ValueSim.Text);
+            var sim120 = int.Parse(txtbox_120ValueSim.Text);
+            var sim150 = int.Parse(txtbox_150ValueSim.Text);
+
+            var simReward = walkerSalary.GetSalaryForSim(simCounter, simDefaultValue, sim100, sim120, sim150);
+
+            var soCounter = int.Parse(txtB_soConObjetivo.Text);
+            var soDefaultValue = int.Parse(txtbox_defaultValueSo.Text);
+            var so120 = int.Parse(txtbox_120ValueSo.Text);
+            var so150 = int.Parse(txtbox_150ValueSo.Text);
+
+            var soReward = walkerSalary.GetSalaryForSellout(soCounter, soDefaultValue, so120, so150);
+
+            //Quita el signo $
+            var volCounter = txtB_soVolumen.Text.Substring(1);
+            var volWalker = int.Parse(volCounter);
+            //var volTarget = int.Parse(txtbox_targetVol.Text);
+            var volCommission = int.Parse(txtbox_commissionVol.Text);
+            var requiredPsr = int.Parse(txtbox_requiredPsr.Text);
+
+            var walkerVol = walkerSalary.GetVolForWalker(volWalker, volCommission, totalVol);
+            if (simReward < requiredPsr || soReward < requiredPsr) walkerVol = 0;
+
+            dgvSalary.Rows.Clear();
+            int totalSalary = simReward + soReward + walkerVol + reward40SelectWalker;
+
+            report = Walker.SetReport(walkerName, simCounter, simReward, soCounter, soReward, walkerVol, volWalker, reward40SelectWalker, totalSalary);
+
+            int rowCount2 = dgvSalary.Rows.Add();
+            dgvSalary.Rows[rowCount2].Cells[0].Value = simReward;
+            dgvSalary.Rows[rowCount2].Cells[1].Value = soReward;
+            dgvSalary.Rows[rowCount2].Cells[2].Value = walkerVol;
+            dgvSalary.Rows[rowCount2].Cells[3].Value = reward40SelectWalker;
+            dgvSalary.Rows[rowCount2].Cells[4].Value = totalSalary;
         }
         private bool PressNumber(KeyPressEventArgs e)
         {
@@ -108,7 +259,7 @@ namespace SIM_PLE_2._0
             if (txtbox_REP_pRecarga.Text.ToLower().Contains("primera"))
             {
                 btn_calcularPremios.Enabled = true;
-                btn_calcularPremios.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+                btn_calcularPremios.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
             }
         }
         public void ModCounters_Sim(string counterValue, int currentRow)
@@ -125,7 +276,7 @@ namespace SIM_PLE_2._0
             int newInversion = int.Parse(txtBox_inver.Text.Replace("$", String.Empty)) - (salesTarget - currentSale);
             txtBox_inver.Text = "$" + Convert.ToString(newInversion);
             //Modificacion de efectividad
-            txtBox_Efectividad.Text = ((int.Parse(txtBox_SimConObj.Text) * 100) / int.Parse(txtBox_PSRTotales.Text)) + "%";
+            lbl_simEffectiveness.Text = ((int.Parse(txtBox_SimConObj.Text) * 100) / int.Parse(txtBox_PSRTotales.Text)) + "%";
         }
         public string IncrementCounter(string counter) // Incrementa el valor en uno [string]
         {
@@ -151,11 +302,11 @@ namespace SIM_PLE_2._0
             txtBox_soFaltan.Text = nonCompiliantSo.Count.ToString();
 
             // Modificacion Efectividad SO
-            SO_efectividad.Text = ((int.Parse(txtB_soConObjetivo.Text) * 100) / int.Parse(SO_psrTotales.Text))+ "%";
+            lbl_soEffectiveness.Text = ((int.Parse(txtB_soConObjetivo.Text) * 100) / int.Parse(SO_psrTotales.Text))+ "%";
         }
         #endregion
 
-        #region //========== BTNs LEFT PANEL ==========\\
+        #region //========== Left Panel ==========\\
         private void btn_tabSIM_Click_1(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage1Reportes;
@@ -174,8 +325,7 @@ namespace SIM_PLE_2._0
         }
         #endregion
 
-        #region //========== BOTONES EXAMINAR EN PESTAÑA REPORTES ==========\\
-
+        #region //========== Buttons "Examinar" ==========\\
         private void btn_Examinar1_Click(object sender, EventArgs e)
         {
             //encuentra la ruta de un archivo.
@@ -216,12 +366,14 @@ namespace SIM_PLE_2._0
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtBox_REPsellout_dealer.Text = openFileDialog1.FileName;
+                totalVol = Walker.GetTotalVol(txtBox_REPsellout_dealer.Text);
+                lbl_totalVol.Text = "Vol Total: $" + totalVol;
             }
             EnableCalculate();
         }
         #endregion
 
-        #region //=========== EVENTOS KEYPRESS QUE SOLO ACEPTAN NUMEROS ==========\\
+        #region //=========== KeyPress: Only numbers ==========\\
         private void txtbox_montoObjSIM_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
@@ -292,11 +444,10 @@ namespace SIM_PLE_2._0
             txtbox_120ValueSim.Text = (string)Settings.Default["sim120"];
             txtbox_150ValueSim.Text = (string)Settings.Default["sim150"];
             txtbox_defaultValueSo.Text = (string)Settings.Default["soValue"];
-            txtbox_100ValueSo.Text = (string)Settings.Default["so100"];
+            txtbox_requiredPsr.Text = (string)Settings.Default["psrReq"];
             txtbox_120ValueSo.Text = (string)Settings.Default["so120"];
             txtbox_150ValueSo.Text = (string)Settings.Default["so150"];
-            txtbox_commissionVol.Text = (string)Settings.Default["volumen"];
-            txtbox_targetVol.Text = (string)Settings.Default["volumenTarget"];
+            txtbox_commissionVol.Text = (string)Settings.Default["volCommision"];
         }
         private void txtbox_montoObjSIM_TextChanged(object sender, EventArgs e)
         {
@@ -350,7 +501,7 @@ namespace SIM_PLE_2._0
 
         private void txtbox_100ValueSo_TextChanged(object sender, EventArgs e)
         {
-            Settings.Default["so100"] = txtbox_100ValueSo.Text;
+            Settings.Default["psrReq"] = txtbox_requiredPsr.Text;
             Settings.Default.Save();
         }
 
@@ -366,79 +517,69 @@ namespace SIM_PLE_2._0
             Settings.Default.Save();
         }
 
-        private void txtbox_targetVol_TextChanged(object sender, EventArgs e)
-        {
-            Settings.Default["volumenTarget"] = txtbox_targetVol.Text;
-            Settings.Default.Save();
-        }
 
         private void txtbox_commissionVol_TextChanged(object sender, EventArgs e)
         {
-            Settings.Default["volumen"] = txtbox_commissionVol.Text;
+            Settings.Default["volCommision"] = txtbox_commissionVol.Text;
             Settings.Default.Save();
         }
         #endregion
 
         private void btn_SIM_calcular_Click_1(object sender, EventArgs e) 
         {
-            if (cb_walkers.Text == "Elija caminante")
-            {
-                MessageBox.Show("Primero debe elegir un caminante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txtbox_montoObjSIM.Text == String.Empty)
-            {
-                MessageBox.Show("Primero debe ingresar un objetivo de venta.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // ===== Se limpia la informacion relacionada a los sims ===== \\
-            itemsUndoSim.Clear();
-            dgv_Sim.Rows.Clear();
-            psrSIM.Clear();
-            nonCompiliantSim.Clear();
-            // ================================================== \\
-
-            var salesTarget = int.Parse(txtbox_montoObjSIM.Text);
-            var walkerSelected = Convert.ToString(cb_walkers.SelectedItem);
-
-            var simData = new PSR();
-            psrSIM = simData.SetDataForSims(txtbox_REP_psragencia.Text, txtbox_REP_pRecarga.Text, txtbox_REP_productosVendidos.Text, walkerSelected, salesTarget);
-
-            var objCumplido = 0;
-            var investment = 0;
-
-            foreach (var psr in psrSIM.Values)
-            {
-                if (psr.IsCompliant) objCumplido++;
-                else
-                {
-                    // Carga de datos en DGV
-                    int rowsIndex = dgv_Sim.Rows.Add();
-                    dgv_Sim.Rows[rowsIndex].Cells[0].Value = psr.Name;
-                    dgv_Sim.Rows[rowsIndex].Cells[1].Value = psr.FirstCharge;
-                    dgv_Sim.Rows[rowsIndex].Cells[2].Value = psr.ClientNim;
-                    dgv_Sim.Rows[rowsIndex].Cells[3].Value = psr.Lote;
-                    dgv_Sim.Rows[rowsIndex].Cells[4].Value = "Ok";
-
-                    investment += (salesTarget - psr.FirstCharge);
-                    nonCompiliantSim.Add(psr.Name);
-                }
-            }
-
-            int psrTotal = psrSIM.Count;
-            int efectividad = (objCumplido * 100) / psrTotal;
-            txtBox_PSRTotales.Text = Convert.ToString(psrTotal);
-            txtBox_SimConObj.Text = Convert.ToString(objCumplido);
-            txtBox_faltaCumplir.Text = Convert.ToString(nonCompiliantSim.Count);
-            txtBox_inver.Text = "$" + investment;
-            txtBox_Efectividad.Text = efectividad + "%";
+            ShowSimInfo();
         } 
         private void btn_calcularSellout_Click(object sender, EventArgs e)
         {
             ShowSelloutInfo();
         }
+        private void btn_Save_Click(object sender, EventArgs e) //Codigo para exportacion de Reporte formato (.txt)
+        {
+            if (!txtBox_PSRTotales.Text.Contains('-') || !SO_psrTotales.Text.Contains('-'))
+            {
 
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    var savePath = saveFileDialog1.FileName + ".txt";
+                    var unpaidSim = txtBox_faltaCumplir.Text;
+                    var unpaidSellout = txtBox_soFaltan.Text;
+                    var simEffectiveness = lbl_simEffectiveness.Text;
+                    var soEffectiveness = lbl_soEffectiveness.Text;
 
+                    nonCompiliantSim.Sort();
+                    nonCompiliantSo.Sort();
+                    using (StreamWriter file = new StreamWriter(savePath))
+                    {
+                        string reportContent = $"SIM-PLE Reporte para: {report.FullName}\n\n" +
+                            $"Total Comisiones: ${report.TotalReward}\n\n" +
+                            $"Detalle:\n\n" +
+                            $"- Premio 40%: ${report.Gift40percent}\n" +
+                            $"- Volumen vendido: ${report.SoldVol} de ${totalVol}" +
+                            $"- Comision por volumen: ${report.Volumen}\n\n" +
+                            $"- Objetivo SIM: ${report.RewardSim} ({report.ObjSim} PSR)\n" +
+                            $"- Efectividad Sim: {simEffectiveness}\n" +
+                            $"- No liquidan: {unpaidSim}\n";
+                        file.WriteLine(reportContent);
+
+                        foreach (var item in nonCompiliantSim)
+                            file.WriteLine(item);
+
+                        file.WriteLine("\n");
+                        file.WriteLine($"- Objetivo Sellout: ${report.RewardSo} ({report.ObjSellOut} PSR)\n" +
+                            $"- Efectividad Sellout: {soEffectiveness}\n" +
+                        $"- No liquidan: {unpaidSellout}\n");
+
+                        foreach (var item in nonCompiliantSo)
+                            file.WriteLine(item);
+                    }
+                    MessageBox.Show("Se ha guardado su resultado.","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Primero debes calcular todos los objetivos","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
         private void btn_clipBoard_Click(object sender, EventArgs e) //Codigo para reporte en ClipBoard
         {
             //FIXME:
@@ -485,120 +626,12 @@ namespace SIM_PLE_2._0
                 MessageBox.Show("Primero debes calcular todos los objetivos", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void iconButton1_Click(object sender, EventArgs e) //Codigo para exportacion de Reporte formato (.txt)
-        {
-            //FIXME:
-            if (!txtBox_PSRTotales.Text.Contains('-') || !SO_psrTotales.Text.Contains('-'))
-            {
-
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                  //string[] noCumplidores_SIM = listBox_SIM.Items.OfType<string>().ToArray();
-                  //string[] noCumplidores_SO = listBox_Sellout.Items.OfType<string>().ToArray();
-                    string rutaGuardado = saveFileDialog1.FileName + ".txt";
-                    string cumObjetivo_SIM = txtBox_SimConObj.Text;
-                    string simFaltantes = txtBox_faltaCumplir.Text;
-                    string cumObjetivo_SO = txtB_soConObjetivo.Text;
-                    string soFaltantes = txtBox_soFaltan.Text;
-
-                    string tituloReporte = "SIM-PLE Reporte: " + cb_walkers.SelectedItem;
-                    string lineaVacia = "";
-                    string linea1 = "Obj. SIM: " + cumObjetivo_SIM + " PSR";
-                    string linea2 = "Faltan "+ simFaltantes+" psr: ";
-                    string linea3 = "tu volumen es: " + txtB_soVolumen.Text;
-                    string linea4 = "Obj. SO: " + cumObjetivo_SO;
-                    string linea5 = "Faltan " + soFaltantes + " psr: ";
-                    int j = 1;
-
-                    using (StreamWriter file = new StreamWriter(rutaGuardado))
-                    {
-                        file.WriteLine(tituloReporte);
-                        file.WriteLine(lineaVacia);
-                        file.WriteLine(linea1);
-                        file.WriteLine(lineaVacia);
-                        file.WriteLine(linea2);
-                        file.WriteLine(lineaVacia);
-                     /* foreach (string items in noCumplidores_SIM)
-                        {
-                            file.WriteLine(Convert.ToString(j)+") "+items);
-                            j++;
-                        }*/
-                        file.WriteLine(lineaVacia);
-                        file.WriteLine(linea3);
-                        file.WriteLine(lineaVacia);
-                        file.WriteLine(linea4);
-                        file.WriteLine(lineaVacia);
-                        file.WriteLine(linea5);
-                        file.WriteLine(lineaVacia);
-                        j = 1;
-                       /* foreach (string items in noCumplidores_SO)
-                        {
-                            file.WriteLine(Convert.ToString(j) + ") " + items);
-                            j++;
-                        }*/
-                    }
-                    MessageBox.Show("Se ha guardado su resultado.","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Primero debes calcular todos los objetivos","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-        private void ShowSalary() //TODO: Mover a seccion de metodos una vez terminado.
-        {
-            bool txtboxNotCompleted = String.IsNullOrWhiteSpace(txtbox_defaultValueSim.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_100ValueSim.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_120ValueSim.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_150ValueSim.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_defaultValueSo.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_100ValueSo.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_120ValueSo.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_150ValueSo.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_maxClient.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_maxClient.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_commissionVol.Text) ||
-                                      String.IsNullOrWhiteSpace(txtbox_targetVol.Text);
-
-            if (txtboxNotCompleted)
-            {
-                MessageBox.Show("Debe ingresar los valores de comisiones.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!txtbox_REP_pRecarga.Text.ToLower().Contains("primera"))
-            {
-                MessageBox.Show("El reporte ingresado en 'Primera Recargas' no es correcto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-
-
-            //========================== Reward 40% Section ==========================\\
-            dgv_reward40.Rows.Clear();
-                
-            int maxValueClient = int.Parse(txtbox_maxClient.Text);
-            int maxValueWalker = int.Parse(txtbox_maxWalker.Text);
-
-            var rewardSim = new PSR();
-            var employedRewards = rewardSim.SetDataForRewards(txtbox_REP_pRecarga.Text, maxValueClient, maxValueWalker);
-
-            foreach (var reward in employedRewards.Values)
-            {
-                int rowCount = dgv_reward40.Rows.Add();
-                dgv_reward40.Rows[rowCount].Cells[0].Value = reward.Walker;
-                dgv_reward40.Rows[rowCount].Cells[1].Value = "$ " + reward.WalkerReward;
-                dgv_reward40.Rows[rowCount].Cells[2].Value = reward.TotalSim + " Sims";
-                dgv_reward40.Rows[rowCount].Cells[3].Value = "$ " + reward.Amount;
-            }
-
-            var arrEmployee = new string[cb_walkers.Items.Count];
-            for (int i = 0; i < cb_walkers.Items.Count; i++) arrEmployee[i] = cb_walkers.Items[i].ToString();
-
-        }
         private void btn_calcularPremios_Click(object sender, EventArgs e)
         {
             ShowSalary();
         }
+
+
         private void dgv_Sim_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int cellTarget = e.ColumnIndex;
@@ -633,7 +666,7 @@ namespace SIM_PLE_2._0
 
                     int psrTotales = int.Parse(txtBox_PSRTotales.Text);
                     int efectividad = (int.Parse(txtBox_SimConObj.Text) * 100) / psrTotales;
-                    txtBox_Efectividad.Text = efectividad + "%";
+                    lbl_simEffectiveness.Text = efectividad + "%";
 
                     int invercionActual = int.Parse(txtBox_inver.Text.Replace("$", String.Empty));
                     int recargeValue = int.Parse(txtbox_montoObjSIM.Text) - Convert.ToInt32(dgv_Sim.Rows[rowTarget].Cells[1].Value);
@@ -672,14 +705,17 @@ namespace SIM_PLE_2._0
                     txtB_soConObjetivo.Text = ReduceCounter(txtB_soConObjetivo.Text);
                     txtBox_soFaltan.Text = nonCompiliantSo.Count().ToString();
                     int psrTotal = int.Parse(SO_psrTotales.Text);
-                    SO_efectividad.Text = (int.Parse(txtB_soConObjetivo.Text) *100) / psrTotal + "%";
+                    lbl_soEffectiveness.Text = (int.Parse(txtB_soConObjetivo.Text) *100) / psrTotal + "%";
 
                 }
             }
         }
 
 
-        //FIXME: No funciona como lo espero se ejecuta el metodo cuando hago foco y no cuando hago click.
+
+
+
+        //FIXME: No funciona como lo espero se ejecuta el metodo cuando hago foco y no cuando se presiona ENTER.
         private void btn_calcularSellout_Enter(object sender, EventArgs e)
         {
             //ShowSelloutInfo();
