@@ -20,7 +20,7 @@ namespace SIM_PLE_2._0
         public string ClientNim { get; private set; }
         public string IdSIM { get; private set; }
         public bool IsCompliant { get; private set; }
-        public int StochCharges { get; private set; }
+        public int StockCharges { get; private set; }
         public int StockSim { get; private set; }
         public int Transactions { get; private set; }
         public double MonthSolds { get; private set; }
@@ -155,7 +155,7 @@ namespace SIM_PLE_2._0
                         Walker = itemsAgency[INDEX_AGENCY_WALKER],
                         Pos = itemsAgency[INDEX_AGENCY_POS],
                         Transactions = 0,
-                        StochCharges = 0,
+                        StockCharges = 0,
                         StockSim = 0,
                         MonthSolds = 0,
                         IsCompliant = false
@@ -252,7 +252,13 @@ namespace SIM_PLE_2._0
             }
             return employeeRewards;
         }
-        private int Get40percent(string input) //retona un int con el 40% del string input
+
+        /// <summary>
+        /// Devuelve un int con el 40% del string input
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private int Get40percent(string input)
         {
             double mathOperation = double.Parse(input) * 0.4;
             int result = Convert.ToInt32(Math.Round(mathOperation));
