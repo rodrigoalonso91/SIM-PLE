@@ -579,54 +579,10 @@ namespace SIM_PLE_2._0
                 MessageBox.Show("Primero debes calcular todos los objetivos","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void btn_clipBoard_Click(object sender, EventArgs e) //Codigo para reporte en ClipBoard
-        {
-            //FIXME:
-            if (!CounterTotalPsr_sim.Text.Contains('-') || !CounterTotalPsr_so.Text.Contains('-'))
-            {
-                Clipboard.Clear();
-                string strNoCumplidores_Sim = "";
-                string strNoCumplidores_SO = "";
-                string cumObjetivo_SIM = CounterObj_sim.Text;
-                string simFaltantes = CounterFail_sim.Text;
-                string cumObjetivo_SO = CounterObj_so.Text;
-                string soFaltantes = CounterFail_so.Text;
-
-                string saltoDeLinea = Environment.NewLine;
-                string tituloReporte = "SIM-PLE Reporte: " + Cb_Walkers.SelectedItem;
-                string linea1 = "Obj. SIM: " + cumObjetivo_SIM + " PSR";
-                string linea2 = "Faltan " + simFaltantes + " psr: ";
-                string linea3 = "tu volumen es: " + CounterVol_so.Text;
-                string linea4 = "Obj. SO: " + cumObjetivo_SO;
-                string linea5 = "Faltan " + soFaltantes + " psr: ";
-             /* foreach (string items in noCumplidores_SIM)
-                {
-                    strNoCumplidores_Sim += saltoDeLinea + "    " + Convert.ToString(j) + ") " + items;
-                    j++;
-                }
-                j = 1;
-                foreach (string items in noCumplidores_SO)
-                {
-                    strNoCumplidores_SO += saltoDeLinea + "    " + Convert.ToString(j) + ") " + items;
-                    j++;
-                }
-             */
-                string reporte = tituloReporte + saltoDeLinea + String.Empty + saltoDeLinea + linea1 + saltoDeLinea + String.Empty + saltoDeLinea  + linea2 + strNoCumplidores_Sim + saltoDeLinea + String.Empty + saltoDeLinea + linea3
-                    + saltoDeLinea + String.Empty + saltoDeLinea + linea4 + saltoDeLinea + String.Empty + saltoDeLinea + linea5 + strNoCumplidores_SO;
-
-                Clipboard.SetText(reporte);
-                MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Primero debes calcular todos los objetivos", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
         private void Btn_CalculateRewards_Click(object sender, EventArgs e)
         {
             ShowSalary();
         }
-
         private void dgv_Sim_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int cellTarget = e.ColumnIndex;
@@ -714,10 +670,6 @@ namespace SIM_PLE_2._0
             }
         }
 
-
-
-
-
         //FIXME: No funciona como lo espero se ejecuta el metodo cuando hago foco y no cuando se presiona ENTER.
         private void Btn_Calculate_so_Enter(object sender, EventArgs e)
         {
@@ -729,7 +681,38 @@ namespace SIM_PLE_2._0
             //ShowSelloutInfo();
         }
 
-        
+        private void Btn_clipboard_so_Click(object sender, EventArgs e)
+        {
+            if (CounterTotalPsr_so.Text.Contains('-'))
+            {
+                MessageBox.Show("Primero debes calcular todos los objetivos", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Clipboard.Clear();
+            var report = new Report();
+            var output = report.CopyReport(DgvSellout, product:"so");
+            Clipboard.SetText(output);
+
+            MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Btn_clipboard_sim_Click(object sender, EventArgs e)
+        {
+            if (CounterTotalPsr_sim.Text.Contains('-'))
+            {
+                MessageBox.Show("Primero debes calcular todos los objetivos", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Clipboard.Clear();
+            var report = new Report();
+            var output = report.CopyReport(DgvSim, product: "sim");
+            Clipboard.SetText(output);
+
+            MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
     }
 
 }

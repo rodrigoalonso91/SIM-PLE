@@ -58,14 +58,14 @@ namespace SIM_PLE_2._0
         {
             var psrSIM = new Dictionary<string, PSR>();
 
-            //======== Se crea un array a partir de cada linea de los reportes =======\\
+            // Array con de rows del reporte. 
             string[] arrayReportAgency = File.ReadAllLines(reportAgency);
             int reportAgency_len = arrayReportAgency.Length;
 
 
             for (int i = 2; i < reportAgency_len; i++)
             {
-                // Array con el contenido de dichas lineas.
+                // Array con contenido de cada row del reporte-
                 string[] itemsAgency = arrayReportAgency[i].Split(';');
                 // Si pertenece al caminante seleccionado entonces se asignan los datos al objeto PSR.
                 if (itemsAgency[INDEX_AGENCY_WALKER] == walkerSelected)
