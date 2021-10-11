@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIM-PLE 2.0", "SIM-PLE 2.0\SIM-PLE 2.0.csproj", "{0E56C39C-B2A5-4512-8DD6-1B4B9FDAC63F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SIM-PLE v2.3", "E:\Users\Heroe Records\Documents\SIM-PLE\SIM-PLE v2.3\SIM-PLE v2.3.vdproj", "{C12283B9-2E25-4DA5-B4BA-6032E0F2E91A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,8 +15,6 @@ Global
 		{0E56C39C-B2A5-4512-8DD6-1B4B9FDAC63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E56C39C-B2A5-4512-8DD6-1B4B9FDAC63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E56C39C-B2A5-4512-8DD6-1B4B9FDAC63F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C12283B9-2E25-4DA5-B4BA-6032E0F2E91A}.Debug|Any CPU.ActiveCfg = Debug
-		{C12283B9-2E25-4DA5-B4BA-6032E0F2E91A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

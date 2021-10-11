@@ -243,7 +243,7 @@ namespace SIM_PLE_2._0
                 }
                 else
                 {
-                    employeeRewards[item.Walker].Amount += item.Amount;
+                    employeeRewards[item.Walker].Amount += item.TopReward;
                     employeeRewards[item.Walker].TotalSim += item.TotalSim;
                     employeeRewards[item.Walker].WalkerReward += item.TopReward;
                     if (employeeRewards[item.Walker].WalkerReward > maxForWalker)
@@ -266,3 +266,4 @@ namespace SIM_PLE_2._0
         }
     }
 }
+

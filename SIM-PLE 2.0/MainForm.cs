@@ -182,9 +182,9 @@ namespace SIM_PLE_2._0
 
                 int rowCount = DgvReward40.Rows.Add();
                 DgvReward40.Rows[rowCount].Cells[0].Value = reward.Walker;
-                DgvReward40.Rows[rowCount].Cells[1].Value = "$ " + reward.WalkerReward;
-                DgvReward40.Rows[rowCount].Cells[2].Value = reward.TotalSim + " Sims";
-                DgvReward40.Rows[rowCount].Cells[3].Value = "$ " + reward.Amount;
+                DgvReward40.Rows[rowCount].Cells[1].Value = reward.TotalSim + " Sims";
+                DgvReward40.Rows[rowCount].Cells[2].Value = "$ " + reward.Amount;
+                DgvReward40.Rows[rowCount].Cells[3].Value = "$ " + reward.WalkerReward;
             }
             //========================================================================\\
 
@@ -366,7 +366,7 @@ namespace SIM_PLE_2._0
             {
                 TxtBox_ReportDealer.Text = OpenFileDialog1.FileName;
                 totalVol = Walker.GetTotalVol(TxtBox_ReportDealer.Text);
-                lbl_totalVol.Text = "Vol Total: $" + totalVol;
+                Txtbox_sendVol.Text = "$ " + totalVol;
             }
             EnableCalculate();
         }
@@ -713,6 +713,7 @@ namespace SIM_PLE_2._0
             MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
     }
 
 }

@@ -25,10 +25,7 @@ namespace SIM_PLE_2._0
                 {
                     var isOnGrid = item.Cells[4].Value.ToString() == "Ok";
 
-                    if (isOnGrid)
-                    {
-                        ExportReport += $"{item.Cells[0].Value} \n";
-                    }
+                    if (isOnGrid) ExportReport += $"{item.Cells[0].Value} \n";
                 }
             }
             else if(product == "so")
@@ -37,10 +34,7 @@ namespace SIM_PLE_2._0
                 {
                     var isOnGrid = item.Cells[4].Value.ToString() == "Ok";
 
-                    if (isOnGrid)
-                    {
-                        ExportReport += $"{item.Cells[0].Value}  |  Ventas hasta la fecha: {item.Cells[1].Value}\n";
-                    }
+                    if (isOnGrid) ExportReport += $"{item.Cells[0].Value}  |  Ventas hasta la fecha: {item.Cells[1].Value}\n";
                 }
             }
             

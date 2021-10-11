@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SIM-PLE")]
 [assembly: AssemblyDescription("Controlar tus objetivos nunca fue tan simple.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ArcaneTech")]
+[assembly: AssemblyCompany("Rodrigo Alonso")]
 [assembly: AssemblyProduct("SIM-PLE 2.0")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
@@ -34,3 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.5.0.0")]
 [assembly: AssemblyFileVersion("2.5.0.0")]
+[assembly: NeutralResourcesLanguage("es")]
