@@ -198,7 +198,7 @@ namespace SIM_PLE_2._0
             this.Btn_Tab_rewards.Location = new System.Drawing.Point(0, 316);
             this.Btn_Tab_rewards.Name = "Btn_Tab_rewards";
             this.Btn_Tab_rewards.Size = new System.Drawing.Size(185, 43);
-            this.Btn_Tab_rewards.TabIndex = 13;
+            this.Btn_Tab_rewards.TabIndex = 3;
             this.Btn_Tab_rewards.Text = "COMISIONES";
             this.Btn_Tab_rewards.UseVisualStyleBackColor = true;
             this.Btn_Tab_rewards.Click += new System.EventHandler(this.btn_tabPremios40_Click);
@@ -206,10 +206,11 @@ namespace SIM_PLE_2._0
             // Cb_Walkers
             // 
             this.Cb_Walkers.FormattingEnabled = true;
+            this.Cb_Walkers.ItemHeight = 13;
             this.Cb_Walkers.Location = new System.Drawing.Point(26, 391);
             this.Cb_Walkers.Name = "Cb_Walkers";
             this.Cb_Walkers.Size = new System.Drawing.Size(133, 21);
-            this.Cb_Walkers.TabIndex = 22;
+            this.Cb_Walkers.TabIndex = 4;
             // 
             // Btn_Save
             // 
@@ -249,7 +250,7 @@ namespace SIM_PLE_2._0
             this.Btn_Tab_sim.Location = new System.Drawing.Point(0, 230);
             this.Btn_Tab_sim.Name = "Btn_Tab_sim";
             this.Btn_Tab_sim.Size = new System.Drawing.Size(185, 43);
-            this.Btn_Tab_sim.TabIndex = 2;
+            this.Btn_Tab_sim.TabIndex = 1;
             this.Btn_Tab_sim.Text = "SIM";
             this.Btn_Tab_sim.UseVisualStyleBackColor = true;
             this.Btn_Tab_sim.Click += new System.EventHandler(this.btn_tabBO_Click);
@@ -264,7 +265,7 @@ namespace SIM_PLE_2._0
             this.Btn_Tab_so.Location = new System.Drawing.Point(0, 273);
             this.Btn_Tab_so.Name = "Btn_Tab_so";
             this.Btn_Tab_so.Size = new System.Drawing.Size(185, 43);
-            this.Btn_Tab_so.TabIndex = 1;
+            this.Btn_Tab_so.TabIndex = 2;
             this.Btn_Tab_so.Text = "SELLOUT";
             this.Btn_Tab_so.UseVisualStyleBackColor = true;
             this.Btn_Tab_so.Click += new System.EventHandler(this.btn_tabSellout_Click);
@@ -1115,7 +1116,7 @@ namespace SIM_PLE_2._0
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 36);
-            this.label7.TabIndex = 54;
+            this.label7.TabIndex = 0;
             this.label7.Text = "Valor SIM";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1219,7 +1220,7 @@ namespace SIM_PLE_2._0
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 36);
-            this.label6.TabIndex = 48;
+            this.label6.TabIndex = 0;
             this.label6.Text = "+100 SIM";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1256,7 +1257,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_commissionVol.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_commissionVol.Name = "Txtbox_commissionVol";
             this.Txtbox_commissionVol.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_commissionVol.TabIndex = 44;
+            this.Txtbox_commissionVol.TabIndex = 36;
             this.Txtbox_commissionVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_commissionVol.TextChanged += new System.EventHandler(this.txtbox_commissionVol_TextChanged);
             this.Txtbox_commissionVol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_commissionVol_KeyPress);
@@ -1267,7 +1268,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_150ValueSo.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_150ValueSo.Name = "Txtbox_150ValueSo";
             this.Txtbox_150ValueSo.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_150ValueSo.TabIndex = 40;
+            this.Txtbox_150ValueSo.TabIndex = 33;
             this.Txtbox_150ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_150ValueSo.TextChanged += new System.EventHandler(this.txtbox_150ValueSo_TextChanged);
             this.Txtbox_150ValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_150ValueSo_KeyPress);
@@ -1278,7 +1279,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_120ValueSo.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_120ValueSo.Name = "Txtbox_120ValueSo";
             this.Txtbox_120ValueSo.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_120ValueSo.TabIndex = 38;
+            this.Txtbox_120ValueSo.TabIndex = 32;
             this.Txtbox_120ValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_120ValueSo.TextChanged += new System.EventHandler(this.txtbox_120ValueSo_TextChanged);
             this.Txtbox_120ValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_120ValueSo_KeyPress);
@@ -1289,7 +1290,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_requiredPsr.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_requiredPsr.Name = "Txtbox_requiredPsr";
             this.Txtbox_requiredPsr.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_requiredPsr.TabIndex = 36;
+            this.Txtbox_requiredPsr.TabIndex = 34;
             this.Txtbox_requiredPsr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_requiredPsr.TextChanged += new System.EventHandler(this.txtbox_100ValueSo_TextChanged);
             this.Txtbox_requiredPsr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_100ValueSo_KeyPress);
@@ -1300,7 +1301,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_defaultValueSo.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_defaultValueSo.Name = "Txtbox_defaultValueSo";
             this.Txtbox_defaultValueSo.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_defaultValueSo.TabIndex = 34;
+            this.Txtbox_defaultValueSo.TabIndex = 31;
             this.Txtbox_defaultValueSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_defaultValueSo.TextChanged += new System.EventHandler(this.txtbox_defaultValueSo_TextChanged);
             this.Txtbox_defaultValueSo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_defaultValueSo_KeyPress);
@@ -1311,7 +1312,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_150ValueSim.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_150ValueSim.Name = "Txtbox_150ValueSim";
             this.Txtbox_150ValueSim.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_150ValueSim.TabIndex = 32;
+            this.Txtbox_150ValueSim.TabIndex = 29;
             this.Txtbox_150ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_150ValueSim.TextChanged += new System.EventHandler(this.txtbox_150ValueSim_TextChanged);
             this.Txtbox_150ValueSim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_150ValueSim_KeyPress);
@@ -1322,7 +1323,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_120ValueSim.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_120ValueSim.Name = "Txtbox_120ValueSim";
             this.Txtbox_120ValueSim.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_120ValueSim.TabIndex = 30;
+            this.Txtbox_120ValueSim.TabIndex = 28;
             this.Txtbox_120ValueSim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_120ValueSim.TextChanged += new System.EventHandler(this.txtbox_120ValueSim_TextChanged);
             this.Txtbox_120ValueSim.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_120ValueSim_KeyPress);
@@ -1462,7 +1463,7 @@ namespace SIM_PLE_2._0
             this.Btn_CalculateRewards.Location = new System.Drawing.Point(122, 401);
             this.Btn_CalculateRewards.Name = "Btn_CalculateRewards";
             this.Btn_CalculateRewards.Size = new System.Drawing.Size(528, 53);
-            this.Btn_CalculateRewards.TabIndex = 23;
+            this.Btn_CalculateRewards.TabIndex = 37;
             this.Btn_CalculateRewards.Text = "Calcular";
             this.Btn_CalculateRewards.UseVisualStyleBackColor = true;
             this.Btn_CalculateRewards.Click += new System.EventHandler(this.Btn_CalculateRewards_Click);
@@ -1473,7 +1474,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_maxWalker.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_maxWalker.Name = "Txtbox_maxWalker";
             this.Txtbox_maxWalker.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_maxWalker.TabIndex = 22;
+            this.Txtbox_maxWalker.TabIndex = 35;
             this.Txtbox_maxWalker.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_maxWalker.TextChanged += new System.EventHandler(this.txtbox_maxPorCaminante_TextChanged);
             this.Txtbox_maxWalker.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCaminante_KeyPress);
@@ -1484,7 +1485,7 @@ namespace SIM_PLE_2._0
             this.Txtbox_maxClient.Margin = new System.Windows.Forms.Padding(0);
             this.Txtbox_maxClient.Name = "Txtbox_maxClient";
             this.Txtbox_maxClient.Size = new System.Drawing.Size(88, 20);
-            this.Txtbox_maxClient.TabIndex = 21;
+            this.Txtbox_maxClient.TabIndex = 30;
             this.Txtbox_maxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txtbox_maxClient.TextChanged += new System.EventHandler(this.txtbox_maxPorCliente_TextChanged);
             this.Txtbox_maxClient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_maxPorCliente_KeyPress);

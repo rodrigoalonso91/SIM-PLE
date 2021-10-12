@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIM_PLE_2._0
 {
@@ -212,7 +209,7 @@ namespace SIM_PLE_2._0
                 if (allFirstCharges.ContainsKey(codPsr))
                 {
                     allFirstCharges[codPsr].TotalSim++;
-                    allFirstCharges[codPsr].Amount += Get40percent(amount);
+                    allFirstCharges[codPsr].Amount += (Get40percent(amount) > maxForClient)? maxForClient : Get40percent(amount);
                     if (allFirstCharges[codPsr].Amount > maxForClient)
                         allFirstCharges[codPsr].TopReward = maxForClient;
                     else
@@ -239,6 +236,7 @@ namespace SIM_PLE_2._0
                 if (!employeeRewards.ContainsKey(item.Walker))
                 {
                     employeeRewards[item.Walker] = item;
+                    employeeRewards[item.Walker].Amount = item.TopReward;
                     employeeRewards[item.Walker].WalkerReward = item.TopReward;
                 }
                 else

@@ -214,18 +214,31 @@ namespace SIM_PLE_2._0
 
             //Quita el signo $
             var volCounter = CounterVol_so.Text.Substring(1);
-            var volWalker = int.Parse(volCounter);
+            var soldVol = int.Parse(volCounter);
             //var volTarget = int.Parse(txtbox_targetVol.Text);
             var volCommission = int.Parse(Txtbox_commissionVol.Text);
             var requiredPsr = int.Parse(Txtbox_requiredPsr.Text);
 
-            var walkerVol = walkerSalary.GetVolForWalker(volWalker, volCommission, totalVol);
+            var walkerVol = walkerSalary.GetVolForWalker(soldVol, volCommission, totalVol);
             if (simCounter < requiredPsr || soCounter < requiredPsr) walkerVol = 0;
 
             DgvSalary.Rows.Clear();
             int totalSalary = simReward + soReward + walkerVol + reward40SelectWalker;
 
-            report = Walker.SetReport(walkerName, simCounter, simReward, soCounter, soReward, walkerVol, volWalker, reward40SelectWalker, totalSalary);
+            var reportSetting = new ReportSettings
+            {
+                WalkerName = walkerName,
+                SimCounter = simCounter,
+                SimReward = simReward,
+                SoCounter = soCounter,
+                SoReward = soReward,
+                WalkerVol = walkerVol,
+                SoldVol = soldVol,
+                Reward40 = reward40SelectWalker,
+                TotalSalary = totalSalary
+            };
+
+            report = Walker.SetReport(reportSetting);
 
             int rowCount2 = DgvSalary.Rows.Add();
             DgvSalary.Rows[rowCount2].Cells[0].Value = simReward;
@@ -335,6 +348,7 @@ namespace SIM_PLE_2._0
                 if (Txtbox_ReportAgency.Text.ToLower().Contains("agencia"))
                 {
                     EnableCalculate();
+                    Cb_Walkers.Items.Clear();
                     foreach (var walker in Walker.GetWalkerFromReport(Txtbox_ReportAgency.Text)) 
                         Cb_Walkers.Items.Add(walker);
                 }

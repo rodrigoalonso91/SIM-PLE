@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIM_PLE_2._0
 {
@@ -93,19 +90,19 @@ namespace SIM_PLE_2._0
             return vol;
         }
 
-        public static Walker SetReport(string walkerName, int objSim, int rewardSim, int objSo, int rewardSo, int vol, int soldVol, int gift40Percent, int totalReward)
+        public static Walker SetReport(ReportSettings reportSetting)
         {
             Walker report = new Walker()
             {
-                FullName = walkerName,
-                ObjSim = objSim.ToString(),
-                RewardSim = rewardSim.ToString(),
-                ObjSellOut = objSo.ToString(),
-                RewardSo = rewardSo.ToString(),
-                Volumen = vol.ToString(),
-                SoldVol = soldVol.ToString(),
-                Gift40percent = gift40Percent.ToString(),
-                TotalReward = totalReward.ToString()
+                FullName = reportSetting.WalkerName,
+                ObjSim = reportSetting.SimCounter.ToString(),
+                RewardSim = reportSetting.SimReward.ToString(),
+                ObjSellOut = reportSetting.SoCounter.ToString(),
+                RewardSo = reportSetting.SoReward.ToString(),
+                Volumen = reportSetting.WalkerVol.ToString(),
+                SoldVol = reportSetting.SoldVol.ToString(),
+                Gift40percent = reportSetting.Reward40.ToString(),
+                TotalReward = reportSetting.TotalSalary.ToString()
             };
             return report;
         }
