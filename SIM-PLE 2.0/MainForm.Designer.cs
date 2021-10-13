@@ -1575,7 +1575,7 @@ namespace SIM_PLE_2._0
             dataGridViewCellStyle20.Format = "C0";
             dataGridViewCellStyle20.NullValue = null;
             this.Column4.DefaultCellStyle = dataGridViewCellStyle20;
-            this.Column4.HeaderText = "Monto cobrado";
+            this.Column4.HeaderText = "Premio 40%";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Width = 111;
