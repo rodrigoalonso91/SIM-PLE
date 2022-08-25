@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace SIM_PLE_2._0
+namespace Simple
 {
     public class PSR
     {
@@ -23,42 +23,46 @@ namespace SIM_PLE_2._0
         public double MonthSolds { get; private set; }
 
         #region "Index from reports"
-        // Index Reporte PSR de la agencia
-        const byte INDEX_AGENCY_CODPSR = 1;
-        const byte INDEX_AGENCY_NAME = 2;
-        const byte INDEX_AGENCY_ADRESS = 3;
-        const byte INDEX_AGENCY_NUMBER = 4;
-        const byte INDEX_AGENCY_WALKER = 11;
-        const byte INDEX_AGENCY_POS = 16;
-        // Index Reporte Primera Recarga
-        const byte INDEX_CHARGES_CODPSR = 0;
-        const byte INDEX_CHARGES_NAME = 1;
-        const byte INDEX_CHARGES_WALKER = 7;
-        const byte INDEX_CHARGES_ID = 9;
-        const byte INDEX_CHARGES_AMOUNT = 14;
-        const byte INDEX_CHARGES_NIM = 10;
-        // Index Reporte Productos Vendidos
-        const byte INDEX_PRODUCTS_CODPSR = 1;
-        const byte INDEX_PRODUCTS_LOTE = 16;
-        const byte INDEX_PRODUCTS_CHECKER = 10;
-        const byte INDEX_PRODUCTS_WALKER = 8;
-        const byte INDEX_PRODUCTS_TRANSACTIONS = 13;
-        //Index Venta de saldo - Analitico
-        const byte INDEX_DEALER_TOTAL = 0;
-        const byte INDEX_DEALER_CODPSR = 2;
-        const byte INDEX_DEALER_TOTALSOLDS = 4;
-        const byte INDEX_DEALER_VENTASPSR = 5;
-        const byte INDEX_DEALER_POS = 3;
-        #endregion
 
-        public Dictionary<string, PSR> SetDataForSims(string reportAgency, string reportFirstCharge, string reportSoldProducts, string walkerSelected, int salesTarget) 
+        // Index Reporte PSR de la agencia
+        private const byte INDEX_AGENCY_CODPSR = 1;
+
+        private const byte INDEX_AGENCY_NAME = 2;
+        private const byte INDEX_AGENCY_ADRESS = 3;
+        private const byte INDEX_AGENCY_NUMBER = 4;
+        private const byte INDEX_AGENCY_WALKER = 11;
+        private const byte INDEX_AGENCY_POS = 16;
+
+        // Index Reporte Primera Recarga
+        private const byte INDEX_CHARGES_CODPSR = 0;
+
+        private const byte INDEX_CHARGES_WALKER = 7;
+        private const byte INDEX_CHARGES_ID = 9;
+        private const byte INDEX_CHARGES_AMOUNT = 14;
+        private const byte INDEX_CHARGES_NIM = 10;
+
+        // Index Reporte Productos Vendidos
+        private const byte INDEX_PRODUCTS_CODPSR = 1;
+
+        private const byte INDEX_PRODUCTS_LOTE = 16;
+        private const byte INDEX_PRODUCTS_CHECKER = 10;
+        private const byte INDEX_PRODUCTS_WALKER = 8;
+        private const byte INDEX_PRODUCTS_TRANSACTIONS = 13;
+
+        //Index Venta de saldo - Analitico
+        private const byte INDEX_DEALER_CODPSR = 2;
+
+        private const byte INDEX_DEALER_TOTALSOLDS = 4;
+
+        #endregion "Index from reports"
+
+        public Dictionary<string, PSR> SetDataForSims(string reportAgency, string reportFirstCharge, string reportSoldProducts, string walkerSelected, int salesTarget)
         {
             var psrSIM = new Dictionary<string, PSR>();
 
-            // Array con de rows del reporte. 
+            // Array con de rows del reporte.
             string[] arrayReportAgency = File.ReadAllLines(reportAgency);
             int reportAgency_len = arrayReportAgency.Length;
-
 
             for (int i = 2; i < reportAgency_len; i++)
             {
@@ -133,6 +137,7 @@ namespace SIM_PLE_2._0
 
             return psrSIM;
         }
+
         public Dictionary<string, PSR> SetDataForSellout(string reportAgency, string reportDealer, string reportSoldProducts, string selectedWalker, int salesTarget)
         {
             var psrSellout = new Dictionary<string, PSR>();
@@ -192,9 +197,9 @@ namespace SIM_PLE_2._0
             }
             return psrSellout;
         }
+
         public Dictionary<string, Reward40> SetDataForRewards(string reportFirstCharges, int maxForClient, int maxForWalker)
         {
-
             var arrayReportFirstCharges = File.ReadAllLines(reportFirstCharges);
             int reporFirstCharges_len = arrayReportFirstCharges.Length;
             var allFirstCharges = new Dictionary<string, Reward40>();
@@ -209,7 +214,7 @@ namespace SIM_PLE_2._0
                 if (allFirstCharges.ContainsKey(codPsr))
                 {
                     allFirstCharges[codPsr].TotalSim++;
-                    allFirstCharges[codPsr].Amount += (Get40percent(amount) > maxForClient)? maxForClient : Get40percent(amount);
+                    allFirstCharges[codPsr].Amount += (Get40percent(amount) > maxForClient) ? maxForClient : Get40percent(amount);
                     if (allFirstCharges[codPsr].Amount > maxForClient)
                         allFirstCharges[codPsr].TopReward = maxForClient;
                     else
@@ -255,7 +260,7 @@ namespace SIM_PLE_2._0
         /// Devuelve un int con el 40% del string input
         /// </summary>
         /// <param name="input"></param>
-        /// <returns></returns>
+        /// <returns>int que representa el porcentaje.</returns>
         private int Get40percent(string input)
         {
             double mathOperation = double.Parse(input) * 0.4;
@@ -264,4 +269,3 @@ namespace SIM_PLE_2._0
         }
     }
 }
-

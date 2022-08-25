@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace SIM_PLE_2._0.Properties
+namespace Simple.Properties
 {
     /// <summary>
     ///   Clase de recurso fuertemente tipado para buscar cadenas traducidas, etc.

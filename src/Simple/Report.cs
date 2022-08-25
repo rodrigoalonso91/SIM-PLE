@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace SIM_PLE_2._0
+namespace Simple
 {
     public class Report
     {
@@ -16,7 +11,6 @@ namespace SIM_PLE_2._0
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="product"></param>
-        /// <returns></returns>
         public string CopyReport(DataGridView grid, string product = "sim")
         {
             if (product == "sim")
@@ -28,7 +22,7 @@ namespace SIM_PLE_2._0
                     if (isOnGrid) ExportReport += $"{item.Cells[0].Value} \n";
                 }
             }
-            else if(product == "so")
+            else if (product == "so")
             {
                 foreach (DataGridViewRow item in grid.Rows)
                 {
@@ -37,7 +31,6 @@ namespace SIM_PLE_2._0
                     if (isOnGrid) ExportReport += $"{item.Cells[0].Value}  |  Vendido hasta la fecha: ${item.Cells[1].Value}\n";
                 }
             }
-            
             return ExportReport;
         }
     }
