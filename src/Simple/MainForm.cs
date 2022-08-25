@@ -18,7 +18,6 @@ namespace Simple
 
         //================ Globals =================\\
         private Dictionary<string, PSR> psrSIM = new Dictionary<string, PSR>();
-
         private Dictionary<string, PSR> psrSellout = new Dictionary<string, PSR>();
         private List<string> nonCompiliantSim = new List<string>();
         private List<string> nonCompiliantSo = new List<string>();
