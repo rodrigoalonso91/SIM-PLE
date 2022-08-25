@@ -1,4 +1,4 @@
-# SIM-PLE-v2.0
+# SIM-PLE
 App de escritorio que permite controlar los objetivos en la seccion de distribucion de Claro Arg.
 ## Caracteristicas y Funcionamiento
 En el panel izquierdo podras acceder a diferentes pestañas:
