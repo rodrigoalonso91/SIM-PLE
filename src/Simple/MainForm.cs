@@ -1,16 +1,12 @@
-﻿using System;
+﻿using Simple.Properties;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using SIM_PLE_2._0.Properties;
+using System.Linq;
+using System.Windows.Forms;
 
-namespace SIM_PLE_2._0
+namespace Simple
 {
     public partial class MainForm : Form
     {
@@ -21,17 +17,19 @@ namespace SIM_PLE_2._0
         }
 
         //================ Globals =================\\
-       private Dictionary<string, PSR> psrSIM = new Dictionary<string, PSR>();
-       private Dictionary<string, PSR> psrSellout = new Dictionary<string, PSR>();
-       private List<string> nonCompiliantSim = new List<string>();
-       private List<string> nonCompiliantSo = new List<string>();
-       private Stack<string> itemsUndoSim = new Stack<string>();
-       private Stack<string> itemsUndoSO = new Stack<string>();
-       private double totalVol;
-       private Walker report = new Walker();
+        private Dictionary<string, PSR> psrSIM = new Dictionary<string, PSR>();
+
+        private Dictionary<string, PSR> psrSellout = new Dictionary<string, PSR>();
+        private List<string> nonCompiliantSim = new List<string>();
+        private List<string> nonCompiliantSo = new List<string>();
+        private Stack<string> itemsUndoSim = new Stack<string>();
+        private Stack<string> itemsUndoSO = new Stack<string>();
+        private double totalVol;
+        private Walker report = new Walker();
         //=============== End Globals ================\\
 
         #region //========== METHODS ==========\\
+
         private void ShowSelloutInfo()
         {
             if (Cb_Walkers.Text == "Elija caminante")
@@ -86,6 +84,7 @@ namespace SIM_PLE_2._0
             int efectividad = (objCumplido * 100) / psrTotales;
             CounterEffectiveness_so.Text = efectividad + "%";
         }
+
         private void ShowSimInfo()
         {
             if (Cb_Walkers.Text == "Elija caminante")
@@ -140,7 +139,8 @@ namespace SIM_PLE_2._0
             CounterInver_sim.Text = "$" + investment;
             CounterEffectiveness_sim.Text = efectividad + "%";
         }
-        private void ShowSalary() 
+
+        private void ShowSalary()
         {
             bool txtboxNotCompleted = String.IsNullOrWhiteSpace(Txtbox_defaultValueSim.Text) ||
                                       String.IsNullOrWhiteSpace(Txtbox_100ValueSim.Text) ||
@@ -166,7 +166,7 @@ namespace SIM_PLE_2._0
             }
             //========================== Reward 40% Section ==========================\\
             DgvReward40.Rows.Clear();
-                
+
             int maxValueClient = int.Parse(Txtbox_maxClient.Text);
             int maxValueWalker = int.Parse(Txtbox_maxWalker.Text);
 
@@ -247,15 +247,18 @@ namespace SIM_PLE_2._0
             DgvSalary.Rows[rowCount2].Cells[3].Value = reward40SelectWalker;
             DgvSalary.Rows[rowCount2].Cells[4].Value = totalSalary;
         }
+
         private bool PressNumber(KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) return true;
             else return false;
         }
+
         private void SelectWalker() //asigna el mensaje "Elige caminante" a todos los ComboBOX
         {
             Cb_Walkers.Text = "Elija caminante";
         }
+
         private void EnableCalculate() //Metodo para habilitar botones de calcular
         {
             if (Txtbox_ReportAgency.Text != "" && Txtbox_ReportFirstCharges.Text != "" && Txtbox_ReportSoldProducts.Text != "")
@@ -274,6 +277,7 @@ namespace SIM_PLE_2._0
                 Btn_CalculateRewards.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
             }
         }
+
         public void ModCounters_Sim(string counterValue, int currentRow)
         {
             string itemSelected = DgvSim.Rows[currentRow].Cells[0].Value.ToString();
@@ -290,18 +294,21 @@ namespace SIM_PLE_2._0
             //Modificacion de efectividad
             CounterEffectiveness_sim.Text = ((int.Parse(CounterObj_sim.Text) * 100) / int.Parse(CounterTotalPsr_sim.Text)) + "%";
         }
+
         public string IncrementCounter(string counter) // Incrementa el valor en uno [string]
         {
             int num = int.Parse(counter);
             num++;
             return num.ToString(); ;
         }
+
         public string ReduceCounter(string counter) // Decremente el valor en uno [string]
         {
             int num = int.Parse(counter);
             num--;
             return num.ToString();
         }
+
         public void ModContadores_SO(string counterValue, int currentRow)
         {
             // Seleccion y movimiento de item
@@ -314,30 +321,37 @@ namespace SIM_PLE_2._0
             CounterFail_so.Text = nonCompiliantSo.Count.ToString();
 
             // Modificacion Efectividad SO
-            CounterEffectiveness_so.Text = ((int.Parse(CounterObj_so.Text) * 100) / int.Parse(CounterTotalPsr_so.Text))+ "%";
+            CounterEffectiveness_so.Text = ((int.Parse(CounterObj_so.Text) * 100) / int.Parse(CounterTotalPsr_so.Text)) + "%";
         }
-        #endregion
+
+        #endregion //========== METHODS ==========\\
 
         #region //========== Left Panel ==========\\
+
         private void btn_tabSIM_Click_1(object sender, EventArgs e)
         {
             TabControl_Main.SelectedTab = TabPage_Reports;
         }
+
         private void btn_tabSellout_Click(object sender, EventArgs e)
         {
             TabControl_Main.SelectedTab = TabPage_Sellout;
         }
+
         private void btn_tabBO_Click(object sender, EventArgs e)
         {
             TabControl_Main.SelectedTab = TabPage_Sim;
         }
+
         private void btn_tabPremios40_Click(object sender, EventArgs e)
         {
             TabControl_Main.SelectedTab = TabPage_Reward40;
         }
-        #endregion
+
+        #endregion //========== Left Panel ==========\\
 
         #region //========== Buttons "Examinar" ==========\\
+
         private void Btn_Examinar1_Click(object sender, EventArgs e)
         {
             //encuentra la ruta de un archivo.
@@ -349,7 +363,7 @@ namespace SIM_PLE_2._0
                 {
                     EnableCalculate();
                     Cb_Walkers.Items.Clear();
-                    foreach (var walker in Walker.GetWalkerFromReport(Txtbox_ReportAgency.Text)) 
+                    foreach (var walker in Walker.GetWalkerFromReport(Txtbox_ReportAgency.Text))
                         Cb_Walkers.Items.Add(walker);
                 }
                 else
@@ -357,7 +371,8 @@ namespace SIM_PLE_2._0
                     MessageBox.Show("Asegurate de estar seleccionando el reporte PSR de la Agencia", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-        }  
+        }
+
         private void btn_Examinar2_Click(object sender, EventArgs e)
         {
             if (OpenFileDialog1.ShowDialog() == DialogResult.OK)
@@ -366,6 +381,7 @@ namespace SIM_PLE_2._0
             }
             EnableCalculate();
         }
+
         private void btn_Examinar3_Click(object sender, EventArgs e)
         {
             if (OpenFileDialog1.ShowDialog() == DialogResult.OK)
@@ -374,6 +390,7 @@ namespace SIM_PLE_2._0
             }
             EnableCalculate();
         }
+
         private void examinar_sellout_dealer_Click(object sender, EventArgs e)
         {
             if (OpenFileDialog1.ShowDialog() == DialogResult.OK)
@@ -384,68 +401,85 @@ namespace SIM_PLE_2._0
             }
             EnableCalculate();
         }
-        #endregion
+
+        #endregion //========== Buttons "Examinar" ==========\\
 
         #region //=========== KeyPress: Only numbers ==========\\
+
         private void txtbox_montoObjSIM_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtBox_Sellout_objVenta_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_maxPorCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_maxPorCaminante_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_defaultValueSim_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_100ValueSim_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_120ValueSim_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_150ValueSim_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_targetVol_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_commissionVol_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_150ValueSo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_120ValueSo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_100ValueSo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
+
         private void txtbox_defaultValueSo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = PressNumber(e);
         }
-        #endregion
+
+        #endregion //=========== KeyPress: Only numbers ==========\\
 
         #region // ======= Settings ====== \\
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Txtbox_SaleTarget_sim.Text = (string)Settings.Default["objSim"];
@@ -462,26 +496,31 @@ namespace SIM_PLE_2._0
             Txtbox_150ValueSo.Text = (string)Settings.Default["so150"];
             Txtbox_commissionVol.Text = (string)Settings.Default["volCommision"];
         }
+
         private void txtbox_montoObjSIM_TextChanged(object sender, EventArgs e)
         {
             Settings.Default["objSim"] = Txtbox_SaleTarget_sim.Text;
             Settings.Default.Save();
         }
+
         private void txtbox_maxPorCliente_TextChanged(object sender, EventArgs e)
         {
             Settings.Default["maxCliente"] = Txtbox_maxClient.Text;
             Settings.Default.Save();
         }
+
         private void txtbox_maxPorCaminante_TextChanged(object sender, EventArgs e)
         {
             Settings.Default["maxCaminante"] = Txtbox_maxWalker.Text;
             Settings.Default.Save();
         }
+
         private void txtBox_Sellout_objVenta_TextChanged(object sender, EventArgs e)
         {
             Settings.Default["objSO"] = Txtbox_SaleTarjet_so.Text;
             Settings.Default.Save();
         }
+
         private void txtbox_defaultValueSim_TextChanged(object sender, EventArgs e)
         {
             Settings.Default["simValue"] = Txtbox_defaultValueSim.Text;
@@ -530,27 +569,28 @@ namespace SIM_PLE_2._0
             Settings.Default.Save();
         }
 
-
         private void txtbox_commissionVol_TextChanged(object sender, EventArgs e)
         {
             Settings.Default["volCommision"] = Txtbox_commissionVol.Text;
             Settings.Default.Save();
         }
-        #endregion
 
-        private void Btn_Calculate_sim_Click(object sender, EventArgs e) 
+        #endregion // ======= Settings ====== \\
+
+        private void Btn_Calculate_sim_Click(object sender, EventArgs e)
         {
             ShowSimInfo();
-        } 
+        }
+
         private void Btn_Calculate_so_Click(object sender, EventArgs e)
         {
             ShowSelloutInfo();
         }
+
         private void btn_Save_Click(object sender, EventArgs e) //Codigo para exportacion de Reporte formato (.txt)
         {
             if (!CounterTotalPsr_sim.Text.Contains('-') || !CounterTotalPsr_so.Text.Contains('-'))
             {
-
                 if (SaveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     var savePath = SaveFileDialog1.FileName + ".txt";
@@ -585,18 +625,20 @@ namespace SIM_PLE_2._0
                         foreach (var item in nonCompiliantSo)
                             file.WriteLine(item);
                     }
-                    MessageBox.Show("Se ha guardado su resultado.","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se ha guardado su resultado.", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Primero debes calcular todos los objetivos","SIM-PLE",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Primero debes calcular todos los objetivos", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
         private void Btn_CalculateRewards_Click(object sender, EventArgs e)
         {
             ShowSalary();
         }
+
         private void dgv_Sim_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int cellTarget = e.ColumnIndex;
@@ -643,6 +685,7 @@ namespace SIM_PLE_2._0
                 }
             }
         }
+
         private void dgv_So_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int cellTarget = e.ColumnIndex;
@@ -678,8 +721,7 @@ namespace SIM_PLE_2._0
                     CounterObj_so.Text = ReduceCounter(CounterObj_so.Text);
                     CounterFail_so.Text = nonCompiliantSo.Count().ToString();
                     int psrTotal = int.Parse(CounterTotalPsr_so.Text);
-                    CounterEffectiveness_so.Text = (int.Parse(CounterObj_so.Text) *100) / psrTotal + "%";
-
+                    CounterEffectiveness_so.Text = (int.Parse(CounterObj_so.Text) * 100) / psrTotal + "%";
                 }
             }
         }
@@ -705,7 +747,7 @@ namespace SIM_PLE_2._0
 
             Clipboard.Clear();
             var report = new Report();
-            var output = report.CopyReport(DgvSellout, product:"so");
+            var output = report.CopyReport(DgvSellout, product: "so");
             Clipboard.SetText(output);
 
             MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -725,9 +767,6 @@ namespace SIM_PLE_2._0
             Clipboard.SetText(output);
 
             MessageBox.Show("Los resultados se copiaron en el portapapeles :)", "SIM-PLE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
-
     }
-
 }

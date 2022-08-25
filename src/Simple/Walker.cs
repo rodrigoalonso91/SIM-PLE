@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace SIM_PLE_2._0
+namespace Simple
 {
-
     public class Walker
     {
         private const byte INDEX_AGENCY_WALKER = 11;
@@ -25,6 +24,7 @@ namespace SIM_PLE_2._0
         public string SoldVol { get; private set; }
         public string Gift40percent { get; private set; }
         public string TotalReward { get; private set; }
+
         //Methods
         public static List<string> GetWalkerFromReport(string _path) //Abre archivo y devuelve una lista de walkers
         {
@@ -40,7 +40,7 @@ namespace SIM_PLE_2._0
                     continue;
                 else
                 {
-                    isEmpty = String.IsNullOrWhiteSpace(itemReport[INDEX_AGENCY_WALKER]);
+                    isEmpty = string.IsNullOrWhiteSpace(itemReport[INDEX_AGENCY_WALKER]);
                     if (!isEmpty) walkersList.Add(itemReport[INDEX_AGENCY_WALKER]);
                 }
             }
@@ -52,10 +52,10 @@ namespace SIM_PLE_2._0
             if (simCounter < simTarget1) return simCounter * simValueDefault;
             if (simCounter >= simTarget1 && simCounter < simTarget2) return simCounter * simValue2;
             if (simCounter >= simTarget2 && simCounter < simTarget3) return simCounter * simValue3;
-            else return  simCounter * simValue4;
+            else return simCounter * simValue4;
         }
 
-        public int GetSalaryForSellout(int soCounter, int soDefaultValue,int soValue2, int soValue3)
+        public int GetSalaryForSellout(int soCounter, int soDefaultValue, int soValue2, int soValue3)
         {
             if (soCounter < soTarget2) return soCounter * soDefaultValue;
             if (soCounter >= soTarget2 && soCounter < soTarget3) return soCounter * soValue2;
@@ -68,8 +68,8 @@ namespace SIM_PLE_2._0
             var longVolWalker = (long)volWalker;
             var longVolComm = (long)volCommission;
             long result = (longVolWalker * longVolComm) / longTotalVol;
-            var output = (int)result;
-            return output;
+
+            return (int)result;
         }
 
         public static double GetTotalVol(string reportDealer)
@@ -92,7 +92,7 @@ namespace SIM_PLE_2._0
 
         public static Walker SetReport(ReportSettings reportSetting)
         {
-            Walker report = new Walker()
+            return new Walker()
             {
                 FullName = reportSetting.WalkerName,
                 ObjSim = reportSetting.SimCounter.ToString(),
@@ -104,7 +104,6 @@ namespace SIM_PLE_2._0
                 Gift40percent = reportSetting.Reward40.ToString(),
                 TotalReward = reportSetting.TotalSalary.ToString()
             };
-            return report;
         }
     }
 }

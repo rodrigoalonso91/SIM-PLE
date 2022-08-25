@@ -1,5 +1,5 @@
 ﻿
-namespace SIM_PLE_2._0
+namespace Simple
 {
     partial class MainForm
     {
