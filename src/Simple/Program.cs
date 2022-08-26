@@ -11,7 +11,7 @@ namespace Simple
 {
     internal static class Program
     {
-        private static readonly string _databasePath = ".\\Licences\\database.json";
+        private static readonly string _databasePath = ".\\Database\\database.json";
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
