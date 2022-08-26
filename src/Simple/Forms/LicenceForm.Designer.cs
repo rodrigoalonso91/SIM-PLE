@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenceForm));
             this.Txtbox_Licence = new System.Windows.Forms.TextBox();
             this.Lbl_Licence = new System.Windows.Forms.Label();
-            this.Btn_Licence = new FontAwesome.Sharp.IconButton();
+            this.Btn_ValidateLicense = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // Txtbox_Licence
@@ -53,28 +53,35 @@
             this.Lbl_Licence.TabIndex = 1;
             this.Lbl_Licence.Text = "Ingrese su licencia";
             // 
-            // Btn_Licence
+            // Btn_ValidateLicense
             // 
-            this.Btn_Licence.IconChar = FontAwesome.Sharp.IconChar.Check;
-            this.Btn_Licence.IconColor = System.Drawing.Color.Black;
-            this.Btn_Licence.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Btn_Licence.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Licence.Location = new System.Drawing.Point(121, 142);
-            this.Btn_Licence.Name = "Btn_Licence";
-            this.Btn_Licence.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.Btn_Licence.Size = new System.Drawing.Size(150, 49);
-            this.Btn_Licence.TabIndex = 2;
-            this.Btn_Licence.Text = "Validar";
-            this.Btn_Licence.UseVisualStyleBackColor = true;
-            this.Btn_Licence.Click += new System.EventHandler(this.Btn_Licence_Click);
+            this.Btn_ValidateLicense.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.Btn_ValidateLicense.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(85)))), ((int)(((byte)(168)))));
+            this.Btn_ValidateLicense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_ValidateLicense.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_ValidateLicense.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Btn_ValidateLicense.IconChar = FontAwesome.Sharp.IconChar.CheckToSlot;
+            this.Btn_ValidateLicense.IconColor = System.Drawing.Color.White;
+            this.Btn_ValidateLicense.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btn_ValidateLicense.IconSize = 35;
+            this.Btn_ValidateLicense.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.Btn_ValidateLicense.Location = new System.Drawing.Point(135, 137);
+            this.Btn_ValidateLicense.Name = "Btn_ValidateLicense";
+            this.Btn_ValidateLicense.Padding = new System.Windows.Forms.Padding(1, 0, 20, 0);
+            this.Btn_ValidateLicense.Size = new System.Drawing.Size(123, 40);
+            this.Btn_ValidateLicense.TabIndex = 45;
+            this.Btn_ValidateLicense.Text = "Validar";
+            this.Btn_ValidateLicense.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Btn_ValidateLicense.UseVisualStyleBackColor = true;
+            this.Btn_ValidateLicense.Click += new System.EventHandler(this.Btn_ValidateLicense_Click);
             // 
             // LicenceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(393, 224);
-            this.Controls.Add(this.Btn_Licence);
+            this.ClientSize = new System.Drawing.Size(393, 204);
+            this.Controls.Add(this.Btn_ValidateLicense);
             this.Controls.Add(this.Lbl_Licence);
             this.Controls.Add(this.Txtbox_Licence);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -89,6 +96,6 @@
 
         private System.Windows.Forms.TextBox Txtbox_Licence;
         private System.Windows.Forms.Label Lbl_Licence;
-        private FontAwesome.Sharp.IconButton Btn_Licence;
+        private FontAwesome.Sharp.IconButton Btn_ValidateLicense;
     }
 }

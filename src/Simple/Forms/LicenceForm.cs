@@ -21,13 +21,13 @@ namespace Simple.Forms
             _databasePath = databasePath;
         }
 
-        private void Btn_Licence_Click(object sender, EventArgs e)
+        private void Btn_ValidateLicense_Click(object sender, EventArgs e)
         {
             var guid = Txtbox_Licence.Text.Trim();
             IsAuthorized = _database.Exists(obj => obj.Id == guid && !obj.IsActive && string.IsNullOrWhiteSpace(obj.MachineName));
 
             var updatedDatabase = _database.Select(obj => new License
-            { 
+            {
                 Id = obj.Id,
                 IsActive = obj.Id == guid,
                 MachineName = obj.Id == guid ? Environment.MachineName.Trim() : "",
