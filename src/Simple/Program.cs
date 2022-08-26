@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace Simple
@@ -21,11 +22,11 @@ namespace Simple
         [STAThread]
         private static void Main()
         {
-            var databaseFolder = Path.GetDirectoryName(_databasePath);
-            if (!Directory.Exists(databaseFolder)) Directory.CreateDirectory(_databasePath);
+            CkeckDatabaseFolder();
+            var database = GetDatabase();
 
-            bool ActiveLicense = Settings.Default.Activated;
-
+            var licenseTarget = database.Where(obj => obj.IsActive).ToList();
+            bool ActiveLicense = licenseTarget.Exists(obj => obj.IsActive && obj.MachineName == Environment.MachineName);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -33,9 +34,6 @@ namespace Simple
             {
                 try
                 {
-                    var jsonText = File.ReadAllText(_databasePath);
-                    var database = JsonConvert.DeserializeObject<List<License>>(jsonText);
-
                     if (!database.Any()) throw new Exception("No hay licencias disponibles");
 
                     var licenseForm = new LicenceForm(database, _databasePath);
@@ -50,6 +48,18 @@ namespace Simple
 
             if (ActiveLicense) Application.Run(new MainForm());
             else MessageBox.Show(_licenceMessage, "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private static void CkeckDatabaseFolder()
+        {
+            var databaseFolder = Path.GetDirectoryName(_databasePath);
+            if (!Directory.Exists(databaseFolder)) Directory.CreateDirectory(_databasePath);
+        }
+
+        private static List<License> GetDatabase()
+        {
+            var jsonText = File.ReadAllText(_databasePath);
+            return JsonConvert.DeserializeObject<List<License>>(jsonText);
         }
     }
 }
