@@ -27,7 +27,7 @@ namespace Simple.Forms
             IsAuthorized = _database.Exists(obj => obj.Id == guid);
 
             var updatedDatabase = _database.Where(obj => obj.Id != guid);
-            var jsonText = JsonConvert.SerializeObject(updatedDatabase);
+            var jsonText = JsonConvert.SerializeObject(updatedDatabase, Formatting.Indented);
             File.WriteAllText(_databasePath, jsonText);
 
             Settings.Default.Activated = IsAuthorized;
