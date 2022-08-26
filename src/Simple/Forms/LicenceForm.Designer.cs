@@ -85,7 +85,11 @@
             this.Controls.Add(this.Lbl_Licence);
             this.Controls.Add(this.Txtbox_Licence);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(409, 243);
+            this.MinimumSize = new System.Drawing.Size(409, 243);
             this.Name = "LicenceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SIM-PLE";
             this.ResumeLayout(false);
             this.PerformLayout();
