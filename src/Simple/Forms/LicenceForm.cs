@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Simple.Domain;
+using Simple.Properties;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,19 +24,14 @@ namespace Simple.Forms
         private void Btn_Licence_Click(object sender, System.EventArgs e)
         {
             var guid = Txtbox_Licence.Text.Trim();
+            IsAuthorized = _database.Exists(obj => obj.Id == guid);
 
-            var updatedDatabase = _database.Select(l => new License
-            {
-                Id = l.Id,
-                IsActive = l.Id == guid,
-            });
-
-            var license = updatedDatabase.Where(l => l.Id.Equals(guid)).First();
-            IsAuthorized = license.IsActive;
-
+            var updatedDatabase = _database.Where(obj => obj.Id != guid);
             var jsonText = JsonConvert.SerializeObject(updatedDatabase);
             File.WriteAllText(_databasePath, jsonText);
 
+            Settings.Default.Activated = IsAuthorized;
+            Settings.Default.Save();
             Close();
         }
     }
