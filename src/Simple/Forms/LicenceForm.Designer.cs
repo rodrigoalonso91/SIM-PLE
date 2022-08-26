@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenceForm));
             this.Txtbox_Licence = new System.Windows.Forms.TextBox();
             this.Lbl_Licence = new System.Windows.Forms.Label();
             this.Btn_Licence = new FontAwesome.Sharp.IconButton();
@@ -76,6 +77,7 @@
             this.Controls.Add(this.Btn_Licence);
             this.Controls.Add(this.Lbl_Licence);
             this.Controls.Add(this.Txtbox_Licence);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LicenceForm";
             this.Text = "SIM-PLE";
             this.ResumeLayout(false);
