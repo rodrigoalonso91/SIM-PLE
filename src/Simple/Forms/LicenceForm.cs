@@ -24,7 +24,7 @@ namespace Simple.Forms
         private void Btn_Licence_Click(object sender, EventArgs e)
         {
             var guid = Txtbox_Licence.Text.Trim();
-            IsAuthorized = _database.Exists(obj => obj.Id == guid);
+            IsAuthorized = _database.Exists(obj => obj.Id == guid && !obj.IsActive && string.IsNullOrWhiteSpace(obj.MachineName));
 
             var updatedDatabase = _database.Select(obj => new License
             { 
