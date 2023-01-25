@@ -1,5 +1,5 @@
 # SIM-PLE
-Desktop app desarrollda para controlar los objetivos de los vendedores en la sección de distribucion de Claro Arg.
+Desktop app desarrollada para controlar los objetivos de los vendedores en la sección de distribucion de Claro Arg.
 ## Caracteristicas y Funcionamiento
 En el panel izquierdo podras acceder a diferentes pestañas:
 
